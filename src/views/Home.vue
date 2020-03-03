@@ -1,18 +1,23 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <b-container fluid class="col-md-12 p-0">
+      <parallax>
+        <img src='https://images.pexels.com/photos/132037/pexels-photo-132037.jpeg'>
+      </parallax>
+
+       <parallax>
+        <img src='https://images.pexels.com/photos/132037/pexels-photo-132037.jpeg'>
+      </parallax>
+
+    </b-container>
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import Parallax from 'vue-parallaxy';
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Parallax
   }
 }
 </script>
