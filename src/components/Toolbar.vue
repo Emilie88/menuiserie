@@ -20,7 +20,7 @@
    <v-app-bar-nav-icon class="hidden-sm-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
        <v-toolbar-title>
-                <router-link class="nav-item" to="/"> <img src="\assets\AdiLogo.png"></router-link>
+                <router-link class="nav-item" to="/"> <img src="../assets/logos.jpg"  style="width:55;height:55px;"></router-link>
             </v-toolbar-title>
       <v-spacer></v-spacer>
        <v-toolbar-items class="hidden-sm-and-down">
@@ -34,7 +34,7 @@
        
      
        </v-toolbar-items>
-      </v-app-bar>
+     
       <v-list dense v-if="drawer">
           <v-list-item-group   v-for="(item, i) in links"
           :key="i" color="primary">
@@ -44,20 +44,26 @@
             <v-list-item-title  v-text="item.text"></v-list-item-title>
           </v-list-item-content>
             </v-list-item>
+             
           </v-list-item-group>
+         
       </v-list>
-    <!-- </v-app-bar>   -->
+      <LanguageSwitcher/>
+       </v-app-bar>
+     
+    
    
    
 </div>
 
 </template>
 <script>
+import LanguageSwitcher from "./LanguageSwitcher.vue"
 export default {
     data(){
         return{
              links: [
-          {text:'Accueil',route: '/'},
+          {text: this.$t("toolbar.home"),route: '/'},
           { text:'A propos de moi',route: '/abouts'},
           { text:'Realisations',route: '/realisations'},
           { text:'Devis',route: '/devis'},
@@ -65,6 +71,9 @@ export default {
       ],
       drawer:null
         }
+    },
+    components:{
+      LanguageSwitcher
     }
 }
     

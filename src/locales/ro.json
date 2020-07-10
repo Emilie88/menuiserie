@@ -1,0 +1,9 @@
+{
+    "toolbar":{
+        "home" : "Acasa",
+        "about": "Despre mine",
+        "realisation": "Realizari",
+        "devis": "Deviz",
+        "contact": "Contact"
+    }
+}

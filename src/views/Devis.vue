@@ -129,3 +129,8 @@
     </v-app>
     </div>
 </template>
+<style scoped>
+.v-icon.v-icon.v-icon--link {
+    color: white;
+}
+</style>

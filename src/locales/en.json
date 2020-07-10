@@ -1,0 +1,9 @@
+{
+    "toolbar":{
+        "home" : "Home",
+        "about": "About me",
+        "realisation": "Realisations",
+        "devis": "Devis",
+        "contact": "Contact"
+    }
+}
