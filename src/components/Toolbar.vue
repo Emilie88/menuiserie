@@ -16,7 +16,7 @@
           src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
         ></v-img>
       </v-avatar>   -->
-      <v-app-bar>
+      <v-app-bar fixed>
    <v-app-bar-nav-icon class="hidden-sm-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
        <v-toolbar-title>
@@ -64,7 +64,6 @@ export default {
         return{
              links: [
           {text: this.$t("toolbar.home"),route: '/'},
-          { text:'A propos de moi',route: '/abouts'},
           { text:'Realisations',route: '/realisations'},
           { text:'Devis',route: '/devis'},
           { icon:'email',text:"Contact",route: '/contact'} 
