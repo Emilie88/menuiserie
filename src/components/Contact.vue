@@ -21,26 +21,27 @@
             <v-theme-provider light>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field flat label="Nom*" solo></v-text-field>
+                  <v-text-field  v-model="body.name" required flat label="Nom*" solo></v-text-field>
                 </v-col>
 
                 <v-col cols="12">
-                  <v-text-field flat label="Email*" solo></v-text-field>
+                  <v-text-field v-model="body.mail" required flat label="Email*" solo></v-text-field>
                 </v-col>
 
                 <v-col cols="12">
-                  <v-text-field flat label="Sujet*" solo></v-text-field>
+                  <v-text-field v-model="body.subject" required flat label="Sujet*" solo></v-text-field>
                 </v-col>
 
                 <v-col cols="12">
-                  <v-textarea flat label="Message*" solo></v-textarea>
+                  <v-textarea v-model="body.message" required flat label="Message*" solo></v-textarea>
                 </v-col>
 
                 <v-col class="mx-auto" cols="auto">
-                  <v-btn color="accent" x-large>
+                  <v-btn color="accent" x-large @click="onClick()">
                     Envoyer
                   </v-btn>
                 </v-col>
+            
               </v-row>
             </v-theme-provider>
           </v-container>
@@ -51,3 +52,36 @@
     </v-app>
   </div>
 </template>
+<script>
+import axios from 'axios';
+export default {
+  data(){
+    return{
+      body:{
+        name:"",
+        mail:"",
+        subject:"",
+        message:"",
+      },
+      errors: []
+    }
+  },
+  methods:{
+    onClick(){
+      axios.post("http://127.0.0.1:8000/api/contacts",this.body) 
+      .then(response => {
+      this.body.name = response.data.name,
+      this.body.mail = response.data.mail,
+      this.body.subject = response.data.subject,
+      this.body.message = response.data.message
+      })
+    .catch(e => {
+      this.errors.push(e)
+    })
+        // .then(response => (this.info = response.data) );
+        
+       
+    }
+  }
+}
+</script>
