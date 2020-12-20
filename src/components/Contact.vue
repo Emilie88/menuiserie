@@ -21,7 +21,7 @@
             <v-theme-provider light>
               <v-row>
                 <v-col cols="12">
-                  <v-text-field  v-model="body.name" required flat label="Nom*" solo></v-text-field>
+                  <v-text-field  v-model="body.name" required flat label="Nom" solo></v-text-field>
                 </v-col>
 
                 <v-col cols="12">
@@ -78,9 +78,8 @@ export default {
     .catch(e => {
       this.errors.push(e)
     })
-        // .then(response => (this.info = response.data) );
-        
-       
+    // Recharge la page actuelle
+     document.location.reload();  
     }
   }
 }
