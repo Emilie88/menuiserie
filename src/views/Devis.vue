@@ -2,7 +2,7 @@
     <div id="contact">
        <v-app>
    
-    <v-content>
+    <v-main>
         <v-sheet
         id="contact"
         color="#333333"
@@ -125,7 +125,7 @@
 
         <div class="py-12"></div>
       </v-sheet>
-    </v-content>
+    </v-main>
     </v-app>
     </div>
 </template>

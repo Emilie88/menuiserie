@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app dark>
-      <v-content>
+      <v-main>
         <section id="hero">
           <v-row no-gutters>
             <v-img src="../assets/img/cuisine/cuisineAlexPD.jpg">
@@ -89,9 +89,35 @@
 
               <v-divider></v-divider>
             </v-responsive>
-
+ 
             <v-row>
-              <v-col
+              <v-sheet
+              class="mx-auto"
+              max-width="1000"
+            >
+              <v-slide-group
+                multiple
+                show-arrows
+              >
+                <v-slide-item
+                  v-for="n in 25"
+                  :key="n"
+                >
+                <v-btn
+                  class="mx-2"
+                 
+                  depressed
+                  rounded
+                >
+                  Options
+                </v-btn>
+              </v-slide-item>
+            </v-slide-group>
+          </v-sheet>
+    
+           
+              
+              <!-- <v-col
                 v-for="({ src, text, title }, i) in articles"
                 :key="i"
                 cols="12"
@@ -102,8 +128,8 @@
                   class="mb-4"
                   height="275"
                   max-width="100%"
-                ></v-img>
-
+                ></v-img> -->
+<!-- 
                 <h3
                   class="font-weight-black mb-4 text-uppercase"
                   v-text="title"
@@ -114,15 +140,17 @@
                 <v-btn class="ml-n4 font-weight-black" text>
                   Continue Reading
                 </v-btn>
-              </v-col>
+              </v-col> -->
+               
             </v-row>
+           
           </v-container>
 
           <div class="py-12"></div>
         </section>
 
         <Contact />
-      </v-content>
+      </v-main>
     </v-app>
   </div>
 </template>
@@ -139,6 +167,20 @@ export default {
   },
   data() {
     return {
+       colors: [
+          'indigo',
+          'warning',
+          'pink darken-2',
+          'red lighten-1',
+          'deep-purple accent-4',
+        ],
+        slides: [
+          'First',
+          'Second',
+          'Third',
+          'Fourth',
+          'Fifth',
+        ],
       articles: [
         {
           src:

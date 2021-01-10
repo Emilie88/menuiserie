@@ -2,9 +2,9 @@
 <div id="app">
   <v-app id="inspire">
     <Toolbar/>
-    <v-content>
+    <v-main>
      <router-view/>
-    </v-content>
+    </v-main>
     <Footer/>
   </v-app>
 </div>
@@ -12,12 +12,14 @@
 
 <script>
 
-import Toolbar from '@/components/Toolbar.vue'
-import Footer from '@/components/Footer.vue'
+import Toolbar from '@/components/Toolbar.vue';
+import Footer from '@/components/Footer.vue';
+
   export default {
     components:{
       Toolbar,
-      Footer
+      Footer,
+      
     }
     
   }
