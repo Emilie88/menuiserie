@@ -7,6 +7,9 @@ import './registerServiceWorker'
 import i18n from './i18n'
 
 
+import './plugins/vee-validate';
+
+
 Vue.config.productionTip = false
 
 new Vue({

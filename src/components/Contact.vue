@@ -50,8 +50,9 @@
                      </div>
                     </v-col>
                  </v-col>
-                <v-col cols="6">
-                  <div>Laissez-moi un message</div>
+
+                 <v-col cols-6>
+                    <div>Laissez-moi un message</div>
                   <br>
                    <v-snackbar
                     v-model="snackbar"
@@ -66,22 +67,83 @@
                     </v-icon>
                   </v-snackbar>
                   
+                    <validation-observer
+                      ref="observer"
+                      v-slot="{ errors }"
+                    >
+                      <form @submit.prevent="submit">
+                        <validation-provider
+                          v-slot="{ errors }"
+                          name="Name"
+                          rules="required"
+                        >
+                          <v-text-field
+                          flat
+                          solo
+                            v-model="body.name"
+                            :error-messages="errors"
+                            label="Name"
+                            required
+                          ></v-text-field>
+
+                        </validation-provider>
                         
-                    <v-text-field  v-model="body.name" ref="name" required flat label="Nom" solo></v-text-field>
+                        <validation-provider
+                          v-slot="{ errors }"
+                          name="Email"
+                          rules="required|email"
+                        >
+                          <v-text-field
+                            flat
+                          solo
+                            v-model="body.mail"
+                            :error-messages="errors"
+                            label="E-mail"
+                            required
+                          ></v-text-field>
+                        </validation-provider>
+                         <validation-provider
+                          v-slot="{ errors }"
+                          name="Subject"
+                          rules="required"
+                        >
+                          <v-text-field
+                            flat
+                          solo
+                            v-model="body.subject"
+                            :error-messages="errors"
+                            label="Subject"
+                            required
+                          ></v-text-field>
+                        </validation-provider>
+                         <validation-provider
+                          v-slot="{ errors }"
+                          name="Message"
+                          rules="required"
+                        >
+                          <v-textarea
+                            flat
+                          solo
+                            v-model="body.message"
+                            :error-messages="errors"
+                            label="Message"
+                            required
+                          ></v-textarea>
+                        </validation-provider>
+                            
+                        <v-btn
+                          class="mr-4"
+                          type="submit"
+                          :error-messages="errors"
+                          color="accent" x-large
+                        >
+                          Envoyer
+                        </v-btn>
+                      
+                      </form>
+                    </validation-observer>
+                  </v-col>
                 
-                    <v-text-field v-model="body.mail" ref="mail" required  :rules="rules.mail" flat label="Email*" solo></v-text-field>
-                  
-                    <v-text-field v-model="body.subject" ref="subject" required :rules="rules.subject"  flat label="Sujet*" solo></v-text-field>
-                  
-                    <v-textarea v-model="body.message" ref="message" required :rules="rules.message" flat label="Message*" solo></v-textarea>
-                
-                  <div class="text-center" cols="auto">
-                    <v-btn color="accent" x-large @click="onClick()">
-                      Envoyer
-                    </v-btn>
-                  </div>
-                </v-col>
-            
               </v-row>
             </v-theme-provider>
           </v-container>
@@ -104,30 +166,17 @@ export default {
         subject:"",
         message:"",
       },
-       rules: { 
-         mail: [val => {
-            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            return pattern.test(val) || 'Invalid e-mail.'
-          }],
-          subject: [val => (val || '').length > 0 || 'This field is required'],
-          message: [val => (val || '').length > 0 || 'This field is required'],
-        },
+      
          snackbar: false,
-      errors: []
+      errors: [],
+
+      
     }
   },
   
   methods:{
-     resetForm(e) {
-            e.preventDefault();
-            this.body.name ="",
-            this.body.mail = "",
-            this.body.subject ="",
-            this.body.message = ""
-           
-        },
-     onClick(e){
-         axios.post("http://127.0.0.1:8000/api/contacts",this.body) 
+    submit () {
+        axios.post("http://127.0.0.1:8000/api/contacts",this.body) 
      .then(response => {
       this.body.name = response.data.name,
       this.body.mail = response.data.mail,
@@ -138,19 +187,46 @@ export default {
     .catch(e => {
       this.errors.push(e);
     });
+        this.$refs.observer.validate();
+       this.snackbar = true;
+
+       this.body.name = ''
+        this.body.mail = ''
+        this.body.subject = ''
+        this.body.message = ''
+       
+        this.$refs.observer.reset()
+    },
+    clear () {
+        this.body.name = ''
+        this.body.mail = ''
+        this.body.subject = ''
+        this.body.message = ''
+       
+        this.$refs.observer.reset()
+      },
+     
+    
+    
+    //  onClick(){
+    //   axios.post("http://127.0.0.1:8000/api/contacts",this.body) 
+    //  .then(response => {
+    //   this.body.name = response.data.name,
+    //   this.body.mail = response.data.mail,
+    //   this.body.subject = response.data.subject,
+    //   this.body.message = response.data.message
+    //   }
+    //  )
+    // .catch(e => {
+    //   this.errors.push(e);
+    // });
   
-    //  Object.keys(this.body).forEach(f => {
-    //       this.$refs[f].reset();
-    //     })
-    this.snackbar = true;
-     e.preventDefault();
-     this.body.name ="";
-    this.body.mail = "";
-    this.body.subject ="";
-    this.body.message = "";
+   
+    // this.snackbar = true;
+ 
    
    
-    }
+    // }
   }
 }
 </script>

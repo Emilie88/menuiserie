@@ -80,9 +80,13 @@
         <section id="blog">
           <div class="py-12"></div>
 
+           <section id="avis">
           <v-container>
-            <br />
-            <br />
+            <h2
+              class="display-2 font-weight-bold mb-3 text-uppercase text-center"
+            >
+              Avis
+            </h2>
 
             <v-responsive class="mx-auto mb-12" width="56">
               <v-divider class="mb-1"></v-divider>
@@ -93,27 +97,40 @@
             <v-row>
               <v-sheet
               class="mx-auto"
-              max-width="1000"
-            >
+              max-width="1000">
               <v-slide-group
                 multiple
+                class="pa-2"
                 show-arrows
               >
                 <v-slide-item
                   v-for="n in 25"
-                  :key="n"
-                >
-                <v-btn
-                  class="mx-2"
-                 
-                  depressed
-                  rounded
-                >
-                  Options
-                </v-btn>
+                  :key="n">
+                        <v-card
+            class="mx-auto"
+            max-width="344"
+            >
+    <v-img
+      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+      height="200px"
+    ></v-img>
+
+    <v-card-title>
+      Top western road trips
+    </v-card-title>
+
+    <v-card-subtitle>
+      1,000 miles of wonder
+    </v-card-subtitle>
+
+    
+
+   
+  </v-card>
               </v-slide-item>
             </v-slide-group>
           </v-sheet>
+          
     
            
               
@@ -145,6 +162,7 @@
             </v-row>
            
           </v-container>
+           </section>
 
           <div class="py-12"></div>
         </section>
