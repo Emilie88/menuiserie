@@ -68,8 +68,6 @@
               <v-divider></v-divider>
             </v-responsive>
 
-            <!-- <div class="py-12"></div> -->
-
             <Cards />
 
             <v-btn class="ma-2 text-center" outlined color="teal">
@@ -77,10 +75,9 @@
             </v-btn>
           </v-container>
         </section>
-        <section id="blog">
-          <div class="py-12"></div>
 
-           <section id="avis">
+        <section id="avis">
+          <div class="py-12"></div>
           <v-container>
             <h2
               class="display-2 font-weight-bold mb-3 text-uppercase text-center"
@@ -93,78 +90,37 @@
 
               <v-divider></v-divider>
             </v-responsive>
- 
+
             <v-row>
-              <v-sheet
-              class="mx-auto"
-              max-width="1000">
-              <v-slide-group
-                multiple
-                class="pa-2"
-                show-arrows
-              >
-                <v-slide-item
-                  v-for="n in 25"
-                  :key="n">
-                        <v-card
-            class="mx-auto"
-            max-width="344"
-            >
-    <v-img
-      src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-      height="200px"
-    ></v-img>
+              <v-col md-12>
+                <v-sheet class="mx-auto" max-width="1200">
+                  <v-slide-group multiple class="pa-2" show-arrows>
+                    <v-slide-item v-for="n in 25" :key="n">
+                      <v-card class="ma-2" max-width="344">
+                        <!-- <v-icon>mdi-star</v-icon> -->
+                        <div>
+                          Entreprise de 60 personnes, Nous avons fait appel à
+                          l'Atelier du Renard pour la réalisation de 70 bureaux,
+                          4 tables de réunion, l'agencement des bureaux et de
+                          l'accueil. Nous sommes très satisfait du travail
+                          fourni, tant sur les conseils, que la réalisation. La
+                          qualité du travail fourni, le respect des délais et du
+                          devis ont été très appréciables.
+                        </div>
 
-    <v-card-title>
-      Top western road trips
-    </v-card-title>
-
-    <v-card-subtitle>
-      1,000 miles of wonder
-    </v-card-subtitle>
-
-    
-
-   
-  </v-card>
-              </v-slide-item>
-            </v-slide-group>
-          </v-sheet>
-          
-    
-           
-              
-              <!-- <v-col
-                v-for="({ src, text, title }, i) in articles"
-                :key="i"
-                cols="12"
-                md="4"
-              >
-                <v-img
-                  :src="src"
-                  class="mb-4"
-                  height="275"
-                  max-width="100%"
-                ></v-img> -->
-<!-- 
-                <h3
-                  class="font-weight-black mb-4 text-uppercase"
-                  v-text="title"
-                ></h3>
-
-                <div class="title font-weight-light mb-5" v-text="text"></div>
-
-                <v-btn class="ml-n4 font-weight-black" text>
-                  Continue Reading
-                </v-btn>
-              </v-col> -->
-               
+                        <div class="title font-weight-light mb-5">
+                          BENJAMIN PAT
+                        </div>
+                        <div class="title font-weight-light mb-5">
+                          12/01/2021
+                        </div>
+                      </v-card>
+                    </v-slide-item>
+                  </v-slide-group>
+                </v-sheet>
+              </v-col>
             </v-row>
-           
           </v-container>
-           </section>
-
-          <div class="py-12"></div>
         </section>
 
         <Contact />
@@ -185,20 +141,14 @@ export default {
   },
   data() {
     return {
-       colors: [
-          'indigo',
-          'warning',
-          'pink darken-2',
-          'red lighten-1',
-          'deep-purple accent-4',
-        ],
-        slides: [
-          'First',
-          'Second',
-          'Third',
-          'Fourth',
-          'Fifth',
-        ],
+      colors: [
+        "indigo",
+        "warning",
+        "pink darken-2",
+        "red lighten-1",
+        "deep-purple accent-4",
+      ],
+      slides: ["First", "Second", "Third", "Fourth", "Fifth"],
       articles: [
         {
           src:

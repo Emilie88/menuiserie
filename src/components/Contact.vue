@@ -20,41 +20,34 @@
 
             <v-theme-provider light>
               <v-row>
-
-                 <v-col cols="6">
+                <v-col md="6" sm="12">
                   Me joindre
-                   <v-col cols="12">
-                     <div>
-                      <v-icon
-                        color="white"
-                      >
-                        mdi-email
-                      </v-icon>
-                        <span> mail@gmail.com</span>
-                     </div>
-                   </v-col>
-                    <v-col cols="12">
-                     <div>
-                      <v-icon
-                        color="white"
-                      >
-                        mdi-phone
-                      </v-icon>
-                     <span> mail@gmail.com</span>
-                     </div>
-                   </v-col>
-                   <v-col cols="12">
-                     <div to="https://www.google.fr/maps/place/Le+Raincy/@48.893841,2.5097306,14.25z/data=!4m5!3m4!1s0x47e613b17ac81227:0x42f162a72fb2522e!8m2!3d48.897386!4d2.5231119?hl=fr">
-                      <v-img
-                      src=".././assets/Raincy2.jpg"></v-img>
-                     </div>
-                    </v-col>
-                 </v-col>
 
-                 <v-col cols-6>
-                    <div>Laissez-moi un message</div>
-                  <br>
-                   <v-snackbar
+                  <div>
+                    <v-icon color="white">
+                      mdi-email
+                    </v-icon>
+                    <span> mail@gmail.com</span>
+                  </div>
+
+                  <div>
+                    <v-icon color="white">
+                      mdi-phone
+                    </v-icon>
+                    <span> mail@gmail.com</span>
+                  </div>
+
+                  <div
+                    to="https://www.google.fr/maps/place/Le+Raincy/@48.893841,2.5097306,14.25z/data=!4m5!3m4!1s0x47e613b17ac81227:0x42f162a72fb2522e!8m2!3d48.897386!4d2.5231119?hl=fr"
+                  >
+                    <v-img src=".././assets/Raincy2.jpg"></v-img>
+                  </div>
+                </v-col>
+
+                <v-col md="6" sm="12">
+                  <div>Laissez-moi un message</div>
+                  <br />
+                  <v-snackbar
                     v-model="snackbar"
                     absolute
                     top
@@ -66,84 +59,79 @@
                       mdi-checkbox-marked-circle
                     </v-icon>
                   </v-snackbar>
-                  
-                    <validation-observer
-                      ref="observer"
-                      v-slot="{ errors }"
-                    >
-                      <form @submit.prevent="submit">
-                        <validation-provider
-                          v-slot="{ errors }"
-                          name="Name"
-                          rules="required"
-                        >
-                          <v-text-field
+
+                  <validation-observer ref="observer" v-slot="{ errors }">
+                    <form @submit.prevent="submit">
+                      <validation-provider
+                        v-slot="{ errors }"
+                        name="Name"
+                        rules="required"
+                      >
+                        <v-text-field
                           flat
                           solo
-                            v-model="body.name"
-                            :error-messages="errors"
-                            label="Name"
-                            required
-                          ></v-text-field>
-
-                        </validation-provider>
-                        
-                        <validation-provider
-                          v-slot="{ errors }"
-                          name="Email"
-                          rules="required|email"
-                        >
-                          <v-text-field
-                            flat
-                          solo
-                            v-model="body.mail"
-                            :error-messages="errors"
-                            label="E-mail"
-                            required
-                          ></v-text-field>
-                        </validation-provider>
-                         <validation-provider
-                          v-slot="{ errors }"
-                          name="Subject"
-                          rules="required"
-                        >
-                          <v-text-field
-                            flat
-                          solo
-                            v-model="body.subject"
-                            :error-messages="errors"
-                            label="Subject"
-                            required
-                          ></v-text-field>
-                        </validation-provider>
-                         <validation-provider
-                          v-slot="{ errors }"
-                          name="Message"
-                          rules="required"
-                        >
-                          <v-textarea
-                            flat
-                          solo
-                            v-model="body.message"
-                            :error-messages="errors"
-                            label="Message"
-                            required
-                          ></v-textarea>
-                        </validation-provider>
-                            
-                        <v-btn
-                          class="mr-4"
-                          type="submit"
+                          v-model="body.name"
                           :error-messages="errors"
-                          color="accent" x-large
-                        >
-                          Envoyer
-                        </v-btn>
-                      
-                      </form>
-                    </validation-observer>
-                  </v-col>
-                
+                          label="Name*"
+                          required
+                        ></v-text-field>
+                      </validation-provider>
+
+                      <validation-provider
+                        v-slot="{ errors }"
+                        name="Email"
+                        rules="required|email"
+                      >
+                        <v-text-field
+                          flat
+                          solo
+                          v-model="body.mail"
+                          :error-messages="errors"
+                          label="E-mail*"
+                          required
+                        ></v-text-field>
+                      </validation-provider>
+                      <validation-provider
+                        v-slot="{ errors }"
+                        name="Subject"
+                        rules="required"
+                      >
+                        <v-text-field
+                          flat
+                          solo
+                          v-model="body.subject"
+                          :error-messages="errors"
+                          label="Subject*"
+                          required
+                        ></v-text-field>
+                      </validation-provider>
+                      <validation-provider
+                        v-slot="{ errors }"
+                        name="Message"
+                        rules="required"
+                      >
+                        <v-textarea
+                          flat
+                          solo
+                          v-model="body.message"
+                          :error-messages="errors"
+                          label="Message*"
+                          required
+                        ></v-textarea>
+                      </validation-provider>
+
+                      <v-btn
+                        class="mr-4"
+                        type="submit"
+                        :error-messages="errors"
+                        color="accent"
+                        x-large
+                      >
+                        Envoyer
+                      </v-btn>
+                    </form>
+                  </validation-observer>
+                </v-col>
               </v-row>
             </v-theme-provider>
           </v-container>
@@ -155,61 +143,55 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
 export default {
-  data(){
-    
-    return{
+  data() {
+    return {
       body: {
-        name:"",
-        mail:"",
-        subject:"",
-        message:"",
+        name: "",
+        mail: "",
+        subject: "",
+        message: "",
       },
-      
-         snackbar: false,
+
+      snackbar: false,
       errors: [],
-
-      
-    }
+    };
   },
-  
-  methods:{
-    submit () {
-        axios.post("http://127.0.0.1:8000/api/contacts",this.body) 
-     .then(response => {
-      this.body.name = response.data.name,
-      this.body.mail = response.data.mail,
-      this.body.subject = response.data.subject,
-      this.body.message = response.data.message
-      }
-     )
-    .catch(e => {
-      this.errors.push(e);
-    });
-        this.$refs.observer.validate();
-       this.snackbar = true;
 
-       this.body.name = ''
-        this.body.mail = ''
-        this.body.subject = ''
-        this.body.message = ''
-       
-        this.$refs.observer.reset()
+  methods: {
+    submit() {
+      this.$http
+        .post("http://127.0.0.1:8000/api/contacts", this.body)
+        .then((response) => {
+          (this.body.name = response.data.name),
+            (this.body.mail = response.data.mail),
+            (this.body.subject = response.data.subject),
+            (this.body.message = response.data.message);
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+      this.$refs.observer.validate();
+      this.snackbar = true;
+
+      this.body.name = "";
+      this.body.mail = "";
+      this.body.subject = "";
+      this.body.message = "";
+
+      this.$refs.observer.reset();
     },
-    clear () {
-        this.body.name = ''
-        this.body.mail = ''
-        this.body.subject = ''
-        this.body.message = ''
-       
-        this.$refs.observer.reset()
-      },
-     
-    
-    
+    clear() {
+      this.body.name = "";
+      this.body.mail = "";
+      this.body.subject = "";
+      this.body.message = "";
+
+      this.$refs.observer.reset();
+    },
+
     //  onClick(){
-    //   axios.post("http://127.0.0.1:8000/api/contacts",this.body) 
+    //   axios.post("http://127.0.0.1:8000/api/contacts",this.body)
     //  .then(response => {
     //   this.body.name = response.data.name,
     //   this.body.mail = response.data.mail,
@@ -220,13 +202,10 @@ export default {
     // .catch(e => {
     //   this.errors.push(e);
     // });
-  
-   
+
     // this.snackbar = true;
- 
-   
-   
+
     // }
-  }
-}
+  },
+};
 </script>
