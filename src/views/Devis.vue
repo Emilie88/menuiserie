@@ -168,16 +168,17 @@
                       </validation-provider>
                     </v-col>
                   </v-row>
-
-                  <v-btn
-                    class="mr-4"
-                    type="submit"
-                    :error-messages="errors"
-                    color="accent"
-                    x-large
-                  >
-                    Envoyer
-                  </v-btn>
+                  <v-row align="center" justify="center">
+                    <v-btn
+                      class="mr-4"
+                      type="submit"
+                      :error-messages="errors"
+                      color="accent"
+                      x-large
+                    >
+                      Envoyer
+                    </v-btn>
+                  </v-row>
                 </form>
               </validation-observer>
             </v-theme-provider>

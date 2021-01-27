@@ -64,7 +64,8 @@ export default {
         { text: this.$t("toolbar.home"), route: "/" },
         { text: "Realisations", route: "/realisations" },
         { text: "Devis", route: "/devis" },
-        { icon: "email", text: "Contact", route: "/contact" },
+        { text: "Contact", route: "/contact" },
+        { text: "Sign-in", route: "/login" },
       ],
       drawer: null,
     };

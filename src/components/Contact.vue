@@ -37,15 +37,18 @@
                     <span> mail@gmail.com</span>
                   </div>
 
-                  <div
-                    to="https://www.google.fr/maps/place/Le+Raincy/@48.893841,2.5097306,14.25z/data=!4m5!3m4!1s0x47e613b17ac81227:0x42f162a72fb2522e!8m2!3d48.897386!4d2.5231119?hl=fr"
-                  >
-                    <v-img src=".././assets/Raincy2.jpg"></v-img>
+                  <div class="googlemap">
+                    <iframe
+                      src="https://maps.google.com/maps?q=le%20raincy&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                      width="100%"
+                      height="450"
+                    ></iframe>
                   </div>
                 </v-col>
 
                 <v-col md="6" sm="12">
                   <div>Laissez-moi un message</div>
+                  <br />
                   <br />
                   <v-snackbar
                     v-model="snackbar"

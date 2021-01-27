@@ -13,16 +13,15 @@
         Bibliotèque
       </h3>
     </template>
-    <v-carousel
-      reverse-transition="fade-transition"
-      height="600"
-      dark
-      hide-delimiters
-      next-icon="fas fa-angle-right"
-      prev-icon="fas fa-angle-left"
-    >
-      <v-carousel-item v-for="(item, i) in biblio" :key="i">
-        <v-img :src="item.src"></v-img>
+
+    <v-carousel cycle dark hide-delimiters>
+      <v-carousel-item
+        v-for="(item, i) in biblio"
+        :key="i"
+        :src="item.src"
+        reverse-transition="fade-transition"
+        transition="fade-transition"
+      >
       </v-carousel-item>
     </v-carousel>
   </v-dialog>

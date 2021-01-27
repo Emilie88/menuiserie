@@ -14,17 +14,14 @@
         Salle de Bain
       </h3>
     </template>
-
-    <v-carousel
-      reverse-transition="fade-transition"
-      height="600"
-      dark
-      hide-delimiters
-      next-icon="fas fa-angle-right"
-      prev-icon="fas fa-angle-left"
-    >
-      <v-carousel-item v-for="(bath, i) in baths" :key="i">
-        <v-img :src="bath.src" />
+    <v-carousel cycle dark hide-delimiters>
+      <v-carousel-item
+        v-for="(bath, i) in baths"
+        :key="i"
+        :src="bath.src"
+        reverse-transition="fade-transition"
+        transition="fade-transition"
+      >
       </v-carousel-item>
     </v-carousel>
   </v-dialog>
