@@ -17,7 +17,7 @@
           <Dressing />
         </v-col>
         <v-col md="4">
-          <Living />
+          <Placard />
         </v-col>
         <v-col md="4">
           <Stairs />
@@ -34,7 +34,7 @@ import Cuisine from "../dialog/Cuisine.vue";
 import Bath from "../dialog/Bath.vue";
 import Biblio from "../dialog/Biblio.vue";
 import Dressing from "../dialog/Dressing.vue";
-import Living from "../dialog/Living.vue";
+import Placard from "../dialog/Placard.vue";
 import Stairs from "../dialog/Stairs.vue";
 export default {
   components: {
@@ -42,7 +42,7 @@ export default {
     Bath,
     Biblio,
     Dressing,
-    Living,
+    Placard,
     Stairs,
   },
 };

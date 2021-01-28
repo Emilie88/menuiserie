@@ -17,7 +17,28 @@
             </v-responsive>
 
             <br />
-            <v-theme-provider light> </v-theme-provider>
+            <v-theme-provider light>
+              <div>
+                <LightGallery
+                  :images="images"
+                  :index="index"
+                  :disable-scroll="true"
+                  @close="index = null"
+                />
+                <v-row>
+                  <v-col
+                    v-for="(thumb, thumbIndex) in thumbs"
+                    :key="thumbIndex"
+                    @click="index = thumbIndex"
+                    class="d-flex child-flex"
+                    md="4"
+                    sm="12"
+                  >
+                    <v-img :src="thumb" />
+                  </v-col>
+                </v-row>
+              </div>
+            </v-theme-provider>
           </v-container>
 
           <div class="py-12"></div>
@@ -29,7 +50,46 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      thumbs: [
+        require("../assets/thumbs/biblio/biblio.jpg"),
+        require("../assets/thumbs/biblio/vergne.jpg"),
+        require("../assets/thumbs/biblio/salon.jpg"),
+        require("../assets/thumbs/biblio/DSC0045.jpg"),
+        require("../assets/thumbs/biblio/IMG20.jpg"),
+        require("../assets/thumbs/biblio/salonAr.jpg"),
+        require("../assets/thumbs/dressing/light.jpg"),
+        require("../assets/thumbs/dressing/dressing.jpg"),
+        require("../assets/thumbs/biblio/salonAr.jpg"),
+      ],
+      images: [
+        {
+          title: "Bibliotèque salon",
+          url: require("../assets/img/biblio/biblio.jpg"),
+        },
+        {
+          title: "Bibliotèque chambre",
+          url: require("../assets/img/biblio/vergne.jpg"),
+        },
+        {
+          title: "Grande bibliotèque de salon",
+          url: require("../assets/img/biblio/salon.jpg"),
+        },
+        {
+          title: "Bibliotèque salon",
+          url: require("../assets/img/biblio/DSC0045.jpg"),
+        },
+        {
+          title: "Bibliotèque salon",
+          url: require("../assets/img/biblio/IMG20.jpg"),
+        },
+        {
+          title: "Bibliotèque salon",
+          url: require("../assets/img/biblio/salonAr.jpg"),
+        },
+      ],
+      index: null,
+    };
   },
 };
 </script>

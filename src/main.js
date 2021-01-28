@@ -8,6 +8,8 @@ import i18n from "./i18n";
 
 import "./plugins/vee-validate";
 import "./plugins/axios";
+import LightGallery from "vue-light-gallery";
+Vue.use(LightGallery);
 
 Vue.config.productionTip = false;
 
@@ -16,5 +18,6 @@ new Vue({
   store,
   vuetify,
   i18n,
+  LightGallery,
   render: (h) => h(App),
 }).$mount("#app");
