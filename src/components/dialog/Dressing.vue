@@ -53,9 +53,9 @@ export default {
       {
         src: require("../../assets/img/dressing/bedroom.jpg"),
       },
-      {
-        src: require("../../assets/img/dressing/comble.jpg"),
-      },
+      // {
+      //   src: require("../../assets/img/dressing/comble.jpg"),
+      // },
       {
         src: require("../../assets/img/dressing/dressing.jpg"),
       },

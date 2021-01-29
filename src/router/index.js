@@ -13,32 +13,27 @@ const routes = [
   {
     path: "/realisations",
     name: "Realisations",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Realisations.vue"),
+    component: () => import("../views/Realisations.vue"),
   },
   {
     path: "/contact",
     name: "Contact",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../components/Contact.vue"),
+    component: () => import("../components/Contact.vue"),
   },
   {
     path: "/abouts",
     name: "Abouts",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Abouts.vue"),
+    component: () => import("../views/Abouts.vue"),
   },
   {
     path: "/devis",
     name: "Devis",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Devis.vue"),
+    component: () => import("../views/Devis.vue"),
   },
   {
     path: "/login",
     name: "Login",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Login.vue"),
+    component: () => import("../views/Login.vue"),
   },
 ];
 

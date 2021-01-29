@@ -70,7 +70,12 @@
 
             <Cards />
 
-            <v-btn class="ma-2 text-center" outlined color="teal">
+            <v-btn
+              class="ma-2 text-center"
+              outlined
+              color="teal"
+              to="/realisations"
+            >
               Tous les projets
             </v-btn>
           </v-container>

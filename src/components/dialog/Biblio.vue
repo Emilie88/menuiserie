@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="1200">
+  <v-dialog v-model="dialog">
     <template v-slot:activator="{ on, attrs }">
       <v-img
         src="../../assets/img/biblio/vergne.jpg"
@@ -14,14 +14,8 @@
       </h3>
     </template>
 
-    <v-carousel cycle dark hide-delimiters>
-      <v-carousel-item
-        v-for="(item, i) in biblio"
-        :key="i"
-        :src="item.src"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
-      >
+    <v-carousel hide-delimiters>
+      <v-carousel-item v-for="(item, i) in biblio" :key="i" :src="item.src">
       </v-carousel-item>
     </v-carousel>
   </v-dialog>

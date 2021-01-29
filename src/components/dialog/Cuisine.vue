@@ -1,5 +1,26 @@
 <template>
-  <v-dialog v-model="dialog" max-width="1200">
+  <div id="cuisine">
+    <div>
+      <LightGallery
+        :images="images"
+        :index="index"
+        :disable-scroll="true"
+        @close="index = null"
+      />
+
+      <v-card
+        v-for="(thumb, thumbIndex) in thumbs"
+        :key="thumbIndex"
+        @click="index = thumbIndex"
+      >
+        <v-img :src="thumb" />
+      </v-card>
+    </div>
+    <h3 class="font-weight-black mb-4 text-uppercase">
+      Cuisine
+    </h3>
+  </div>
+  <!-- <v-dialog v-model="dialog" max-width="1200">
     <template v-slot:activator="{ on, attrs }">
       <v-img
         src="../../assets/img/cuisine/cuisineAlexPD.jpg"
@@ -23,22 +44,25 @@
       >
       </v-carousel-item>
     </v-carousel>
-  </v-dialog>
+  </v-dialog> -->
 </template>
 
 <script>
 export default {
   data: () => ({
     title: "Cuisine",
-    src: require("../../assets/img/cuisine/cuisineAlexPD.jpg"),
+    index: null,
+    thumbs: [require("../../assets/img/cuisine/cuisineAlexPD.jpg")],
     dialog: false,
-    cuisine: [
+    images: [
       {
-        src: require("../../assets/img/cuisine/cuisineAlexPD.jpg"),
+        title: "",
+        url: require("../../assets/img/cuisine/cuisineAlexPD.jpg"),
       },
-      // {
-      //   src: require("../../assets/img/cuisine/cusineGri.jpg"),
-      // },
+      {
+        title: "",
+        url: require("../../assets/img/cuisine/cusineGri.jpg"),
+      },
       // {
       //   src: require("../../assets/img/cuisine/cuisine.jpg"),
       // },

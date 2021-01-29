@@ -1,5 +1,5 @@
 <template>
-  <div id="contact">
+  <div id="realisations">
     <v-app>
       <v-main>
         <v-sheet id="contact" color="#333333" dark tag="section" tile>
@@ -20,14 +20,15 @@
             <v-theme-provider light>
               <div>
                 <LightGallery
-                  :images="images"
+                  :images="toBeShownImg"
                   :index="index"
                   :disable-scroll="true"
                   @close="index = null"
                 />
+
                 <v-row>
                   <v-col
-                    v-for="(thumb, thumbIndex) in thumbs"
+                    v-for="(thumb, thumbIndex) in toBeShown"
                     :key="thumbIndex"
                     @click="index = thumbIndex"
                     class="d-flex child-flex"
@@ -39,6 +40,16 @@
                 </v-row>
               </div>
             </v-theme-provider>
+            <v-row>
+              <div>
+                <v-btn @click="prevPage" :disabled="currentPage == 1"
+                  >Show Less</v-btn
+                >
+                <v-btn @click="nextPage" :disabled="currentPage == totalPages"
+                  >Show More</v-btn
+                >
+              </div>
+            </v-row>
           </v-container>
 
           <div class="py-12"></div>
@@ -48,48 +59,39 @@
   </div>
 </template>
 <script>
+import thumbs from "../gallery/thumbs";
+import images from "../gallery/images";
+
 export default {
   data() {
     return {
-      thumbs: [
-        require("../assets/thumbs/biblio/biblio.jpg"),
-        require("../assets/thumbs/biblio/vergne.jpg"),
-        require("../assets/thumbs/biblio/salon.jpg"),
-        require("../assets/thumbs/biblio/DSC0045.jpg"),
-        require("../assets/thumbs/biblio/IMG20.jpg"),
-        require("../assets/thumbs/biblio/salonAr.jpg"),
-        require("../assets/thumbs/dressing/light.jpg"),
-        require("../assets/thumbs/dressing/dressing.jpg"),
-        require("../assets/thumbs/biblio/salonAr.jpg"),
-      ],
-      images: [
-        {
-          title: "Bibliotèque salon",
-          url: require("../assets/img/biblio/biblio.jpg"),
-        },
-        {
-          title: "Bibliotèque chambre",
-          url: require("../assets/img/biblio/vergne.jpg"),
-        },
-        {
-          title: "Grande bibliotèque de salon",
-          url: require("../assets/img/biblio/salon.jpg"),
-        },
-        {
-          title: "Bibliotèque salon",
-          url: require("../assets/img/biblio/DSC0045.jpg"),
-        },
-        {
-          title: "Bibliotèque salon",
-          url: require("../assets/img/biblio/IMG20.jpg"),
-        },
-        {
-          title: "Bibliotèque salon",
-          url: require("../assets/img/biblio/salonAr.jpg"),
-        },
-      ],
+      thumbs: thumbs,
+      images: images,
       index: null,
+      more: false,
+      currentPage: 1,
     };
+  },
+  computed: {
+    toBeShown() {
+      return this.thumbs.slice(0, this.currentPage * 6);
+    },
+    totalPages() {
+      return (
+        Math.ceil(this.thumbs.length / 6) && Math.ceil(this.images.length / 6)
+      );
+    },
+    toBeShownImg() {
+      return this.images.slice(0, this.currentPage * 6);
+    },
+  },
+  methods: {
+    nextPage() {
+      if (this.currentPage < this.totalPages) this.currentPage++;
+    },
+    prevPage() {
+      this.currentPage = this.currentPage - 1 || 1;
+    },
   },
 };
 </script>
