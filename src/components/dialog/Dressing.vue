@@ -1,66 +1,50 @@
 <template>
-  <v-dialog v-model="dialog" max-width="1200">
-    <template v-slot:activator="{ on, attrs }">
-      <v-img
-        src="../../assets/img/dressing/dressing.jpg"
-        v-bind="attrs"
-        v-on="on"
-        class="mb-4"
-        height="275"
-        max-width="100%"
-      ></v-img>
+  <div id="bath">
+    <div>
+      <LightGallery
+        :images="dressing"
+        :index="index"
+        :disable-scroll="true"
+        @close="index = null"
+      />
 
-      <h3 class="font-weight-black mb-4 text-uppercase">
-        Dressing
-      </h3>
-    </template>
-    <v-carousel cycle dark hide-delimiters>
-      <v-carousel-item
-        v-for="(item, i) in dressing"
-        :key="i"
-        :src="item.src"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
+      <v-card
+        v-for="(thumb, thumbIndex) in thumbs"
+        :key="thumbIndex"
+        @click="index = thumbIndex"
       >
-      </v-carousel-item>
-    </v-carousel>
-  </v-dialog>
+        <v-img :src="thumb" width="100%" height="270" />
+      </v-card>
+    </div>
+    <br />
+    <h3 class="font-weight-black mb-4 text-uppercase">
+      Dressing
+    </h3>
+  </div>
 </template>
 
 <script>
 export default {
   data: () => ({
     dialog: false,
+    index: null,
+    thumbs: [require("../../assets/img/dressing/miniDress.jpg")],
     dressing: [
       {
-        src: require("../../assets/img/dressing/dressing.jpg"),
+        title: "",
+        url: require("../../assets/img/dressing/miniDress.jpg"),
       },
       {
-        src: require("../../assets/img/dressing/img.jpg"),
+        title: "",
+        url: require("../../assets/img/dressing/bedroom.jpg"),
       },
       {
-        src: require("../../assets/img/dressing/lightFirst.jpg"),
+        title: "",
+        url: require("../../assets/img/dressing/lightFirst.jpg"),
       },
       {
-        src: require("../../assets/img/dressing/light.jpg"),
-      },
-      {
-        src: require("../../assets/img/dressing/miniDress.jpg"),
-      },
-      {
-        src: require("../../assets/img/dressing/whiteDress.jpg"),
-      },
-      {
-        src: require("../../assets/img/dressing/bedroom.jpg"),
-      },
-      // {
-      //   src: require("../../assets/img/dressing/comble.jpg"),
-      // },
-      {
-        src: require("../../assets/img/dressing/dressing.jpg"),
-      },
-      {
-        src: require("../../assets/img/dressing/dressingImg.jpg"),
+        title: "",
+        url: require("../../assets/img/dressing/light.jpg"),
       },
     ],
   }),

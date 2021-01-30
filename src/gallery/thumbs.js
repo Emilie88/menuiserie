@@ -70,6 +70,42 @@ const thumbs = [
   require("../assets/thumbs/cuisine/orgeval.jpg"),
 
   require("../assets/thumbs/cuisine/blanche.jpg"),
+
+  require("../assets/thumbs/parquet/img.jpg"),
+
+  require("../assets/thumbs/parquet/parquetEtagers.jpeg"),
+
+  require("../assets/thumbs/parquet/parquetHall.jpg"),
+
+  require("../assets/thumbs/parquet/beauParquet.jpeg"),
+
+  require("../assets/thumbs/stairs/stair.jpg"),
+
+  require("../assets/thumbs/stairs/colimacon.jpg"),
+
+  require("../assets/thumbs/stairs/Paris.jpg"),
+
+  require("../assets/thumbs/stairs/Stairs.jpg"),
+
+  require("../assets/thumbs/stairs/Champigny.jpg"),
+
+  require("../assets/thumbs/sdb/Bain.jpg"),
+
+  require("../assets/thumbs/sdb/SalleBain.jpg"),
+
+  require("../assets/thumbs/sdb/toilette.jpeg"),
+
+  require("../assets/thumbs/sdb/IMG20171211.jpg"),
+
+  require("../assets/thumbs/sdb/DSC0119.jpg"),
+
+  require("../assets/thumbs/sdb/sdb.jpg"),
+
+  require("../assets/thumbs/porte/DSC_0045(2).jpg"),
+
+  require("../assets/thumbs/porte/portecoulissante.jpg"),
+
+  require("../assets/thumbs/porte/porte-coulissante2.jpg"),
 ];
 
 export default thumbs;

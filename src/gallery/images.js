@@ -143,5 +143,77 @@ const images = [
     title: "Cuisine",
     url: require("../assets/img/cuisine/blanche.jpg"),
   },
+  {
+    title: "Pose parquet",
+    url: require("../assets/img/parquet/img.jpg"),
+  },
+  {
+    title: "Pose parquet",
+    url: require("../assets/img/parquet/parquetEtagers.jpeg"),
+  },
+  {
+    title: "Pose parquet",
+    url: require("../assets/img/parquet/parquetHall.jpg"),
+  },
+  {
+    title: "Pose parquet",
+    url: require("../assets/img/parquet/beauParquet.jpeg"),
+  },
+  {
+    title: "Escaliers",
+    url: require("../assets/img/stairs/stair.jpg"),
+  },
+  {
+    title: "Escaliers",
+    url: require("../assets/img/stairs/colimacon.jpg"),
+  },
+  {
+    title: "Escaliers",
+    url: require("../assets/img/stairs/Paris.jpg"),
+  },
+  {
+    title: "Escaliers",
+    url: require("../assets/img/stairs/Stairs.jpg"),
+  },
+  {
+    title: "Escaliers",
+    url: require("../assets/img/stairs/Champigny.jpg"),
+  },
+  {
+    title: "Meubles salle de bain",
+    url: require("../assets/img/sdb/Bain.jpg"),
+  },
+  {
+    title: "Meuble salle de bain",
+    url: require("../assets/img/sdb/SalleBain.jpg"),
+  },
+  {
+    title: "meuble toilette",
+    url: require("../assets/img/sdb/toilette.jpeg"),
+  },
+  {
+    title: "Meuble salle de bain",
+    url: require("../assets/img/sdb/IMG20171211.jpg"),
+  },
+  {
+    title: "Meuble salle de bain",
+    url: require("../assets/img/sdb/DSC0119.jpg"),
+  },
+  {
+    title: "Meuble salle de bain",
+    url: require("../assets/img/sdb/sdb.jpg"),
+  },
+  {
+    title: "Pose porte",
+    url: require("../assets/img/porte/DSC_0045(2).jpg"),
+  },
+  {
+    title: "Pose porte",
+    url: require("../assets/img/porte/portecoulissante.jpg"),
+  },
+  {
+    title: "Pose porte",
+    url: require("../assets/img/porte/porte-coulissante2.jpg"),
+  },
 ];
 export default images;

@@ -83,27 +83,28 @@
 
         <section id="avis">
           <div class="py-12"></div>
-          <v-container>
+          <Avis />
+          <!-- <v-container>
             <h2
               class="display-2 font-weight-bold mb-3 text-uppercase text-center"
             >
               Avis
-            </h2>
+            </h2> -->
 
-            <v-responsive class="mx-auto mb-12" width="56">
+          <!-- <v-responsive class="mx-auto mb-12" width="56">
               <v-divider class="mb-1"></v-divider>
 
               <v-divider></v-divider>
-            </v-responsive>
+            </v-responsive> -->
 
-            <v-row>
+          <!-- <v-row>
               <v-col md-12>
                 <v-sheet class="mx-auto" max-width="1200">
                   <v-slide-group multiple class="pa-2" show-arrows>
                     <v-slide-item v-for="n in 25" :key="n">
-                      <v-card class="ma-2" max-width="344">
-                        <!-- <v-icon>mdi-star</v-icon> -->
-                        <div>
+                      <v-card class="ma-2" max-width="344"> -->
+          <!-- <v-icon>mdi-star</v-icon> -->
+          <!-- <div>
                           Entreprise de 60 personnes, Nous avons fait appel à
                           l'Atelier du Renard pour la réalisation de 70 bureaux,
                           4 tables de réunion, l'agencement des bureaux et de
@@ -111,21 +112,21 @@
                           fourni, tant sur les conseils, que la réalisation. La
                           qualité du travail fourni, le respect des délais et du
                           devis ont été très appréciables.
-                        </div>
+                        </div> -->
 
-                        <div class="title font-weight-light mb-5">
+          <!-- <div class="title font-weight-light mb-5">
                           BENJAMIN PAT
                         </div>
                         <div class="title font-weight-light mb-5">
                           12/01/2021
                         </div>
                       </v-card>
-                    </v-slide-item>
-                  </v-slide-group>
+                    </v-slide-item> -->
+          <!-- </v-slide-group>
                 </v-sheet>
               </v-col>
             </v-row>
-          </v-container>
+          </v-container> -->
         </section>
         <section id="contact">
           <Contact />
@@ -151,12 +152,14 @@
 import Contact from "@/components/Contact.vue";
 import About from "@/components/About.vue";
 import Cards from "../components/card/Cards.vue";
+import Avis from "../components/Avis.vue";
 
 export default {
   components: {
     Contact,
     About,
     Cards,
+    Avis,
   },
   data() {
     return {

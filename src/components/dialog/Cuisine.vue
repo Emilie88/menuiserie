@@ -1,5 +1,5 @@
 <template>
-  <div id="cuisine">
+  <div id="kitchen">
     <div>
       <LightGallery
         :images="images"
@@ -13,38 +13,14 @@
         :key="thumbIndex"
         @click="index = thumbIndex"
       >
-        <v-img :src="thumb" />
+        <v-img :src="thumb" width="100%" height="270" />
       </v-card>
     </div>
+    <br />
     <h3 class="font-weight-black mb-4 text-uppercase">
       Cuisine
     </h3>
   </div>
-  <!-- <v-dialog v-model="dialog" max-width="1200">
-    <template v-slot:activator="{ on, attrs }">
-      <v-img
-        src="../../assets/img/cuisine/cuisineAlexPD.jpg"
-        v-bind="attrs"
-        v-on="on"
-        class="mb-4"
-        height="275"
-        max-width="100%"
-      ></v-img>
-      <h3 class="font-weight-black mb-4 text-uppercase">
-        Cuisine
-      </h3>
-    </template>
-    <v-carousel cycle dark hide-delimiters>
-      <v-carousel-item
-        v-for="(art, i) in cuisine"
-        :key="i"
-        :src="art.src"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
-      >
-      </v-carousel-item>
-    </v-carousel>
-  </v-dialog> -->
 </template>
 
 <script>
@@ -52,8 +28,8 @@ export default {
   data: () => ({
     title: "Cuisine",
     index: null,
-    thumbs: [require("../../assets/img/cuisine/cuisineAlexPD.jpg")],
     dialog: false,
+    thumbs: [require("../../assets/img/cuisine/cuisineAlexPD.jpg")],
     images: [
       {
         title: "",
@@ -63,24 +39,14 @@ export default {
         title: "",
         url: require("../../assets/img/cuisine/cusineGri.jpg"),
       },
-      // {
-      //   src: require("../../assets/img/cuisine/cuisine.jpg"),
-      // },
-      // {
-      //   src: require("../../assets/img/cuisine/four.jpg"),
-      // },
-      // {
-      //   src: require("../../assets/img/cuisine/orgeval.jpg"),
-      // },
-      // {
-      //   src: require("../../assets/img/cuisine/bar.jpg"),
-      // },
-      // {
-      //   src: require("../../assets/img/cuisine/blanche.jpg"),
-      // },
-      // {
-      //   src: require("../../assets/img/cuisine/cuisine2.jpg"),
-      // },
+      {
+        title: "",
+        url: require("../../assets/img/cuisine/cuisineVertGauche.jpg"),
+      },
+      {
+        title: "",
+        url: require("../../assets/img/cuisine/cuisineVertDroit.jpg"),
+      },
     ],
   }),
 };
