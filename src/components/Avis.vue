@@ -17,6 +17,9 @@
             <v-slide-group class="pa-2" show-arrows>
               <v-slide-item v-for="n in 25" :key="n" max-width="240">
                 <v-card class="ma-2" max-width="235">
+                  <div class="title font-light mb-1">
+                    title
+                  </div>
                   <!-- <v-icon>mdi-star</v-icon> -->
                   <div>
                     Entreprise de 60 personnes, Nous avons fait appel à
@@ -27,10 +30,10 @@
                     le respect des délais et du devis ont été très appréciables.
                   </div>
 
-                  <div class="title font-weight-light mb-5">
+                  <div>
                     BENJAMIN PAT
                   </div>
-                  <div class="title font-weight-light mb-5">
+                  <div>
                     12/01/2021
                   </div>
                 </v-card>

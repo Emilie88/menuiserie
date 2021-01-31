@@ -41,11 +41,11 @@ export default {
       },
       {
         title: "",
-        url: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
+        url: require("../../assets/img/biblio/DSC0045.jpg"),
       },
       {
         title: "",
-        url: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
+        url: require("../../assets/img/biblio/salon.jpg"),
       },
     ],
   }),
