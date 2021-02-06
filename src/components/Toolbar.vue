@@ -30,6 +30,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-list-item
+          color="lime darken-3"
           v-for="item in links"
           :key="item.text"
           router

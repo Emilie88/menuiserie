@@ -2,7 +2,7 @@
   <div id="contact">
     <v-app>
       <v-main>
-        <v-sheet id="contact" color="#333333" dark tag="section" tile>
+        <v-sheet id="contact" dark tag="section" tile>
           <div class="py-12"></div>
 
           <v-container>
@@ -24,7 +24,7 @@
             </div>
 
             <br />
-            <v-theme-provider light>
+            <v-theme-provider>
               <validation-observer ref="observer" v-slot="{ errors }">
                 <form @submit.prevent="submitDevis">
                   <v-row>
@@ -35,8 +35,8 @@
                         rules="required"
                       >
                         <v-text-field
+                          color="lime darken-3"
                           flat
-                          solo
                           v-model="body.name"
                           :error-messages="errors"
                           label="Name*"
@@ -53,8 +53,8 @@
                         rules="required"
                       >
                         <v-text-field
+                          color="lime darken-3"
                           flat
-                          solo
                           v-model="body.phone"
                           :error-messages="errors"
                           label="Téléphone*"
@@ -69,8 +69,8 @@
                         rules="required|email"
                       >
                         <v-text-field
+                          color="lime darken-3"
                           flat
-                          solo
                           v-model="body.mail"
                           :error-messages="errors"
                           label="Email*"
@@ -87,8 +87,8 @@
                         rules="required"
                       >
                         <v-text-field
+                          color="lime darken-3"
                           flat
-                          solo
                           v-model="body.addresse"
                           :error-messages="errors"
                           label="Adresse*"
@@ -105,8 +105,8 @@
                         rules="required"
                       >
                         <v-text-field
+                          color="lime darken-3"
                           flat
-                          solo
                           v-model="body.city"
                           :error-messages="errors"
                           label="Ville*"
@@ -121,8 +121,8 @@
                         rules="required"
                       >
                         <v-text-field
+                          color="lime darken-3"
                           flat
-                          solo
                           v-model="body.zipcode"
                           :error-messages="errors"
                           label="Code postal*"
@@ -140,8 +140,8 @@
                         rules="required"
                       >
                         <v-text-field
+                          color="lime darken-3"
                           flat
-                          solo
                           v-model="body.subject"
                           :error-messages="errors"
                           label="Sujet*"
@@ -158,8 +158,8 @@
                         rules="required"
                       >
                         <v-textarea
+                          color="lime darken-3"
                           flat
-                          solo
                           v-model="body.message"
                           :error-messages="errors"
                           label="Message*"
@@ -173,7 +173,8 @@
                       class="mr-4"
                       type="submit"
                       :error-messages="errors"
-                      color="accent"
+                      outlined
+                      color="lime darken-3"
                       x-large
                     >
                       Envoyer

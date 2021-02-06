@@ -18,9 +18,9 @@
               <v-divider></v-divider>
             </v-responsive>
 
-            <v-theme-provider light>
+            <v-theme-provider>
               <v-row>
-                <v-col md="6" sm="12">
+                <v-col md="6" sm="12" xs="12">
                   Me joindre
 
                   <div>
@@ -46,7 +46,7 @@
                   </div>
                 </v-col>
 
-                <v-col md="6" sm="12">
+                <v-col md="6" sm="12" xs="12">
                   <div>Laissez-moi un message</div>
                   <br />
                   <br />
@@ -71,8 +71,8 @@
                         rules="required"
                       >
                         <v-text-field
+                          color="lime darken-3"
                           flat
-                          solo
                           v-model="body.name"
                           :error-messages="errors"
                           label="Name*"
@@ -86,8 +86,8 @@
                         rules="required|email"
                       >
                         <v-text-field
+                          color="lime darken-3"
                           flat
-                          solo
                           v-model="body.mail"
                           :error-messages="errors"
                           label="E-mail*"
@@ -100,8 +100,8 @@
                         rules="required"
                       >
                         <v-text-field
+                          color="lime darken-3"
                           flat
-                          solo
                           v-model="body.subject"
                           :error-messages="errors"
                           label="Subject*"
@@ -114,8 +114,8 @@
                         rules="required"
                       >
                         <v-textarea
+                          color="lime darken-3"
                           flat
-                          solo
                           v-model="body.message"
                           :error-messages="errors"
                           label="Message*"
@@ -127,7 +127,8 @@
                         class="mr-4"
                         type="submit"
                         :error-messages="errors"
-                        color="accent"
+                        outlined
+                        color="lime darken-3"
                         x-large
                       >
                         Envoyer
