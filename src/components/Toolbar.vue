@@ -66,7 +66,7 @@ export default {
         { text: "Realisations", route: "/realisations" },
         { text: "Devis", route: "/devis" },
         { text: "Contact", route: "/contact" },
-        { text: "Sign-in", route: "/login" },
+        { text: "Sign-in", route: "/login-register" },
       ],
       drawer: null,
     };
