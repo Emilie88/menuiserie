@@ -114,15 +114,7 @@ export default {
           // Success snackbar
           this.$store.dispatch("show", {
             text: "Votre commentaire a bien été ajouté !",
-            // text: this.$t(
-            //   `BackOffice.Accounts.AccountDetails.${
-            //     this.translations[this.type]
-            //   }.Common.successDisable`,
-            //   {
-            //     id: this.id,
-            //   },
-            // ),
-            type: "warning",
+            type: "succes",
           });
         })
         .catch((error) => {

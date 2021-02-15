@@ -1,8 +1,8 @@
 const types = {
-  success: { color: "success", icon: "check_circle_outline" },
-  info: { color: "info", icon: "info" },
-  warning: { color: "warning", icon: "warning" },
-  error: { color: "error", icon: "mdi-error" },
+  success: { color: "success", icon: "mdi-check-circle-outline" },
+  info: { color: "info", icon: "mdi-info" },
+  warning: { color: "warning", icon: "mdi-warning" },
+  error: { color: "error", icon: "mdi-alert-outline" },
 };
 
 export default {

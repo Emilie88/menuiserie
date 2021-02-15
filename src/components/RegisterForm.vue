@@ -7,9 +7,8 @@
             <v-text-field
               color="lime darken-3"
               v-model="body.firstName"
-              :rules="[rules.required, rules.min]"
+              :rules="[rules.required]"
               label="First Name"
-              maxlength="20"
               required
             ></v-text-field>
           </v-col>
@@ -17,9 +16,8 @@
             <v-text-field
               color="lime darken-3"
               v-model="body.lastName"
-              :rules="[rules.required, rules.min]"
+              :rules="[rules.required]"
               label="Last Name"
-              maxlength="20"
               required
             ></v-text-field>
           </v-col>
@@ -99,12 +97,23 @@ export default {
         .post("http://127.0.0.1:8000/api/users", this.body)
         .then((response) => {
           this.body = response.data;
+          // this.$router.push({ name: "LoginRegister" });
+          // Success snackbar
+          this.$store.dispatch("show", {
+            text: "Votre compte a bien été crée!",
+            type: "succes",
+            details: "Connectez-vous pour ajouter votre commentaire.",
+          });
         })
-        .catch((e) => {
-          this.errors.push(e);
+        .catch((error) => {
+          this.errors.push(error);
+          // Error snackbar
+          this.$store.dispatch("show", {
+            text: error.message,
+            type: "error",
+            details: error.response && error.response.data,
+          });
         });
-      // this.$refs.observer.validate();
-      this.snackbar = true;
 
       this.body.firstName = "";
       this.body.lastName = "";

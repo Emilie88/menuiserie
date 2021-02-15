@@ -15,26 +15,21 @@
         <v-col md-12>
           <v-sheet class="mx-auto">
             <v-slide-group class="pa-2" show-arrows>
-              <v-slide-item v-for="n in 25" :key="n" max-width="240">
+              <v-slide-item max-width="240">
                 <v-card class="ma-2" max-width="235">
                   <div class="title font-light mb-1">
-                    title
+                    {{ body.title }}
                   </div>
                   <!-- <v-icon>mdi-star</v-icon> -->
                   <div>
-                    Entreprise de 60 personnes, Nous avons fait appel à
-                    l'Atelier du Renard pour la réalisation de 70 bureaux, 4
-                    tables de réunion, l'agencement des bureaux et de l'accueil.
-                    Nous sommes très satisfait du travail fourni, tant sur les
-                    conseils, que la réalisation. La qualité du travail fourni,
-                    le respect des délais et du devis ont été très appréciables.
+                    {{ body.content }}
                   </div>
 
                   <div>
-                    BENJAMIN PAT
+                    {{ body.author }}
                   </div>
                   <div>
-                    12/01/2021
+                    {{ body.createdAt }}
                   </div>
                 </v-card>
               </v-slide-item>
@@ -45,3 +40,27 @@
     </v-container>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      body: {
+        title: "",
+        content: "",
+        author: "",
+        createdAt: "",
+      },
+    };
+  },
+  created() {
+    this.getComments();
+  },
+  methods: {
+    getComments() {
+      this.$http
+        .get("https://127.0.0.1:8000/api/comments")
+        .then((response) => (this.body = response.data));
+    },
+  },
+};
+</script>

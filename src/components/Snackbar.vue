@@ -3,47 +3,19 @@
     v-model="snackbar"
     :color="color"
     right
-    :timeout="0"
+    :timeout="-1"
     @mouseover="hover = true"
     @mouseleave="hover = false"
   >
-    {{ text }}
+    <v-icon dark left v-text="icon" />
+    <span>{{ text }}</span>
+
     <template v-slot:action="{ attrs }">
       <v-btn icon v-bind="attrs" @click="snackbar = false">
         <v-icon small>mdi-close</v-icon>
       </v-btn>
     </template>
-
-    <!-- <v-btn right icon @click="snackbar = false">
-      <v-icon small>mdi-close</v-icon>
-    </v-btn> -->
   </v-snackbar>
-  <!-- <v-snackbar
-    v-model="snackbar"
-    :color="color"
-    right
-    :timeout="0"
-    @mouseover="hover = true"
-    @mouseleave="hover = false"
-  > -->
-  <!-- TODO a revoir les icons -->
-  <!-- <v-icon light left v-text="icon" /> -->
-  <!-- <v-layout wrap>
-      <v-flex xs12>
-        <template v-if="Array.isArray(text)">
-          <div v-for="(line, index) in text" :key="index" v-text="line" />
-        </template>
-        <template v-else>
-          <div v-text="text" />
-        </template>
-      </v-flex>
-    </v-layout> -->
-
-  <!-- Close button -->
-  <!-- <v-btn right icon class="ml-0" @click="snackbar = false">
-      <v-icon small>mdi-close</v-icon>
-    </v-btn>
-  </v-snackbar> -->
 </template>
 
 <script>
