@@ -8,6 +8,7 @@ import i18n from "./i18n";
 
 import "./plugins/vee-validate";
 import "./plugins/axios";
+
 import LightGallery from "vue-light-gallery";
 Vue.use(LightGallery);
 

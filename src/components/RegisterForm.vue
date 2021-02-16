@@ -1,72 +1,78 @@
 <template>
   <v-card class="px-4">
     <v-card-text>
-      <v-form ref="observer" v-model="valid" lazy-validation>
-        <v-row>
-          <v-col cols="12" sm="6" md="6">
-            <v-text-field
-              color="lime darken-3"
-              v-model="body.firstName"
-              :rules="[rules.required]"
-              label="First Name"
-              required
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" sm="6" md="6">
-            <v-text-field
-              color="lime darken-3"
-              v-model="body.lastName"
-              :rules="[rules.required]"
-              label="Last Name"
-              required
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12">
-            <v-text-field
-              color="lime darken-3"
-              v-model="body.email"
-              :rules="emailRules"
-              label="E-mail"
-              required
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12">
-            <v-text-field
-              color="lime darken-3"
-              v-model="body.password"
-              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-              :rules="[rules.required, rules.min]"
-              :type="show1 ? 'text' : 'password'"
-              name="input-10-1"
-              label="Password"
-              hint="At least 8 characters"
-              counter
-              @click:append="show1 = !show1"
-            ></v-text-field>
-          </v-col>
+      <validation-observer>
+        <v-form
+          ref="observer"
+          v-model="valid"
+          @submit.prevent="submitRegister"
+          lazy-validation
+        >
+          <v-row>
+            <v-col cols="12" sm="6" md="6">
+              <custom-text-field
+                color="lime darken-3"
+                v-model="body.firstName"
+                label="First Name"
+                required
+              />
+            </v-col>
+            <v-col cols="12" sm="6" md="6">
+              <custom-text-field
+                color="lime darken-3"
+                v-model="body.lastName"
+                label="Last Name"
+                required
+              />
+            </v-col>
+            <v-col cols="12">
+              <custom-text-field
+                color="lime darken-3"
+                v-model="body.email"
+                label="E-mail"
+                type="email"
+                required
+              />
+            </v-col>
+            <v-col cols="12">
+              <v-text-field
+                color="lime darken-3"
+                v-model="body.password"
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :rules="passwordRules"
+                :type="show1 ? 'text' : 'password'"
+                name="input-10-1"
+                label="Password *"
+                counter
+                @click:append="show1 = !show1"
+                required
+              ></v-text-field>
+            </v-col>
 
-          <v-spacer></v-spacer>
-          <v-col class="d-flex ml-auto" cols="12" sm="3" xs="12">
-            <v-btn
-              x-large
-              block
-              outlined
-              color="lime darken-3"
-              @click="submitRegister"
-              >Register</v-btn
-            >
-          </v-col>
-        </v-row>
-      </v-form>
+            <v-spacer></v-spacer>
+            <v-col class="d-flex ml-auto" cols="12" sm="3" xs="12">
+              <v-btn x-large block outlined color="lime darken-3" type="submit"
+                >Register</v-btn
+              >
+            </v-col>
+          </v-row>
+        </v-form>
+      </validation-observer>
     </v-card-text>
   </v-card>
 </template>
 <script>
+import TextField from "./custom/TextField.vue";
+
 export default {
+  components: {
+    "custom-text-field": TextField,
+  },
   data() {
     return {
       errors: [],
       valid: true,
+      passwordScore: null,
       body: {
         firstName: "",
         lastName: "",
@@ -74,30 +80,25 @@ export default {
         password: "",
       },
       verify: "",
-      emailRules: [
-        (v) => !!v || "Required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      passwordRules: [
+        (v) => !!v || "Password is required",
+        (v) => (v && v.length >= 8) || "Password must have min 8 characters",
+        (v) => /(?=.*[A-Z])/.test(v) || "Must have one uppercase character",
+        (v) => /(?=.*\d)/.test(v) || "Must have one number",
+        (v) => /([!@$%])/.test(v) || "Must have one special character [!@#$%]",
       ],
 
       show1: false,
-      rules: {
-        required: (value) => !!value || "Required.",
-        min: (v) => (v && v.length >= 8) || "Min 8 characters",
-      },
     };
   },
-  computed: {
-    passwordMatch() {
-      return () => this.body.password === this.verify || "Password must match";
-    },
-  },
+
   methods: {
     submitRegister() {
       this.$http
         .post("http://127.0.0.1:8000/api/users", this.body)
         .then((response) => {
           this.body = response.data;
-          // this.$router.push({ name: "LoginRegister" });
+
           // Success snackbar
           this.$store.dispatch("show", {
             text: "Votre compte a bien été crée!",
@@ -115,20 +116,12 @@ export default {
           });
         });
 
-      this.body.firstName = "";
-      this.body.lastName = "";
-      this.body.email = "";
-      this.body.password = "";
-
       this.$refs.observer.reset();
     },
 
-    reset() {
-      this.$refs.form.reset();
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation();
-    },
+    // resetValidation() {
+    //   this.$refs.observer.resetValidation();
+    // },
   },
 };
 </script>
