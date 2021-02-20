@@ -15,21 +15,24 @@
         <v-col md-12>
           <v-sheet class="mx-auto">
             <v-slide-group class="pa-2" show-arrows>
-              <v-slide-item max-width="240">
+              <v-slide-item
+                max-width="240"
+                v-for="(comment, index) in comments"
+                :key="index"
+              >
                 <v-card class="ma-2" max-width="235">
                   <div class="title font-light mb-1">
-                    {{ body.title }}
+                    {{ comment.title }}
                   </div>
-                  <!-- <v-icon>mdi-star</v-icon> -->
                   <div>
-                    {{ body.content }}
+                    {{ comment.content }}
                   </div>
 
                   <div>
-                    {{ body.author }}
+                    {{ comment.author }}
                   </div>
                   <div>
-                    {{ body.createdAt }}
+                    {{ comment.createdAt }}
                   </div>
                 </v-card>
               </v-slide-item>
@@ -44,22 +47,19 @@
 export default {
   data() {
     return {
-      body: {
-        title: "",
-        content: "",
-        author: "",
-        createdAt: "",
-      },
+      comments: [],
     };
   },
   created() {
     this.getComments();
   },
   methods: {
-    getComments() {
-      this.$http
-        .get("https://127.0.0.1:8000/api/comments")
-        .then((response) => (this.body = response.data));
+    async getComments() {
+      const response = await this.$http.get(
+        "http://127.0.0.1:8000/api/comments"
+      );
+      this.comments = response.data;
+      console.log(response.data);
     },
   },
 };
