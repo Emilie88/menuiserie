@@ -7,7 +7,7 @@
 
           <v-container>
             <h2 class="display-2 font-weight-bold mb-3  text-center">
-              Réalisations
+              {{ $t("realisation") }}
             </h2>
 
             <v-responsive class="mx-auto mb-12" width="56">
@@ -42,11 +42,13 @@
             </v-theme-provider>
             <v-row>
               <div>
-                <v-btn @click="prevPage" :disabled="currentPage == 1"
-                  >Show Less</v-btn
-                >
-                <v-btn @click="nextPage" :disabled="currentPage == totalPages"
-                  >Show More</v-btn
+                <v-btn @click="prevPage" :disabled="currentPage == 1">{{
+                  $t("showLess")
+                }}</v-btn>
+                <v-btn
+                  @click="nextPage"
+                  :disabled="currentPage == totalPages"
+                  >{{ $t("showMore") }}</v-btn
                 >
               </div>
             </v-row>

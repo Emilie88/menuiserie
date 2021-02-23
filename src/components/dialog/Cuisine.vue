@@ -18,7 +18,7 @@
     </div>
     <br />
     <h3 class="font-weight-black mb-4 text-uppercase">
-      Cuisine
+      {{ $t("cuisine") }}
     </h3>
   </div>
 </template>

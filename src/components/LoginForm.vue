@@ -1,11 +1,10 @@
 <template>
   <v-card class="px-4">
     <v-card-text>
-      <validation-observer>
+      <validation-observer v-slot="{ handleSubmit }">
         <v-form
-          ref="observer"
-          v-model="valid"
-          @submit.prevent="login"
+          ref="form"
+          @submit.prevent="handleSubmit(login)"
           lazy-validation
         >
           <v-row>
@@ -43,12 +42,7 @@
   </v-card>
 </template>
 <script>
-import TextField from "./custom/TextField.vue";
-
 export default {
-  components: {
-    "custom-text-field": TextField,
-  },
   data() {
     return {
       valid: true,
@@ -62,7 +56,7 @@ export default {
   methods: {
     async login() {
       const auth = { username: this.username, password: this.password };
-      const url = "http://127.0.0.1:8000/api/users/${id}";
+      const url = "https://127.0.0.1:8000/api/users/${id}";
 
       try {
         const res = await this.$http.get(url, { auth }).then((res) => res.data);
@@ -83,6 +77,7 @@ export default {
           details: error.response && error.response.data,
         });
       }
+      this.$router.push({ name: "Testimonials" });
     },
 
     reset() {

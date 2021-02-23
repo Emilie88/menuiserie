@@ -5,7 +5,7 @@
         <div class="py-12"></div>
         <v-container>
           <v-row>
-            <p>
+            <p class="ma-2">
               Cette page est reserve pour tous les clients qui ont envie de
               partager leur experience avec nous en creant un compte qui leur
               donne le droit de deposer leurs avis sur les travaux réalisées!
@@ -26,8 +26,10 @@
                 <div class="caption py-1">{{ item.name }}</div>
               </v-tab>
               <v-tab-item>
-                <!-- LoginForm -->
-                <LoginForm />
+                <div id="login">
+                  <!-- LoginForm -->
+                  <LoginForm />
+                </div>
               </v-tab-item>
 
               <v-tab-item>
@@ -42,8 +44,6 @@
   </div>
 </template>
 <script>
-import LoginForm from "../components/LoginForm";
-import RegisterForm from "../components/RegisterForm";
 export default {
   data() {
     return {
@@ -53,10 +53,6 @@ export default {
         { name: "Register", icon: "mdi-account-outline" },
       ],
     };
-  },
-  components: {
-    LoginForm,
-    RegisterForm,
   },
 };
 </script>

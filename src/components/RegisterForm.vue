@@ -1,11 +1,10 @@
 <template>
   <v-card class="px-4">
     <v-card-text>
-      <validation-observer>
+      <validation-observer v-slot="{ handleSubmit }">
         <v-form
-          ref="observer"
-          v-model="valid"
-          @submit.prevent="submitRegister"
+          ref="form"
+          @submit.prevent="handleSubmit(submitRegister)"
           lazy-validation
         >
           <v-row>
@@ -62,12 +61,7 @@
   </v-card>
 </template>
 <script>
-import TextField from "./custom/TextField.vue";
-
 export default {
-  components: {
-    "custom-text-field": TextField,
-  },
   data() {
     return {
       errors: [],
@@ -93,35 +87,24 @@ export default {
   },
 
   methods: {
-    submitRegister() {
-      this.$http
-        .post("http://127.0.0.1:8000/api/users", this.body)
-        .then((response) => {
-          this.body = response.data;
-
-          // Success snackbar
-          this.$store.dispatch("show", {
-            text: "Votre compte a bien été crée!",
-            type: "succes",
-            details: "Connectez-vous pour ajouter votre commentaire.",
-          });
-        })
-        .catch((error) => {
-          this.errors.push(error);
-          // Error snackbar
-          this.$store.dispatch("show", {
-            text: error.message,
-            type: "error",
-            details: error.response && error.response.data,
-          });
+    async submitRegister() {
+      try {
+        await this.$http.post("https://127.0.0.1:8000/api/users/", this.body);
+        // Success snackbar
+        this.$store.dispatch("show", {
+          text: "Votre compte a bien été crée!",
+          type: "succes",
+          details: "Connectez-vous pour ajouter votre commentaire.",
         });
-
-      this.$refs.observer.reset();
+      } catch (error) {
+        // Error snackbar
+        this.$store.dispatch("show", {
+          text: error.message,
+          type: "error",
+        });
+        this.$refs.form.reset();
+      }
     },
-
-    // resetValidation() {
-    //   this.$refs.observer.resetValidation();
-    // },
   },
 };
 </script>

@@ -18,7 +18,7 @@
     </div>
     <br />
     <h3 class="font-weight-black mb-4 text-uppercase">
-      Salle de bain
+      {{ $t("sdb") }}
     </h3>
   </div>
 </template>

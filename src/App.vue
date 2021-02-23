@@ -1,14 +1,12 @@
 <template>
-  <div id="app">
-    <v-app id="inspire">
-      <Toolbar />
-      <Snackbar />
-      <v-main>
-        <router-view />
-      </v-main>
-      <Footer />
-    </v-app>
-  </div>
+  <v-app id="inspire">
+    <Toolbar />
+    <Snackbar />
+    <v-main>
+      <router-view />
+    </v-main>
+    <Footer />
+  </v-app>
 </template>
 
 <script>

@@ -21,56 +21,53 @@
             <v-theme-provider>
               <v-row>
                 <v-col md="12">
-                  <validation-observer ref="observer" v-slot="{ errors }">
-                    <form @submit.prevent="addComment">
-                      <validation-provider
-                        v-slot="{ errors }"
-                        name="Name"
-                        rules="required"
-                      >
-                        <v-text-field
-                          color="lime darken-3"
-                          flat
-                          v-model="body.author"
-                          :error-messages="errors"
-                          label="Name*"
-                          required
-                        ></v-text-field>
-                      </validation-provider>
-                      <validation-provider
-                        v-slot="{ errors }"
-                        name="Subject"
-                        rules="required"
-                      >
-                        <v-text-field
-                          color="lime darken-3"
-                          flat
-                          v-model="body.title"
-                          :error-messages="errors"
-                          label="Subject*"
-                          required
-                        ></v-text-field>
-                      </validation-provider>
-                      <validation-provider
-                        v-slot="{ errors }"
-                        name="Message"
-                        rules="required"
-                      >
-                        <v-textarea
-                          color="lime darken-3"
-                          flat
-                          v-model="body.content"
-                          :error-messages="errors"
-                          label="Message*"
-                          required
-                        ></v-textarea>
-                      </validation-provider>
+                  <validation-observer v-slot="{ handleSubmit }">
+                    <v-form
+                      ref="form"
+                      @submit.prevent="handleSubmit(addComment)"
+                      lazy-validation
+                    >
+                      <v-row>
+                        <v-col md="6">
+                          <custom-text-field
+                            color="lime darken-3"
+                            v-model="body.author"
+                            label="Name"
+                            required
+                          />
+                        </v-col>
+                        <v-col md="6">
+                          <custom-text-field
+                            hide-details
+                            single-line
+                            color="lime darken-3"
+                            v-model="body.rating"
+                            label="Etoiles"
+                            type="number"
+                            max="5"
+                            min="0"
+                          />
+                        </v-col>
+                      </v-row>
+
+                      <custom-text-field
+                        color="lime darken-3"
+                        v-model="body.title"
+                        label="Subject"
+                        required
+                      />
+
+                      <custom-textarea
+                        color="lime darken-3"
+                        v-model="body.content"
+                        label="Message"
+                        required
+                      />
 
                       <v-row align="center" justify="center">
                         <v-btn
                           class="mr-4"
                           type="submit"
-                          :error-messages="errors"
                           outlined
                           color="lime darken-3"
                           x-large
@@ -78,7 +75,7 @@
                           Envoyer
                         </v-btn>
                       </v-row>
-                    </form>
+                    </v-form>
                   </validation-observer>
                 </v-col>
               </v-row>
@@ -97,43 +94,34 @@ export default {
   data() {
     return {
       body: {
+        rating: "",
         author: "",
         title: "",
         content: "",
       },
-
-      errors: [],
     };
   },
   methods: {
-    addComment() {
-      this.$http
-        .post("http://127.0.0.1:8000/api/comments", this.body)
-        .then((response) => {
-          this.body = response.data;
-          // Success snackbar
-          this.$store.dispatch("show", {
-            text: "Votre commentaire a bien été ajouté !",
-            type: "succes",
-          });
-        })
-        .catch((error) => {
-          // Error snackbar
-          this.$store.dispatch("show", {
-            text: error.message,
-            type: "error",
-            details: error.response && error.response.data,
-          });
+    async addComment() {
+      try {
+        await this.$http.post(
+          "https://127.0.0.1:8000/api/comments/",
+          this.body
+        );
+
+        // Success snackbar
+        this.$store.dispatch("show", {
+          text: "Your comment has been added",
+          type: "success",
         });
-      // this.$refs.observer.validate();
-      this.snackbar = true;
-
-      this.body.firstName = "";
-      this.body.lastName = "";
-      this.body.email = "";
-      this.body.password = "";
-
-      this.$refs.observer.reset();
+      } catch (error) {
+        // Error snackbar
+        this.$store.dispatch("show", {
+          text: error.message,
+          type: "error",
+        });
+        this.$refs.form.reset();
+      }
     },
   },
 };

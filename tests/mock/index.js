@@ -6,5 +6,5 @@ const mock = new MockAdapter(Vue.prototype.$http, {
 });
 
 mock
-  .onGet("http://127.0.0.1:8000/api/comments")
+  .onGet("https://127.0.0.1:8000/api/comments/")
   .reply(200, require("./comments/all.json"));

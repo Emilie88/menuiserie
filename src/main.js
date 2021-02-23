@@ -6,8 +6,8 @@ import vuetify from "./plugins/vuetify";
 import "./registerServiceWorker";
 import i18n from "./i18n";
 
-import "./plugins/vee-validate";
-import "./plugins/axios";
+import "./plugins";
+import "./components";
 
 import LightGallery from "vue-light-gallery";
 Vue.use(LightGallery);

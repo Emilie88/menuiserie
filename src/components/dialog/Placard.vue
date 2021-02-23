@@ -18,7 +18,7 @@
     </div>
     <br />
     <h3 class="font-weight-black mb-4 text-uppercase">
-      Placards
+      {{ $t("placard") }}
     </h3>
   </div>
 </template>
