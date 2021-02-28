@@ -51,6 +51,7 @@
                     <v-col md="6" xs="12">
                       <custom-text-field
                         color="lime darken-3"
+                        v-model="body.mail"
                         :label="$t('mail')"
                         type="email"
                         required
@@ -148,20 +149,21 @@ export default {
   methods: {
     async submitDevis() {
       try {
-        await this.$http.post("http://127.0.0.1:8000/api/devis/", this.body);
+        await this.$http.post("https://127.0.0.1:8000/api/devis", this.body);
 
         // Success snackbar
         this.$store.dispatch("show", {
           text: "Your devis has been send",
           type: "success",
         });
+        // this.$refs.form.reset();
       } catch (error) {
         // Error snackbar
         this.$store.dispatch("show", {
           text: error.message,
           type: "error",
         });
-        this.$refs.form.reset();
+        // this.$refs.form.reset();
       }
     },
   },

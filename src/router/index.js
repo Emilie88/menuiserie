@@ -36,6 +36,16 @@ const routes = [
     name: "Testimonials",
     component: () => import("../views/Testimonials.vue"),
   },
+  {
+    path: "/dashboardClient",
+    name: "DashboardClient",
+    component: () => import("../views/DashboardClient.vue"),
+  },
+  {
+    path: "/espace-client",
+    name: "EspaceClient",
+    component: () => import("../views/EspaceClient.vue"),
+  },
 ];
 
 const router = new VueRouter({

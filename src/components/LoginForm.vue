@@ -56,7 +56,7 @@ export default {
   methods: {
     async login() {
       const auth = { username: this.username, password: this.password };
-      const url = "https://127.0.0.1:8000/api/users/${id}";
+      const url = "https://127.0.0.1:8000/api/users/";
 
       try {
         const res = await this.$http.get(url, { auth }).then((res) => res.data);
@@ -67,7 +67,8 @@ export default {
           type: "succes",
           details: "",
         });
-        this.$router.push({ name: "Testimonials" });
+        console.log("Conexxion reussi");
+        this.$router.push({ name: "DashboardClient" });
       } catch (error) {
         this.error = error.message;
         // Error snackbar
@@ -76,6 +77,7 @@ export default {
           type: "error",
           details: error.response && error.response.data,
         });
+        console.log(error);
       }
       this.$router.push({ name: "Testimonials" });
     },

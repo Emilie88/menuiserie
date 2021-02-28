@@ -11,7 +11,8 @@
             <v-col cols="12" sm="6" md="6">
               <custom-text-field
                 color="lime darken-3"
-                v-model="body.firstName"
+                v-model="body.firstname"
+                name="firstName"
                 label="First Name"
                 required
               />
@@ -19,7 +20,8 @@
             <v-col cols="12" sm="6" md="6">
               <custom-text-field
                 color="lime darken-3"
-                v-model="body.lastName"
+                name="lastName"
+                v-model="body.lastname"
                 label="Last Name"
                 required
               />
@@ -27,6 +29,7 @@
             <v-col cols="12">
               <custom-text-field
                 color="lime darken-3"
+                name="email"
                 v-model="body.email"
                 label="E-mail"
                 type="email"
@@ -40,7 +43,7 @@
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :rules="passwordRules"
                 :type="show1 ? 'text' : 'password'"
-                name="input-10-1"
+                name="password"
                 label="Password *"
                 counter
                 @click:append="show1 = !show1"
@@ -68,10 +71,10 @@ export default {
       valid: true,
       passwordScore: null,
       body: {
-        firstName: "",
-        lastName: "",
         email: "",
         password: "",
+        firstname: "",
+        lastname: "",
       },
       verify: "",
       passwordRules: [
@@ -89,7 +92,7 @@ export default {
   methods: {
     async submitRegister() {
       try {
-        await this.$http.post("https://127.0.0.1:8000/api/users/", this.body);
+        await this.$http.post("https://localhost:8000/create", this.body);
         // Success snackbar
         this.$store.dispatch("show", {
           text: "Votre compte a bien été crée!",
@@ -98,11 +101,11 @@ export default {
         });
       } catch (error) {
         // Error snackbar
-        this.$store.dispatch("show", {
-          text: error.message,
-          type: "error",
-        });
-        this.$refs.form.reset();
+        // this.$store.dispatch("show", {
+        //   text: error.message,
+        //   type: "error",
+        // });
+        // this.$refs.form.reset();
       }
     },
   },
