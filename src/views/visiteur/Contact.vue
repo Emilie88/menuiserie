@@ -106,6 +106,7 @@
 </template>
 <script>
 export default {
+  name: "Contact",
   data() {
     return {
       body: {
@@ -120,7 +121,10 @@ export default {
   methods: {
     async submit() {
       try {
-        await this.$http.post("https://127.0.0.1:8000/api/contacts", this.body);
+        await this.$http.post(
+          "https://127.0.0.1:8000/api/add-contact",
+          this.body
+        );
 
         // Success snackbar
         this.$store.dispatch("show", {

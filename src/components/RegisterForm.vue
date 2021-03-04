@@ -41,7 +41,6 @@
                 color="lime darken-3"
                 v-model="body.password"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="passwordRules"
                 :type="show1 ? 'text' : 'password'"
                 name="password"
                 label="Password *"
@@ -77,13 +76,13 @@ export default {
         lastname: "",
       },
       verify: "",
-      passwordRules: [
-        (v) => !!v || "Password is required",
-        (v) => (v && v.length >= 8) || "Password must have min 8 characters",
-        (v) => /(?=.*[A-Z])/.test(v) || "Must have one uppercase character",
-        (v) => /(?=.*\d)/.test(v) || "Must have one number",
-        (v) => /([!@$%])/.test(v) || "Must have one special character [!@#$%]",
-      ],
+      // passwordRules: [
+      //   (v) => !!v || "Password is required",
+      //   (v) => (v && v.length >= 8) || "Password must have min 8 characters",
+      //   (v) => /(?=.*[A-Z])/.test(v) || "Must have one uppercase character",
+      //   (v) => /(?=.*\d)/.test(v) || "Must have one number",
+      //   (v) => /([!@$%])/.test(v) || "Must have one special character [&!@#$%]",
+      // ],
 
       show1: false,
     };
@@ -92,20 +91,24 @@ export default {
   methods: {
     async submitRegister() {
       try {
-        await this.$http.post("https://localhost:8000/create", this.body);
+        await this.$http.post(
+          "https://localhost:8000/api/register-user",
+          this.body
+        );
         // Success snackbar
         this.$store.dispatch("show", {
           text: "Votre compte a bien été crée!",
           type: "succes",
           details: "Connectez-vous pour ajouter votre commentaire.",
         });
+        this.$router.push({ name: "Login" });
       } catch (error) {
         // Error snackbar
-        // this.$store.dispatch("show", {
-        //   text: error.message,
-        //   type: "error",
-        // });
-        // this.$refs.form.reset();
+        this.$store.dispatch("show", {
+          text: error.message,
+          type: "error",
+        });
+        this.$refs.form.reset();
       }
     },
   },

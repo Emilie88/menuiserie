@@ -3,7 +3,7 @@
     <v-main>
       <section id="hero">
         <v-row no-gutters>
-          <v-img src="../assets/img/cuisine/cuisineAlexPD.jpg">
+          <v-img src="../../assets/img/cuisine/cuisineAlexPD.jpg">
             <v-theme-provider dark>
               <v-container fill-height>
                 <v-row
@@ -105,12 +105,13 @@
   </v-app>
 </template>
 <script>
-import Contact from "@/components/Contact.vue";
-import About from "@/components/About.vue";
-import Cards from "../components/card/Cards.vue";
-import Avis from "../components/Avis.vue";
+import Contact from "./Contact.vue";
+import About from "./About.vue";
+import Cards from "../../components/card/Cards.vue";
+import Avis from "../../components/Avis.vue";
 
 export default {
+  name: "Home",
   components: {
     Contact,
     About,

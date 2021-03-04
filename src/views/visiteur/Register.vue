@@ -13,25 +13,12 @@
             <br />
           </v-row>
           <v-card color="#333333">
-            <v-tabs
-              v-model="tab"
-              show-arrows
-              color="lime darken-3"
-              icons-and-text
-              grow
-            >
+            <v-tabs show-arrows color="lime darken-3" icons-and-text grow>
               <v-tabs-slider color="lime darken-3"></v-tabs-slider>
-              <v-tab v-for="(item, index) in tabs" :key="index">
-                <v-icon large>{{ item.icon }}</v-icon>
-                <div class="caption py-1">{{ item.name }}</div>
+              <v-tab>
+                <v-icon large>mdi-account-outline</v-icon>
+                <div class="caption py-1">Register</div>
               </v-tab>
-              <v-tab-item>
-                <div id="login">
-                  <!-- LoginForm -->
-                  <LoginForm />
-                </div>
-              </v-tab-item>
-
               <v-tab-item>
                 <RegisterForm />
               </v-tab-item>
@@ -45,14 +32,6 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      tab: 0,
-      tabs: [
-        { name: "Login", icon: "mdi-account" },
-        { name: "Register", icon: "mdi-account-outline" },
-      ],
-    };
-  },
+  name: "Register",
 };
 </script>

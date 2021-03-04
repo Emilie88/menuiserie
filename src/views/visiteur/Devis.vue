@@ -33,6 +33,7 @@
                       <custom-text-field
                         flat
                         color="lime darken-3"
+                        name="name"
                         v-model="body.name"
                         :label="$t('name')"
                         required
@@ -43,6 +44,7 @@
                     <v-col md="6" xs="12">
                       <custom-text-field
                         color="lime darken-3"
+                        name="phone"
                         v-model="body.phone"
                         :label="$t('phone')"
                         required
@@ -51,6 +53,7 @@
                     <v-col md="6" xs="12">
                       <custom-text-field
                         color="lime darken-3"
+                        name="mail"
                         v-model="body.mail"
                         :label="$t('mail')"
                         type="email"
@@ -62,6 +65,7 @@
                     <v-col md="12">
                       <custom-text-field
                         color="lime darken-3"
+                        name="addresse"
                         v-model="body.addresse"
                         :label="$t('address')"
                         required
@@ -72,6 +76,7 @@
                     <v-col md="6" xs="12">
                       <custom-text-field
                         color="lime darken-3"
+                        name="city"
                         v-model="body.city"
                         :label="$t('city')"
                         required
@@ -80,6 +85,7 @@
                     <v-col md="6" xs="12">
                       <custom-text-field
                         color="lime darken-3"
+                        name="zipcode"
                         v-model="body.zipcode"
                         :label="$t('zipCode')"
                         required
@@ -91,6 +97,7 @@
                     <v-col md="12">
                       <custom-text-field
                         color="lime darken-3"
+                        name="subject"
                         v-model="body.subject"
                         :label="$t('subject')"
                         required
@@ -101,6 +108,7 @@
                     <v-col md="12">
                       <custom-textarea
                         color="lime darken-3"
+                        name="message"
                         v-model="body.message"
                         :label="$t('message')"
                         required
@@ -131,6 +139,7 @@
 </template>
 <script>
 export default {
+  name: "Devis",
   data() {
     return {
       body: {
@@ -149,7 +158,10 @@ export default {
   methods: {
     async submitDevis() {
       try {
-        await this.$http.post("https://127.0.0.1:8000/api/devis", this.body);
+        await this.$http.post(
+          "https://127.0.0.1:8000/api/add-devis",
+          this.body
+        );
 
         // Success snackbar
         this.$store.dispatch("show", {

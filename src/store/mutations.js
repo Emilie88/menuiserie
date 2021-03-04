@@ -6,4 +6,5 @@ export default {
   setColor: set("color"),
   setIcon: set("icon"),
   setDetails: set("details"),
+  setLoading: set("loading"),
 };

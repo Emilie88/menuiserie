@@ -11,7 +11,7 @@
             <v-col cols="12">
               <custom-text-field
                 color="lime darken-3"
-                v-model="email"
+                v-model="body.username"
                 label="E-mail"
                 type="email"
                 required
@@ -20,7 +20,7 @@
             <v-col cols="12">
               <custom-text-field
                 color="lime darken-3"
-                v-model="password"
+                v-model="body.password"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 label="Password"
                 :type="show1 ? 'text' : 'password'"
@@ -38,6 +38,11 @@
           </v-row>
         </v-form>
       </validation-observer>
+
+      <span color="lime darken-3">Vous avez pas encore de compte?</span>
+      <v-btn icon to="/register">
+        <v-icon color="lime darken-3" large>mdi-account-outline</v-icon>
+      </v-btn>
     </v-card-text>
   </v-card>
 </template>
@@ -46,8 +51,12 @@ export default {
   data() {
     return {
       valid: true,
-      email: "",
-      password: "",
+      body: {
+        username: "",
+        password: "",
+      },
+      email: localStorage.getItem("username"),
+
       verify: "",
       show1: false,
     };
@@ -55,20 +64,32 @@ export default {
 
   methods: {
     async login() {
-      const auth = { username: this.username, password: this.password };
-      const url = "https://127.0.0.1:8000/api/users/";
-
       try {
-        const res = await this.$http.get(url, { auth }).then((res) => res.data);
-        console.log(res);
+        const response = await this.$http.post(
+          "https://127.0.0.1:8000/api/login_check",
+
+          {
+            username: this.body.username,
+            password: this.body.password,
+          }
+        );
+        const token = response.data.token;
+        // const role = localStorage.setItem("role", response.data.role);
+        // localStorage.setItem("username", this.email);
+        localStorage.setItem("token", token);
+        console.log(response);
         // Success snackbar
-        this.$store.dispatch("show", {
-          text: "Vous etes log-in!",
-          type: "succes",
-          details: "",
-        });
+        // this.$store.dispatch("show", {
+        //   text: "You have signed in successfully",
+        //   type: "succes",
+        //   details: "",
+        // });
         console.log("Conexxion reussi");
-        this.$router.push({ name: "DashboardClient" });
+        if (this.email === "emi@mail.com") {
+          this.$router.push({ name: "DashboardClient" });
+        } else if (this.email === "akysor@gmail.com") {
+          this.$router.push({ name: "DashboardAdmin" });
+        }
       } catch (error) {
         this.error = error.message;
         // Error snackbar
@@ -77,9 +98,7 @@ export default {
           type: "error",
           details: error.response && error.response.data,
         });
-        console.log(error);
       }
-      this.$router.push({ name: "Testimonials" });
     },
 
     reset() {

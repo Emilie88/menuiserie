@@ -6,8 +6,8 @@
     ></v-app-bar-nav-icon>
 
     <v-toolbar-title>
-      <router-link class="nav-item" to="/">
-        <img src="../assets/logos.jpg" style="width:55;height:55px;"
+      <router-link class="nav-item" to="/dashboard">
+        <img src="../../assets/logos.jpg" style="width:55;height:55px;"
       /></router-link>
     </v-toolbar-title>
     <v-spacer></v-spacer>
@@ -32,51 +32,32 @@
         </v-list-item>
       </v-list-item-group>
     </v-list>
-    <!-- <v-tooltip bottom>
-      <template v-slot:activator="{ on, attrs }">
-        <v-icon
-          class="ma-2"
-          @click="$vuetify.goTo('#contact')"
-          v-bind="attrs"
-          v-on="on"
-          >mdi-email</v-icon
-        >
-      </template>
-      <span>Contact</span>
-    </v-tooltip> -->
-    <!-- <v-tooltip bottom>
-      <template v-slot:activator="{ on, attrs }">
-        <v-icon
-          class="ma-2"
-         
-          v-bind="attrs"
-          v-on="on"
-          >mdi-login-variant</v-icon
-        >
-      </template>
-      <span>Login/Register</span>
-    </v-tooltip> -->
+    <UserAction />
 
     <LanguageSwitcher />
   </v-app-bar>
 </template>
 <script>
-import LanguageSwitcher from "./LanguageSwitcher.vue";
+import LanguageSwitcher from "../LanguageSwitcher.vue";
+import UserAction from "../UserAction.vue";
 export default {
+  name: "ToolbarUser",
   data() {
     return {
       links: [
-        { text: this.$t("home"), route: "/" },
-        { text: this.$t("realisation"), route: "/realisations" },
-        { text: this.$t("devis"), route: "/devis" },
-        { text: this.$t("contact"), route: "/contact" },
-        { text: this.$t("login"), route: "/login" },
+        { text: "Dashboard", route: "/dashboard" },
+        { text: "Testimonials", route: "/testimonials" },
+        // { text: this.$t("realisation"), route: "/realisations" },
+        // { text: this.$t("devis"), route: "/devis" },
+        // { text: this.$t("contact"), route: "/contact" },
+        // { text: this.$t("login"), route: "/login" },
       ],
       drawer: null,
     };
   },
   components: {
     LanguageSwitcher,
+    UserAction,
   },
 };
 </script>

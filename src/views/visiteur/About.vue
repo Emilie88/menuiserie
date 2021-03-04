@@ -27,7 +27,7 @@
           {{ $t("description") }}
         </v-responsive>
         <v-avatar class="elevation-12 mb-12" size="128">
-          <v-img src="../assets/Adrian.jpg"></v-img>
+          <v-img src="../../assets/Adrian.jpg"></v-img>
         </v-avatar>
       </v-container>
 

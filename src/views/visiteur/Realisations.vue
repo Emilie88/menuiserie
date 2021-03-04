@@ -61,10 +61,11 @@
   </div>
 </template>
 <script>
-import thumbs from "../gallery/thumbs";
-import images from "../gallery/images";
+import thumbs from "../../gallery/thumbs";
+import images from "../../gallery/images";
 
 export default {
+  name: "Ralisations",
   data() {
     return {
       thumbs: thumbs,

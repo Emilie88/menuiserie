@@ -22,10 +22,7 @@
               <v-col md="12">
                 <div>
                   Revenir au dahsboard
-                  <router-link
-                    to="/dashboardClient"
-                    class="text-decoration-none"
-                  >
+                  <router-link to="dashboard" class="text-decoration-none">
                     <v-icon>mdi-cursor-default-click</v-icon>
                   </router-link>
                 </div>
@@ -111,9 +108,15 @@ export default {
   methods: {
     async addComment() {
       try {
+        const token = localStorage.getItem("token");
         await this.$http.post(
-          "https://127.0.0.1:8000/api/comments/",
-          this.body
+          "https://127.0.0.1:8000/api/comment/",
+          this.body,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
         );
 
         // Success snackbar

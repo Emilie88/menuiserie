@@ -15,26 +15,31 @@
         <v-col md-12>
           <v-sheet class="mx-auto">
             <v-slide-group class="pa-2" show-arrows>
-              <v-slide-item max-width="240" v-for="n in 25" :key="n">
+              <v-slide-item
+                max-width="240"
+                v-for="(item, index) in comments"
+                :key="index"
+              >
                 <v-card class="ma-2" max-width="235">
                   <v-card-title class="title font-light mb-1">
-                    title
+                    {{ item.title }}
                   </v-card-title>
                   <v-card-text>
                     <v-rating
+                      v-model="item.rating"
+                      readonly
                       color="lime darken-3"
                       background-color="lime darken-3"
                       small
                     ></v-rating>
-                    Lorem ipsum dolor sit amet ,Lorem ipsum dolor sit amet ,
-                    Lorem ipsum dolor sit amet , Lorem ipsum dolor sit amet
-                    <!-- {{ comment.content }} -->
+
+                    <span>{{ item.content }}</span>
                   </v-card-text>
 
                   <v-card-subtitle>
-                    author
-                    <br />
-                    createdAt
+                    <span>{{ item.author }}</span>
+
+                    <!-- <span>{{ item.createdAt }}</span> -->
                   </v-card-subtitle>
                 </v-card>
               </v-slide-item>
