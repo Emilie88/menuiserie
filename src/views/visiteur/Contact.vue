@@ -15,7 +15,7 @@
 
     <v-theme-provider>
       <v-row>
-        <v-col md="6" sm="12" xs="12">
+        <v-col cols="12" md="6" xs="12">
           {{ $t("join") }}
 
           <div>
@@ -41,7 +41,7 @@
           </div>
         </v-col>
 
-        <v-col md="6" sm="12" xs="12">
+        <v-col cols="12" md="6" xs="12">
           <div>{{ $t("liveMessage") }}</div>
           <br />
           <br />

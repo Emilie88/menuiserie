@@ -20,12 +20,6 @@
           <v-theme-provider>
             <v-row>
               <v-col md="12">
-                <div>
-                  Revenir au dahsboard
-                  <router-link to="dashboard" class="text-decoration-none">
-                    <v-icon>mdi-cursor-default-click</v-icon>
-                  </router-link>
-                </div>
                 <validation-observer v-slot="{ handleSubmit }">
                   <v-form
                     ref="form"

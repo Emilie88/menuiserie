@@ -11,7 +11,7 @@
             <v-col cols="12">
               <custom-text-field
                 color="lime darken-3"
-                v-model="body.username"
+                v-model="body.email"
                 label="E-mail"
                 type="email"
                 required
@@ -52,7 +52,7 @@ export default {
     return {
       valid: true,
       body: {
-        username: "",
+        email: "",
         password: "",
       },
       email: localStorage.getItem("username"),
@@ -69,7 +69,7 @@ export default {
           "https://127.0.0.1:8000/api/login_check",
 
           {
-            username: this.body.username,
+            username: this.body.email,
             password: this.body.password,
           }
         );
@@ -85,9 +85,9 @@ export default {
         //   details: "",
         // });
         console.log("Conexxion reussi");
-        if (this.email === "emi@mail.com") {
+        if (this.body.email === "emi@mail.com") {
           this.$router.push({ name: "DashboardClient" });
-        } else if (this.email === "akysor@gmail.com") {
+        } else if (this.body.email === "akysor@gmail.com") {
           this.$router.push({ name: "DashboardAdmin" });
         }
       } catch (error) {
