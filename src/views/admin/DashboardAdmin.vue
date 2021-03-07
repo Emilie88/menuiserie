@@ -3,13 +3,7 @@
     <v-main>
       <v-container>
         <div class="py-12"></div>
-        <h2
-          :class="[
-            $vuetify.breakpoint.smAndDown
-              ? 'display-1 font-weight-bold mb-3 text-uppercase text-center'
-              : 'display-2 font-weight-bold mb-3 text-uppercase text-center',
-          ]"
-        >
+        <h2 class="mb-3 text-uppercase text-center">
           Dashboard
         </h2>
         <v-responsive class="mx-auto mb-12" width="56">
@@ -21,12 +15,11 @@
           <v-col cols="12" md="6" xs="12">
             <div>Modifiez vos données personneles !</div>
 
-            <ProfileUser />
+            <ProfileAdmin />
           </v-col>
           <v-col cols="12" md="6" xs="12">
-            <div>Mes rendez-vous</div>
-
-            <RendezVous />
+            <div>Gerer mon agenda</div>
+            <AgendaAdmin />
           </v-col>
         </v-row>
       </v-container>
@@ -34,13 +27,13 @@
   </v-app>
 </template>
 <script>
-import ProfileUser from "../../components/user/ProfileUser.vue";
-import RendezVous from "../../components/user/RendezVous.vue";
+import ProfileAdmin from "../../components/admin/ProfileAdmin.vue";
+import AgendaAdmin from "../../components/admin/AgendaAdmin.vue";
 export default {
-  name: "DashboardClient",
+  name: "DashboardAdmin",
   components: {
-    RendezVous,
-    ProfileUser,
+    AgendaAdmin,
+    ProfileAdmin,
   },
 };
 </script>

@@ -56,18 +56,30 @@ export default [
         children: [
           {
             name: "DashboardClient",
-            path: "dashboard",
+            path: "dashboardClient",
             component: lazyLoading("user/DashboardClient"),
           },
-          {
-            name: "DashboardAdmin",
-            path: "dashboard",
-            component: lazyLoading("user/DashboardAdmin"),
-          },
+
           {
             name: "Testimonials",
             path: "testimonials",
             component: lazyLoading("user/Testimonials"),
+          },
+        ],
+      },
+      {
+        path: "",
+        component: lazyLoading("admin/Layout"),
+        children: [
+          {
+            name: "DashboardAdmin",
+            path: "dashboardAdmin",
+            component: lazyLoading("admin/DashboardAdmin"),
+          },
+          {
+            name: "Realisation",
+            path: "realisation",
+            component: lazyLoading("admin/Realisation"),
           },
         ],
       },

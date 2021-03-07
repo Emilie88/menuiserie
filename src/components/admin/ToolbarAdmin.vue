@@ -6,7 +6,7 @@
     ></v-app-bar-nav-icon>
 
     <v-toolbar-title>
-      <router-link class="nav-item" to="/dashboardClient">
+      <router-link class="nav-item" to="/dashboardAdmin">
         <img src="../../assets/logos.jpg" style="width:55;height:55px;"
       /></router-link>
     </v-toolbar-title>
@@ -45,12 +45,8 @@ export default {
   data() {
     return {
       links: [
-        { text: "Dashboard", route: "/dashboardClient" },
-        { text: "Testimonials", route: "/testimonials" },
-        // { text: this.$t("realisation"), route: "/realisations" },
-        // { text: this.$t("devis"), route: "/devis" },
-        // { text: this.$t("contact"), route: "/contact" },
-        // { text: this.$t("login"), route: "/login" },
+        { text: "Dashboard", route: "/dashboardAdmin" },
+        { text: "Realisation", route: "/realisation" },
       ],
       drawer: null,
     };

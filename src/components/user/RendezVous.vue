@@ -3,16 +3,16 @@
     <v-row class="fill-height">
       <v-col>
         <v-card>
-          <v-card-subtitle v-if="body.name == null">
+          <v-card-subtitle v-if="body.motif == null">
             Vous avez aucun rendez vous !
           </v-card-subtitle>
           <v-card-text>
-            <v-list v-if="body.name !== null">
+            <v-list v-if="body.motif !== null">
               <v-subheader>Mes RDV</v-subheader>
               <v-list-item-group>
                 <v-list-item>
                   <v-list-item-content>
-                    {{ body.name }} le {{ body.date }} a {{ body.time }}
+                    {{ body.motif }} le {{ body.date }} a {{ body.date_rdv }}
                   </v-list-item-content>
                   <v-spacer></v-spacer>
                   <v-list-item-icon>
@@ -44,7 +44,7 @@
                           <v-form @submit.prevent="addEvent">
                             <v-text-field
                               color="lime darken-3"
-                              v-model="body.name"
+                              v-model="body.motif"
                               type="text"
                               label="Titre"
                             ></v-text-field>
@@ -76,7 +76,7 @@
                               ref="menuEdit"
                               :close-on-content-click="false"
                               :nudge-right="40"
-                              :return-value.sync="body.time"
+                              :return-value.sync="body.date_rdv"
                               transition="scale-transition"
                               offset-y
                               max-width="290px"
@@ -85,18 +85,20 @@
                               <template v-slot:activator="{ on, attrs }">
                                 <v-text-field
                                   color="lime darken-3"
-                                  v-model="body.time"
+                                  v-model="body.date_rdv"
                                   label="Heure"
-                                  prepend-icon="mdi-clock-time-four-outline"
+                                  prepend-icon="mdi-clock-date_rdv-four-outline"
                                   v-bind="attrs"
                                   v-on="on"
                                 ></v-text-field>
                               </template>
-                              <v-time-picker
-                                v-model="body.time"
+                              <v-date_rdv-picker
+                                v-model="body.date_rdv"
                                 full-width
-                                @click:minute="$refs.menuEdit.save(body.time)"
-                              ></v-time-picker>
+                                @click:minute="
+                                  $refs.menuEdit.save(body.date_rdv)
+                                "
+                              ></v-date_rdv-picker>
                             </v-menu>
 
                             <v-card-actions>
@@ -182,9 +184,9 @@
               <v-form @submit.prevent="addEvent">
                 <v-text-field
                   color="lime darken-3"
-                  v-model="body.name"
+                  v-model="body.motif"
                   type="text"
-                  label="Titre"
+                  label="Motif"
                 ></v-text-field>
                 <v-menu
                   v-model="menu"
@@ -214,7 +216,7 @@
                   ref="menu"
                   :close-on-content-click="false"
                   :nudge-right="40"
-                  :return-value.sync="body.time"
+                  :return-value.sync="body.date_rdv"
                   transition="scale-transition"
                   offset-y
                   max-width="290px"
@@ -223,7 +225,7 @@
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
                       color="lime darken-3"
-                      v-model="body.time"
+                      v-model="body.date_rdv"
                       label="Heure"
                       prepend-icon="mdi-clock-time-four-outline"
                       v-bind="attrs"
@@ -231,9 +233,9 @@
                     ></v-text-field>
                   </template>
                   <v-time-picker
-                    v-model="body.time"
+                    v-model="body.date_rdv"
                     full-width
-                    @click:minute="$refs.menu.save(body.time)"
+                    @click:minute="$refs.menu.save(body.date_rdv)"
                   ></v-time-picker>
                 </v-menu>
 
@@ -261,8 +263,8 @@
 export default {
   data: () => ({
     body: {
-      time: null,
-      name: null,
+      date_rdv: null,
+      motif: null,
       date: null,
       value: null,
     },

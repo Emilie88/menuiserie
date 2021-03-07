@@ -3,7 +3,13 @@
     <!-- :<v-sheet id="contact" color="#333333" dark tag="section" tile> -->
     <div class="py-12"></div>
 
-    <h2 class="display-2 font-weight-bold mb-3 text-uppercase text-center">
+    <h2
+      :class="[
+        $vuetify.breakpoint.smAndDown
+          ? 'display-1 font-weight-bold mb-3 text-uppercase text-center'
+          : 'display-2 font-weight-bold mb-3 text-uppercase text-center',
+      ]"
+    >
       {{ $t("contact") }}
     </h2>
 

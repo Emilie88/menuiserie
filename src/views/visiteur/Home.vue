@@ -56,7 +56,11 @@
       <section id="cards">
         <v-container>
           <h2
-            class="display-2 font-weight-bold mb-3 text-uppercase text-center"
+            :class="[
+              $vuetify.breakpoint.smAndDown
+                ? 'display-1 font-weight-bold mb-3 text-uppercase text-center'
+                : 'display-2 font-weight-bold mb-3 text-uppercase text-center',
+            ]"
           >
             {{ $t("realisation") }}
           </h2>

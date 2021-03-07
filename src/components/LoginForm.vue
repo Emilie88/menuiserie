@@ -11,7 +11,7 @@
             <v-col cols="12">
               <custom-text-field
                 color="lime darken-3"
-                v-model="body.email"
+                v-model="username"
                 label="E-mail"
                 type="email"
                 required
@@ -20,7 +20,7 @@
             <v-col cols="12">
               <custom-text-field
                 color="lime darken-3"
-                v-model="body.password"
+                v-model="password"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 label="Password"
                 :type="show1 ? 'text' : 'password'"
@@ -51,11 +51,8 @@ export default {
   data() {
     return {
       valid: true,
-      body: {
-        email: "",
-        password: "",
-      },
-      email: localStorage.getItem("username"),
+      username: "",
+      password: "",
 
       verify: "",
       show1: false,
@@ -69,15 +66,15 @@ export default {
           "https://127.0.0.1:8000/api/login_check",
 
           {
-            username: this.body.email,
-            password: this.body.password,
+            username: this.username,
+            password: this.password,
           }
         );
         const token = response.data.token;
         // const role = localStorage.setItem("role", response.data.role);
-        // localStorage.setItem("username", this.email);
+        localStorage.setItem("username", this.username);
         localStorage.setItem("token", token);
-        console.log(response);
+        console.log(this.username);
         // Success snackbar
         // this.$store.dispatch("show", {
         //   text: "You have signed in successfully",
@@ -85,9 +82,9 @@ export default {
         //   details: "",
         // });
         console.log("Conexxion reussi");
-        if (this.body.email === "emi@mail.com") {
+        if (this.username === "emi@mail.com") {
           this.$router.push({ name: "DashboardClient" });
-        } else if (this.body.email === "akysor@gmail.com") {
+        } else if (this.username === "akysor@gmail.com") {
           this.$router.push({ name: "DashboardAdmin" });
         }
       } catch (error) {

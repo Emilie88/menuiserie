@@ -6,10 +6,11 @@
     transition="slide-y-transition"
   >
     <template #activator="{ on }">
-      <v-btn text :title="email" v-on="on">
+      <v-btn text :title="username" v-on="on">
         <v-row wrap>
           <v-col>
-            <span class="text-none" v-text="email" />
+            <span class="text-none" v-text="username" />
+            <span class="text-none" v-text="role" />
           </v-col>
         </v-row>
       </v-btn>
@@ -30,9 +31,14 @@ export default {
   name: "UserAction",
   data() {
     return {
-      email: localStorage.getItem("email"),
+      username: localStorage.getItem("username"),
+      role: localStorage.getItem("roles"),
     };
   },
+  created() {
+    console.log(this.role);
+  },
+
   methods: {
     async signOut() {
       try {

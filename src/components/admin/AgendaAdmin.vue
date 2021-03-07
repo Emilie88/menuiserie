@@ -3,9 +3,6 @@
     <v-col>
       <v-sheet>
         <v-toolbar flat color="lime darken-3">
-          <v-btn outlined @click.stop="dialog = true">
-            New Event
-          </v-btn>
           <v-btn outlined class="mx-3" @click="setToday">
             Today
           </v-btn>
@@ -42,80 +39,50 @@
         </v-toolbar>
       </v-sheet>
 
-      <v-dialog v-model="dialog" max-width="500">
-        <v-card>
-          <v-container>
-            <v-form>
-              <v-text-field
-                v-model="name"
-                type="text"
-                label="event name (required)"
-              ></v-text-field>
-              <v-text-field
-                v-model="details"
-                type="text"
-                label="detail"
-              ></v-text-field>
-              <v-text-field
-                v-model="start"
-                type="date"
-                label="start (required)"
-              ></v-text-field>
-              <v-text-field
-                v-model="end"
-                type="date"
-                label="end (required)"
-              ></v-text-field>
-              <v-text-field
-                v-model="color"
-                type="color"
-                label="color (click to open color menu)"
-              ></v-text-field>
-              <v-btn
-                type="submit"
-                color="primary"
-                class="mr-4"
-                @click.stop="dialog = false"
-              >
-                create event
-              </v-btn>
-            </v-form>
-          </v-container>
-        </v-card>
-      </v-dialog>
-
       <v-dialog v-model="dialogDate" max-width="500">
         <v-card>
           <v-container>
+            <v-card-actions class="ma-0 pa-0">
+              <v-spacer></v-spacer>
+              <v-btn
+                color="lime darken-3"
+                icon
+                @click.stop="dialogDate = false"
+              >
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </v-card-actions>
             <v-form @submit.prevent="addEvent">
               <v-text-field
+                color="lime darken-3"
                 v-model="name"
                 type="text"
-                label="event name (required)"
+                label="Evenement"
               ></v-text-field>
-              <v-text-field
-                v-model="details"
-                type="text"
-                label="detail"
-              ></v-text-field>
+
               <v-text-field
                 v-model="start"
+                color="lime darken-3"
                 type="date"
-                label="start (required)"
+                label="Date de debut"
               ></v-text-field>
               <v-text-field
                 v-model="end"
+                color="lime darken-3"
                 type="date"
-                label="end (required)"
+                label="Date de fin"
               ></v-text-field>
-              <v-text-field
-                v-model="color"
-                type="color"
-                label="color (click to open color menu)"
-              ></v-text-field>
+              <v-autocomplete
+                v-model="value"
+                :items="color"
+                color="lime darken-3"
+                dense
+                label="Couleur"
+              ></v-autocomplete>
+
               <v-btn
                 type="submit"
-                color="primary"
+                color="lime darken-3"
                 class="mr-4"
                 @click.stop="dialog = false"
               >
@@ -130,7 +97,7 @@
         <v-calendar
           ref="calendar"
           v-model="focus"
-          color="primary"
+          color="lime darken-3"
           :events="events"
           :event-color="getEventColor"
           :event-margin-bottom="3"
@@ -192,6 +159,7 @@
 
 <script>
 export default {
+  name: "AgendaAdmin",
   data: () => ({
     today: new Date().toISOString().substr(0, 10),
     focus: new Date().toISOString().substr(0, 10),
@@ -202,11 +170,20 @@ export default {
       day: "Day",
       "4day": "4 Days",
     },
+    value: null,
     name: null,
     details: null,
     start: null,
     end: null,
-    color: "#1976D2", // default event color
+    color: [
+      "blue",
+      "indigo",
+      "deep-purple",
+      "cyan",
+      "green",
+      "orange",
+      "grey darken-1",
+    ],
     currentlyEditing: null,
     selectedEvent: {},
     selectedElement: null,
@@ -281,25 +258,21 @@ export default {
     next() {
       this.$refs.calendar.next();
     },
-    // async addEvent () {
-    //   if (this.name && this.start && this.end) {
-    //     await db.collection("calEvent").add({
-    //       name: this.name,
-    //       details: this.details,
-    //       start: this.start,
-    //       end: this.end,
-    //       color: this.color
-    //     })
-    //     this.getEvents()
-    //     this.name = '',
-    //     this.details = '',
-    //     this.start = '',
-    //     this.end = '',
-    //     this.color = ''
-    //   } else {
-    //     alert('You must enter event name, start, and end time')
-    //   }
-    // },
+    addEvent() {
+      if (this.name && this.start && this.end) {
+        //     await db.collection("calEvent").add({
+        this.name, this.details, this.start, this.end, this.value;
+        //     })
+        //     this.getEvents()
+        //     this.name = '',
+        //     this.details = '',
+        //     this.start = '',
+        //     this.end = '',
+        //     this.color = ''
+        //   } else {
+        //     alert('You must enter event name, start, and end time')
+      }
+    },
     editEvent(ev) {
       this.currentlyEditing = ev.id;
     },

@@ -6,7 +6,13 @@
           <div class="py-12"></div>
 
           <v-container>
-            <h2 class="display-2 font-weight-bold mb-3  text-center">
+            <h2
+              :class="[
+                $vuetify.breakpoint.smAndDown
+                  ? 'display-1 font-weight-bold mb-3 text-uppercase text-center'
+                  : 'display-2 font-weight-bold mb-3 text-uppercase text-center',
+              ]"
+            >
               {{ $t("quoteRequest") }}
             </h2>
 

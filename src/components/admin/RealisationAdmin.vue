@@ -15,25 +15,28 @@
                     <v-col cols="12">
                       <custom-text-field
                         color="lime darken-3"
-                        name="email"
-                        v-model="email"
-                        label="E-mail"
-                        type="email"
+                        name="image"
+                        v-model="image"
+                        label="Image"
+                      />
+                    </v-col>
+                    <v-col cols="12">
+                      <custom-text-field
+                        color="lime darken-3"
+                        name="title"
+                        v-model="title"
+                        label="Title"
+                      />
+                    </v-col>
+                    <v-col cols="12">
+                      <custom-text-field
+                        color="lime darken-3"
+                        name="description"
+                        v-model="description"
+                        label="Description"
                       />
                     </v-col>
 
-                    <v-col cols="12">
-                      <v-text-field
-                        color="lime darken-3"
-                        v-model="password"
-                        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                        :type="show1 ? 'text' : 'password'"
-                        name="password"
-                        label="Password *"
-                        counter
-                        @click:append="show1 = !show1"
-                      ></v-text-field>
-                    </v-col>
                     <v-spacer></v-spacer>
                     <v-col
                       class="d-flex ml-auto mr-auto"
@@ -47,7 +50,7 @@
                         outlined
                         color="lime darken-3"
                         type="submit"
-                        >Update</v-btn
+                        >Add</v-btn
                       >
                     </v-col>
                   </v-row>
@@ -64,8 +67,9 @@
 export default {
   data() {
     return {
-      email: localStorage.getItem("username"),
-      password: "",
+      image: "",
+      title: "",
+      description: "",
       show1: false,
     };
   },

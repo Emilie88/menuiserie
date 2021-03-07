@@ -7,8 +7,8 @@
         <h2
           :class="[
             $vuetify.breakpoint.smAndDown
-              ? 'display-2 font-weight-bold mb-3 text-uppercase'
-              : 'display-3 font-weight-bold mb-3 text-uppercase',
+              ? 'display-1 font-weight-bold mb-3 text-uppercase'
+              : 'display-2 font-weight-bold mb-3 text-uppercase',
           ]"
         >
           {{ $t("about") }}
