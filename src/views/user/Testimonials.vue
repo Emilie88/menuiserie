@@ -103,15 +103,12 @@ export default {
     async addComment() {
       try {
         const token = localStorage.getItem("token");
-        await this.$http.post(
-          "https://127.0.0.1:8000/api/comment/",
-          this.body,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        await this.$http.post("https://127.0.0.1:8000/api/comment", this.body, {
+          headers: {
+            Authorization: token,
+          },
+        });
+        console.log(token);
 
         // Success snackbar
         this.$store.dispatch("show", {
