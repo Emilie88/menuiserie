@@ -71,17 +71,18 @@ export default {
           }
         );
         const token = response.data.token;
-        // const role = localStorage.setItem("role", response.data.role);
+        const role = response.data.role;
+        localStorage.setItem("role", role);
         localStorage.setItem("username", this.username);
         localStorage.setItem("token", token);
-        console.log(this.username);
+
         // Success snackbar
         // this.$store.dispatch("show", {
         //   text: "You have signed in successfully",
         //   type: "succes",
         //   details: "",
         // });
-        console.log("Conexxion reussi");
+        console.log("Conexxion reussi", role);
         if (this.username === "emi@mail.com") {
           this.$router.push({ name: "DashboardClient" });
         } else if (this.username === "akysor@gmail.com") {

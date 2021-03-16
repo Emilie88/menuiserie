@@ -35,9 +35,9 @@ export default {
       role: localStorage.getItem("roles"),
     };
   },
-  created() {
-    console.log(this.role);
-  },
+  // created() {
+  //   console.log(this.role);
+  // },
 
   methods: {
     async signOut() {

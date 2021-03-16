@@ -5,12 +5,27 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import "./registerServiceWorker";
 import i18n from "./i18n";
+import DaySpanVuetify from "dayspan-vuetify";
 
 import "./plugins";
 import "./components";
+import "devextreme/dist/css/dx.common.css";
+import "devextreme/dist/css/dx.light.css";
 
 import LightGallery from "vue-light-gallery";
+import moment from "moment";
+import VueCtkDateTimePicker from "vue-ctk-date-time-picker";
+import "vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css";
+
+Vue.component("VueCtkDateTimePicker", VueCtkDateTimePicker);
+
+Vue.prototype.moment = moment;
 Vue.use(LightGallery);
+Vue.use(DaySpanVuetify, {
+  methods: {
+    getDefaultEventColor: () => "#1976d2",
+  },
+});
 
 Vue.config.productionTip = false;
 

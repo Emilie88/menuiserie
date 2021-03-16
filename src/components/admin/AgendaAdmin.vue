@@ -12,7 +12,9 @@
           <v-btn fab text small @click="next">
             <v-icon small>mdi-chevron-right</v-icon>
           </v-btn>
-          <v-toolbar-title>{{ title }}</v-toolbar-title>
+          <v-toolbar-title v-if="$refs.calendar">
+            {{ $refs.calendar.title }}
+          </v-toolbar-title>
           <v-spacer></v-spacer>
           <v-menu bottom>
             <template v-slot:activator="{ on }">
@@ -52,43 +54,36 @@
                 <v-icon>mdi-close</v-icon>
               </v-btn>
             </v-card-actions>
-            <v-form @submit.prevent="addEvent">
-              <v-text-field
-                color="lime darken-3"
-                v-model="name"
-                type="text"
-                label="Evenement"
-              ></v-text-field>
+            <validation-observer v-slot="{ handleSubmit }" lazy-validation>
+              <v-form @submit.prevent="handleSubmit(addEvent)">
+                <custom-text-field
+                  color="lime darken-3"
+                  v-model="body.name"
+                  type="text"
+                  label="Evenement"
+                />
 
-              <v-text-field
-                v-model="start"
-                color="lime darken-3"
-                type="date"
-                label="Date de debut"
-              ></v-text-field>
-              <v-text-field
-                v-model="end"
-                color="lime darken-3"
-                type="date"
-                label="Date de fin"
-              ></v-text-field>
-              <v-autocomplete
-                v-model="value"
-                :items="color"
-                color="lime darken-3"
-                dense
-                label="Couleur"
-              ></v-autocomplete>
+                <input
+                  type="datetime-local"
+                  name="start"
+                  v-model="body.start"
+                />
 
-              <v-btn
-                type="submit"
-                color="lime darken-3"
-                class="mr-4"
-                @click.stop="dialog = false"
-              >
-                create event
-              </v-btn>
-            </v-form>
+                <input type="datetime-local" name="end" v-model="body.end" />
+
+                <v-autocomplete
+                  v-model="body.color"
+                  :items="colors"
+                  color="lime darken-3"
+                  dense
+                  label="Couleur"
+                ></v-autocomplete>
+
+                <v-btn type="submit" color="lime darken-3" class="mr-4">
+                  create event
+                </v-btn>
+              </v-form>
+            </validation-observer>
           </v-container>
         </v-card>
       </v-dialog>
@@ -117,27 +112,14 @@
           <v-card color="grey lighten-4" :width="350" flat>
             <v-toolbar :color="selectedEvent.color" dark>
               <v-btn icon>
-                <v-icon>mdi-delete</v-icon>
+                <v-icon>mdi-pencil</v-icon>
               </v-btn>
               <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
               <div class="flex-grow-1"></div>
+              <v-btn icon @click="deleteEvents(selectedEvent.id)">
+                <v-icon>mdi-delete</v-icon>
+              </v-btn>
             </v-toolbar>
-
-            <v-card-text>
-              <form v-if="currentlyEditing !== selectedEvent.id">
-                {{ selectedEvent.details }}
-              </form>
-              <form v-else>
-                <textarea-autosize
-                  v-model="selectedEvent.details"
-                  type="text"
-                  style="width: 100%"
-                  :min-height="100"
-                  placeholder="add note"
-                >
-                </textarea-autosize>
-              </form>
-            </v-card-text>
 
             <v-card-actions>
               <v-btn text color="secondary" @click="selectedOpen = false">
@@ -170,12 +152,14 @@ export default {
       day: "Day",
       "4day": "4 Days",
     },
-    value: null,
-    name: null,
-    details: null,
-    start: null,
-    end: null,
-    color: [
+    body: {
+      name: null,
+      start: null,
+      end: null,
+      color: null,
+    },
+
+    colors: [
       "blue",
       "indigo",
       "deep-purple",
@@ -192,52 +176,26 @@ export default {
     dialog: false,
     dialogDate: false,
   }),
-  mounted() {
-    // this.getEvents()
+  created() {
+    this.getEvents();
   },
-  computed: {
-    title() {
-      const { start, end } = this;
-      if (!start || !end) {
-        return "";
-      }
-      const startMonth = this.monthFormatter(start);
-      const endMonth = this.monthFormatter(end);
-      const suffixMonth = startMonth === endMonth ? "" : endMonth;
-      const startYear = start.year;
-      const endYear = end.year;
-      const suffixYear = startYear === endYear ? "" : endYear;
-      const startDay = start.day + this.nth(start.day);
-      const endDay = end.day + this.nth(end.day);
-      switch (this.type) {
-        case "month":
-          return `${startMonth} ${startYear}`;
-        case "week":
-        case "4day":
-          return `${startMonth} ${startDay} ${startYear} - ${suffixMonth} ${endDay} ${suffixYear}`;
-        case "day":
-          return `${startMonth} ${startDay} ${startYear}`;
-      }
-      return "";
-    },
-    monthFormatter() {
-      return this.$refs.calendar.getFormatter({
-        timeZone: "UTC",
-        month: "long",
-      });
-    },
-  },
+
   methods: {
-    // async getEvents () {
-    //   let snapshot = await db.collection('calEvent').get()
-    //   const events = []
-    //   snapshot.forEach(doc => {
-    //     let appData = doc.data()
-    //     appData.id = doc.id
-    //     events.push(appData)
-    //   })
-    //   this.events = events
-    // },
+    async getEvents() {
+      const response = await this.$http.get(
+        "https://127.0.0.1:8000/api/scheduler/"
+      );
+
+      this.events = response.data;
+    },
+    async deleteEvents(id) {
+      await this.$http.delete(
+        "https://127.0.0.1:8000/api/remove-scheduler/" + `${id}`
+      );
+      this.selectedOpen = false;
+      console.log(this.$refs.calendar);
+      location.reload();
+    },
     setDialogDate({ date }) {
       this.dialogDate = true;
       this.focus = date;
@@ -258,36 +216,40 @@ export default {
     next() {
       this.$refs.calendar.next();
     },
-    addEvent() {
-      if (this.name && this.start && this.end) {
-        //     await db.collection("calEvent").add({
-        this.name, this.details, this.start, this.end, this.value;
-        //     })
-        //     this.getEvents()
-        //     this.name = '',
-        //     this.details = '',
-        //     this.start = '',
-        //     this.end = '',
-        //     this.color = ''
-        //   } else {
-        //     alert('You must enter event name, start, and end time')
+
+    async addEvent() {
+      try {
+        const token = localStorage.getItem("token");
+        await this.$http.post(
+          "https://127.0.0.1:8000/api/add-scheduler",
+          this.body,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+        this.dialogDate = false;
+        location.reload();
+
+        // Success snackbar
+        this.$store.dispatch("show", {
+          text: "Your event has been added",
+          type: "success",
+        });
+      } catch (error) {
+        // Error snackbar
+        this.$store.dispatch("show", {
+          text: error.message,
+          type: "error",
+        });
+        // this.$refs.form.reset();
       }
     },
     editEvent(ev) {
       this.currentlyEditing = ev.id;
     },
-    // async updateEvent (ev) {
-    //   await db.collection('calEvent').doc(this.currentlyEditing).update({
-    //     details: ev.details
-    //   })
-    //   this.selectedOpen = false,
-    //   this.currentlyEditing = null
-    // },
-    // async deleteEvent (ev) {
-    //   await db.collection("calEvent").doc(ev).delete()
-    //   this.selectedOpen = false,
-    //   this.getEvents()
-    // },
+
     showEvent({ nativeEvent, event }) {
       const open = () => {
         this.selectedEvent = event;
@@ -305,11 +267,6 @@ export default {
     updateRange({ start, end }) {
       this.start = start;
       this.end = end;
-    },
-    nth(d) {
-      return d > 3 && d < 21
-        ? "th"
-        : ["th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th"][d % 10];
     },
   },
 };

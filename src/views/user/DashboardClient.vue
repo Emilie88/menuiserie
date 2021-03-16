@@ -24,9 +24,9 @@
             <ProfileUser />
           </v-col>
           <v-col cols="12" md="6" xs="12">
-            <div>Mes rendez-vous</div>
+            <div>Mon agenda</div>
 
-            <RendezVous />
+            <AgendaClient />
           </v-col>
         </v-row>
       </v-container>
@@ -35,11 +35,11 @@
 </template>
 <script>
 import ProfileUser from "../../components/user/ProfileUser.vue";
-import RendezVous from "../../components/user/RendezVous.vue";
+import AgendaClient from "../../components/user/AgendaClient.vue";
 export default {
   name: "DashboardClient",
   components: {
-    RendezVous,
+    AgendaClient,
     ProfileUser,
   },
 };

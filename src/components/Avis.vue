@@ -72,7 +72,6 @@ export default {
         "https://127.0.0.1:8000/api/comments/"
       );
       this.comments = response.data;
-      console.log(response.data);
     },
   },
 };

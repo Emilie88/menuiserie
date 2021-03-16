@@ -8,33 +8,32 @@
               <validation-observer v-slot="{ handleSubmit }">
                 <v-form
                   ref="form"
-                  @submit.prevent="handleSubmit(submitRegister)"
+                  @submit.prevent="handleSubmit(addRealisation)"
                   lazy-validation
                 >
                   <v-row>
                     <v-col cols="12">
-                      <custom-text-field
+                      <v-text-field
                         color="lime darken-3"
-                        name="image"
-                        v-model="image"
-                        label="Image"
-                      />
-                    </v-col>
-                    <v-col cols="12">
-                      <custom-text-field
-                        color="lime darken-3"
-                        name="title"
                         v-model="title"
                         label="Title"
                       />
                     </v-col>
                     <v-col cols="12">
-                      <custom-text-field
+                      <v-text-field
                         color="lime darken-3"
-                        name="description"
                         v-model="description"
                         label="Description"
                       />
+                    </v-col>
+                    <v-col cols="12">
+                      <input type="file" />
+                      <!-- <v-file-input
+                        v-model="imageFile"
+                        prepend-icon="mdi-camera"
+                        color="lime darken-3"
+                        label="Image"
+                      ></v-file-input> -->
                     </v-col>
 
                     <v-spacer></v-spacer>
@@ -67,11 +66,43 @@
 export default {
   data() {
     return {
-      image: "",
-      title: "",
-      description: "",
+      imageFile: null,
+      title: null,
+      description: null,
       show1: false,
     };
+  },
+  methods: {
+    async addRealisation() {
+      try {
+        const token = localStorage.getItem("token");
+        await this.$http.post(
+          "https://127.0.0.1:8000/api/add-realisation",
+          this.imageFile,
+          this.title,
+          this.description,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+        console.log(this.imageFile);
+
+        // Success snackbar
+        this.$store.dispatch("show", {
+          text: "Your realisation has been added",
+          type: "success",
+        });
+      } catch (error) {
+        // Error snackbar
+        this.$store.dispatch("show", {
+          text: error.message,
+          type: "error",
+        });
+        this.$refs.form.reset();
+      }
+    },
   },
 };
 </script>
