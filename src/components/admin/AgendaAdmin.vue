@@ -140,6 +140,8 @@
 </template>
 
 <script>
+const token = localStorage.getItem("token");
+const id = localStorage.getItem("id");
 export default {
   name: "AgendaAdmin",
   data: () => ({
@@ -183,7 +185,12 @@ export default {
   methods: {
     async getEvents() {
       const response = await this.$http.get(
-        "https://127.0.0.1:8000/api/scheduler/"
+        "https://127.0.0.1:8000/api/scheduler/" + id,
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
       );
 
       this.events = response.data;
@@ -219,9 +226,8 @@ export default {
 
     async addEvent() {
       try {
-        const token = localStorage.getItem("token");
         await this.$http.post(
-          "https://127.0.0.1:8000/api/add-scheduler",
+          "https://127.0.0.1:8000/api/add-scheduler/" + `${id}`,
           this.body,
           {
             headers: {

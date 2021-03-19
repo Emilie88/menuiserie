@@ -64,7 +64,7 @@
 export default {
   data() {
     return {
-      email: localStorage.getItem("username"),
+      email: localStorage.getItem("email"),
       password: "",
       show1: false,
     };

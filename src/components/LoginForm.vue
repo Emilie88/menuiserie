@@ -71,21 +71,29 @@ export default {
           }
         );
         const token = response.data.token;
-        const role = response.data.role;
-        localStorage.setItem("role", role);
-        localStorage.setItem("username", this.username);
+        const id = response.data.id;
+        const roles = response.data.roles;
+        const email = response.data.email;
+        const firstName = response.data.firstName;
+        const lastName = response.data.lastName;
+
+        localStorage.setItem("roles", roles);
         localStorage.setItem("token", token);
+        localStorage.setItem("email", email);
+        localStorage.setItem("id", id);
+        localStorage.setItem("firstName", firstName);
+        localStorage.setItem("lastName", lastName);
 
         // Success snackbar
-        // this.$store.dispatch("show", {
-        //   text: "You have signed in successfully",
-        //   type: "succes",
-        //   details: "",
-        // });
-        console.log("Conexxion reussi", role);
-        if (this.username === "emi@mail.com") {
+        this.$store.dispatch("show", {
+          text: "You have signed in successfully",
+          type: "success",
+          details: "",
+        });
+        console.log("Conexxion reussi", response.data);
+        if (roles[0] === "ROLE_USER") {
           this.$router.push({ name: "DashboardClient" });
-        } else if (this.username === "akysor@gmail.com") {
+        } else if (roles[0] === "ROLE_ADMIN") {
           this.$router.push({ name: "DashboardAdmin" });
         }
       } catch (error) {

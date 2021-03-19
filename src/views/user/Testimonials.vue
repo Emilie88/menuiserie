@@ -24,62 +24,64 @@
           <v-theme-provider>
             <v-row>
               <v-col md="12">
-                <validation-observer v-slot="{ handleSubmit }">
-                  <v-form
-                    ref="form"
-                    @submit.prevent="handleSubmit(addComment)"
-                    lazy-validation
-                  >
-                    <v-row>
-                      <v-col md="6">
-                        <custom-text-field
-                          color="lime darken-3"
-                          v-model="body.author"
-                          label="Name"
-                          required
-                        />
-                      </v-col>
-                      <v-col md="6">
-                        <custom-text-field
-                          hide-details
-                          single-line
-                          color="lime darken-3"
-                          v-model="body.rating"
-                          label="Etoiles"
-                          type="number"
-                          max="5"
-                          min="0"
-                        />
-                      </v-col>
-                    </v-row>
+                <v-card class="pa-5">
+                  <validation-observer v-slot="{ handleSubmit }">
+                    <v-form
+                      ref="form"
+                      @submit.prevent="handleSubmit(addComment)"
+                      lazy-validation
+                    >
+                      <v-row>
+                        <v-col cols="12" md="6" xs="12">
+                          <custom-text-field
+                            color="lime darken-3"
+                            v-model="body.author"
+                            label="Name"
+                            required
+                          />
+                        </v-col>
+                        <v-col cols="12" md="6" xs="12">
+                          <custom-text-field
+                            hide-details
+                            single-line
+                            color="lime darken-3"
+                            v-model="body.rating"
+                            label="Etoiles"
+                            type="number"
+                            max="5"
+                            min="0"
+                          />
+                        </v-col>
+                      </v-row>
 
-                    <custom-text-field
-                      color="lime darken-3"
-                      v-model="body.title"
-                      label="Subject"
-                      required
-                    />
-
-                    <custom-textarea
-                      color="lime darken-3"
-                      v-model="body.content"
-                      label="Message"
-                      required
-                    />
-
-                    <v-row align="center" justify="center">
-                      <v-btn
-                        class="mr-4"
-                        type="submit"
-                        outlined
+                      <custom-text-field
                         color="lime darken-3"
-                        x-large
-                      >
-                        Envoyer
-                      </v-btn>
-                    </v-row>
-                  </v-form>
-                </validation-observer>
+                        v-model="body.title"
+                        label="Subject"
+                        required
+                      />
+
+                      <custom-textarea
+                        color="lime darken-3"
+                        v-model="body.content"
+                        label="Message"
+                        required
+                      />
+
+                      <v-row align="center" justify="center">
+                        <v-btn
+                          class="mr-4"
+                          type="submit"
+                          outlined
+                          color="lime darken-3"
+                          x-large
+                        >
+                          Envoyer
+                        </v-btn>
+                      </v-row>
+                    </v-form>
+                  </validation-observer>
+                </v-card>
               </v-col>
             </v-row>
           </v-theme-provider>
@@ -91,28 +93,33 @@
   </v-app>
 </template>
 <script>
+const token = localStorage.getItem("token");
+
 export default {
   name: "Testimonials",
   data() {
     return {
       body: {
-        rating: "",
-        author: "",
-        title: "",
-        content: "",
+        rating: null,
+        author: null,
+        title: null,
+        content: null,
       },
     };
   },
   methods: {
     async addComment() {
       try {
-        const token = localStorage.getItem("token");
-        await this.$http.post("https://127.0.0.1:8000/api/comment", this.body, {
-          headers: {
-            Authorization: token,
-          },
-        });
-        console.log(token);
+        await this.$http.post(
+          "https://127.0.0.1:8000/api/comment",
+          this.body,
+
+          {
+            headers: {
+              Authorization: "Bearer" + token,
+            },
+          }
+        );
 
         // Success snackbar
         this.$store.dispatch("show", {
@@ -125,6 +132,7 @@ export default {
           text: error.message,
           type: "error",
         });
+
         this.$refs.form.reset();
       }
     },
