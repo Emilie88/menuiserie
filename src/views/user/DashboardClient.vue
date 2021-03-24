@@ -3,13 +3,7 @@
     <v-main>
       <v-container>
         <div class="py-12"></div>
-        <h2
-          :class="[
-            $vuetify.breakpoint.smAndDown
-              ? 'display-1 font-weight-bold mb-3 text-uppercase text-center'
-              : 'display-2 font-weight-bold mb-3 text-uppercase text-center',
-          ]"
-        >
+        <h2 class="mb-3 text-uppercase text-center">
           Dashboard
         </h2>
         <v-responsive class="mx-auto mb-12" width="56">
@@ -41,6 +35,9 @@ export default {
   components: {
     AgendaClient,
     ProfileUser,
+  },
+  data() {
+    return {};
   },
 };
 </script>

@@ -3,7 +3,8 @@
     v-model="snackbar"
     :color="color"
     right
-    :timeout="-1"
+    :timeout="0"
+    class="snackbar"
     @mouseover="hover = true"
     @mouseleave="hover = false"
   >

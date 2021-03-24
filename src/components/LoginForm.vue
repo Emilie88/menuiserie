@@ -71,11 +71,11 @@ export default {
           }
         );
         const token = response.data.token;
-        const id = response.data.id;
-        const roles = response.data.roles;
-        const email = response.data.email;
-        const firstName = response.data.firstName;
-        const lastName = response.data.lastName;
+        const id = response.data.data.id;
+        const roles = response.data.data.roles;
+        const email = response.data.data.email;
+        const firstName = response.data.data.firstName;
+        const lastName = response.data.data.lastName;
 
         localStorage.setItem("roles", roles);
         localStorage.setItem("token", token);

@@ -13,7 +13,7 @@
                 color="lime darken-3"
                 v-model="body.firstname"
                 name="firstName"
-                label="First Name"
+                label="Prénom"
                 required
               />
             </v-col>
@@ -22,7 +22,7 @@
                 color="lime darken-3"
                 name="lastName"
                 v-model="body.lastname"
-                label="Last Name"
+                label="Nom"
                 required
               />
             </v-col>
@@ -43,7 +43,7 @@
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 name="password"
-                label="Password *"
+                label="Mot de passe *"
                 counter
                 @click:append="show1 = !show1"
                 required
@@ -53,7 +53,7 @@
             <v-spacer></v-spacer>
             <v-col class="d-flex ml-auto" cols="12" sm="3" xs="12">
               <v-btn x-large block outlined color="lime darken-3" type="submit"
-                >Register</v-btn
+                >Créer compte</v-btn
               >
             </v-col>
           </v-row>

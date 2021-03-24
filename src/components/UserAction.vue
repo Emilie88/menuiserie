@@ -10,7 +10,7 @@
         <v-row wrap>
           <v-col>
             <span class="text-none" v-text="email" />
-            <span class="text-none" v-text="roles" />
+            <!-- <span class="text-none" v-text="roles" /> -->
           </v-col>
         </v-row>
       </v-btn>

@@ -16,7 +16,7 @@
             <v-tabs-slider color="lime darken-3"></v-tabs-slider>
             <v-tab>
               <v-icon large>mdi-account-outline</v-icon>
-              <div class="caption py-1">Register</div>
+              <div class="caption py-1">Créer compte</div>
             </v-tab>
             <v-tab-item>
               <RegisterForm />

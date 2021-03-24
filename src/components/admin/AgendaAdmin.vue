@@ -60,27 +60,33 @@
                   color="lime darken-3"
                   v-model="body.name"
                   type="text"
-                  label="Evenement"
+                  :label="$t('event')"
                 />
-
-                <input
+                <custom-text-field
+                  color="lime darken-3"
                   type="datetime-local"
                   name="start"
                   v-model="body.start"
+                  :label="$t('start')"
                 />
-
-                <input type="datetime-local" name="end" v-model="body.end" />
+                <custom-text-field
+                  color="lime darken-3"
+                  type="datetime-local"
+                  name="end"
+                  v-model="body.end"
+                  :label="$t('end')"
+                />
 
                 <v-autocomplete
                   v-model="body.color"
                   :items="colors"
                   color="lime darken-3"
                   dense
-                  label="Couleur"
+                  :label="$t('color')"
                 ></v-autocomplete>
 
                 <v-btn type="submit" color="lime darken-3" class="mr-4">
-                  create event
+                  {{ $t("createEvent") }}
                 </v-btn>
               </v-form>
             </validation-observer>
@@ -141,7 +147,7 @@
 
 <script>
 const token = localStorage.getItem("token");
-const id = localStorage.getItem("id");
+
 export default {
   name: "AgendaAdmin",
   data: () => ({
@@ -185,10 +191,10 @@ export default {
   methods: {
     async getEvents() {
       const response = await this.$http.get(
-        "https://127.0.0.1:8000/api/scheduler/" + id,
+        "https://127.0.0.1:8000/api/scheduler",
         {
           headers: {
-            Authorization: token,
+            Authorization: "Bearer " + token,
           },
         }
       );
@@ -227,11 +233,11 @@ export default {
     async addEvent() {
       try {
         await this.$http.post(
-          "https://127.0.0.1:8000/api/add-scheduler/" + `${id}`,
+          "https://127.0.0.1:8000/api/add-scheduler",
           this.body,
           {
             headers: {
-              Authorization: token,
+              Authorization: "Bearer " + token,
             },
           }
         );

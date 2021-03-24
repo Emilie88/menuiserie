@@ -32,6 +32,16 @@
     "city":"Oras",
     "zipCode":"Cod postal",
     "quoteRequest":"Cere oferta",
-    "devisContent":"se angajează să răspundă. Solicita o ofertă pentru orice tip de mobila pe măsură și vă vom răspunde cât mai curând posibil,in functie de cererea ta!"
+    "devisContent":"se angajează să răspundă. Solicita o ofertă pentru orice tip de mobila pe măsură și vă vom răspunde cât mai curând posibil,in functie de cererea ta!",
+    "today":"Azi",
+    "day":"zi",
+    "week":"Saptamana",
+    "month":"Luna",
+    "days":"zile",
+    "event":"Eveniment",
+    "start":"Data de inceput",
+    "end":"Data de sfarsit",
+    "color":"Culoare",
+    "createEvent":"Creaza evenimentul"
   
 }

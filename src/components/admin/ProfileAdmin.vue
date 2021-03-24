@@ -15,6 +15,24 @@
                     <v-col cols="12">
                       <custom-text-field
                         color="lime darken-3"
+                        name="firstName"
+                        v-model="firstName"
+                        label="First name"
+                        type="text"
+                      />
+                    </v-col>
+                    <v-col cols="12">
+                      <custom-text-field
+                        color="lime darken-3"
+                        name="lastName"
+                        v-model="lastName"
+                        label="Last Name"
+                        type="text"
+                      />
+                    </v-col>
+                    <v-col cols="12">
+                      <custom-text-field
+                        color="lime darken-3"
                         name="email"
                         v-model="email"
                         label="E-mail"
@@ -65,6 +83,8 @@ export default {
   data() {
     return {
       email: localStorage.getItem("email"),
+      firstName: localStorage.getItem("firstName"),
+      lastName: localStorage.getItem("lastName"),
       password: "",
       show1: false,
     };

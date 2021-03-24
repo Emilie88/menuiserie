@@ -60,27 +60,35 @@
                   color="lime darken-3"
                   v-model="body.name"
                   type="text"
-                  label="Evenement"
+                  :label="$t('event')"
                 />
-
-                <input
+                <custom-text-field
+                  color="lime darken-3"
                   type="datetime-local"
+                  :disabled-dates="disabledDates"
                   name="start"
                   v-model="body.start"
+                  :label="$t('start')"
                 />
-
-                <input type="datetime-local" name="end" v-model="body.end" />
+                <custom-text-field
+                  color="lime darken-3"
+                  type="datetime-local"
+                  :disabled-dates="disabledDates"
+                  name="end"
+                  v-model="body.end"
+                  :label="$t('end')"
+                />
 
                 <v-autocomplete
                   v-model="body.color"
                   :items="colors"
                   color="lime darken-3"
                   dense
-                  label="Couleur"
+                  :label="$t('color')"
                 ></v-autocomplete>
 
                 <v-btn type="submit" color="lime darken-3" class="mr-4">
-                  create event
+                  {{ $t("createEvent") }}
                 </v-btn>
               </v-form>
             </validation-observer>
@@ -116,9 +124,35 @@
               </v-btn>
               <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
               <div class="flex-grow-1"></div>
-              <v-btn icon @click="deleteEvents(selectedEvent.id)">
-                <v-icon>mdi-delete</v-icon>
-              </v-btn>
+              <v-dialog v-model="dialogDelete" max-width="600px">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn icon v-bind="attrs" v-on="on">
+                    <v-icon>mdi-delete</v-icon>
+                  </v-btn>
+                </template>
+                <v-card>
+                  <v-card-title
+                    >Vous etes sur de vouloir supprimer ce
+                    rendez-vous?</v-card-title
+                  >
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="lime darken-3"
+                      text
+                      @click="dialogDelete = false"
+                      >Annuler</v-btn
+                    >
+                    <v-btn
+                      color="lime darken-3"
+                      text
+                      @click="deleteEvents(selectedEvent.id)"
+                      >Confirmer</v-btn
+                    >
+                    <v-spacer></v-spacer>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
             </v-toolbar>
 
             <v-card-actions>
@@ -141,10 +175,11 @@
 
 <script>
 const token = localStorage.getItem("token");
-const id = localStorage.getItem("id");
+// const idUser = localStorage.getItem("id");
 export default {
-  name: "AgendaAdmin",
+  name: "AgendaClient",
   data: () => ({
+    dialogDelete: false,
     today: new Date().toISOString().substr(0, 10),
     focus: new Date().toISOString().substr(0, 10),
     type: "month",
@@ -185,24 +220,43 @@ export default {
   methods: {
     async getEvents() {
       const response = await this.$http.get(
-        "https://127.0.0.1:8000/api/scheduler/" + id,
+        "https://127.0.0.1:8000/api/scheduler",
         {
           headers: {
-            Authorization: token,
+            Authorization: "Bearer" + " " + token,
           },
         }
       );
-      console.log(id);
+      console.log(response.data);
 
       this.events = response.data;
     },
     async deleteEvents(id) {
-      await this.$http.delete(
-        "https://127.0.0.1:8000/api/remove-scheduler/" + `${id}`
-      );
+      try {
+        await this.$http.delete(
+          "https://127.0.0.1:8000/api/remove-scheduler/" + `${id}`,
+          {
+            headers: {
+              Authorization: "Bearer" + " " + token,
+            },
+          }
+        );
+
+        // Success snackbar
+        this.$store.dispatch("show", {
+          text: "Your event has been deleted",
+          type: "success",
+        });
+      } catch (error) {
+        // Error snackbar
+        this.$store.dispatch("show", {
+          text: "An error occured ",
+          // text: error.message,
+          type: "error",
+        });
+      }
       this.selectedOpen = false;
-      console.log(this.$refs.calendar);
-      location.reload();
+      // location.reload();
     },
     setDialogDate({ date }) {
       this.dialogDate = true;
@@ -228,7 +282,7 @@ export default {
     async addEvent() {
       try {
         await this.$http.post(
-          "https://127.0.0.1:8000/api/add-scheduler/" + `${id}`,
+          "https://127.0.0.1:8000/api/add-scheduler",
           this.body,
           {
             headers: {
@@ -237,20 +291,20 @@ export default {
           }
         );
         this.dialogDate = false;
-        location.reload();
 
         // Success snackbar
         this.$store.dispatch("show", {
           text: "Your event has been added",
           type: "success",
         });
+        location.reload();
       } catch (error) {
         // Error snackbar
         this.$store.dispatch("show", {
           text: error.message,
           type: "error",
         });
-        // this.$refs.form.reset();
+        location.reload();
       }
     },
     editEvent(ev) {
