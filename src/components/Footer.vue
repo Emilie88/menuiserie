@@ -6,6 +6,11 @@
       >
         &copy; {{ new Date().getFullYear() }} — Made with 💛 by Emilia Boghiu
       </div>
+      <br />
+      <br />
+      <v-btn icon href="https://www.facebook.com/ArtMenuiserie-113058580082944">
+        <v-icon color="#bdbdbd">mdi-facebook</v-icon>
+      </v-btn>
     </v-footer>
   </div>
 </template>

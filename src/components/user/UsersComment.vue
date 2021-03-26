@@ -16,35 +16,35 @@
                     <v-card-title class="pa-0">
                       <v-icon small class="mr-2" color="lime darken-3">
                         mdi-pencil </v-icon
-                      >Edit</v-card-title
+                      >Editer</v-card-title
                     >
                   </v-col>
                   <v-col cols="12" md="6" xs="12">
                     <v-text-field
                       color="lime darken-3"
                       v-model="editedItem.rating"
-                      label="Stars"
+                      label="Etoiles*"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" md="6" xs="12">
                     <v-text-field
                       color="lime darken-3"
                       v-model="editedItem.author"
-                      label="Author"
+                      label="Nom"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
                       color="lime darken-3"
                       v-model="editedItem.title"
-                      label="Title"
+                      label="Titre"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
                       color="lime darken-3"
                       v-model="editedItem.content"
-                      label="Content"
+                      label="Contenu"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -54,10 +54,10 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="lime darken-3" text @click="close">
-                Cancel
+                Annuler
               </v-btn>
               <v-btn color="lime darken-3" text @click="save">
-                Edit
+                Editer
               </v-btn>
             </v-card-actions>
           </v-card>

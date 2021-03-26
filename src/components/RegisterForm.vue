@@ -99,7 +99,6 @@ export default {
         this.$store.dispatch("show", {
           text: "Votre compte a bien été crée!",
           type: "succes",
-          details: "Connectez-vous pour ajouter votre commentaire.",
         });
         this.$router.push({ name: "Login" });
       } catch (error) {

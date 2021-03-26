@@ -3,7 +3,7 @@
     v-model="snackbar"
     :color="color"
     right
-    :timeout="0"
+    :timeout="3000"
     class="snackbar"
     @mouseover="hover = true"
     @mouseleave="hover = false"
@@ -26,7 +26,7 @@ export default {
   data() {
     return {
       hover: null,
-      debouncedCloseSnackbar: debounce(this.closeSnackbar, 6000),
+      debouncedCloseSnackbar: debounce(this.closeSnackbar, 600),
     };
   },
 

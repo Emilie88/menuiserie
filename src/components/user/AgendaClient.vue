@@ -41,7 +41,7 @@
         </v-toolbar>
       </v-sheet>
 
-      <v-dialog v-model="dialogDate" max-width="500">
+      <v-dialog v-model="dialogDate" persistent max-width="500">
         <v-card>
           <v-container>
             <v-card-actions class="ma-0 pa-0">
@@ -65,7 +65,6 @@
                 <custom-text-field
                   color="lime darken-3"
                   type="datetime-local"
-                  :disabled-dates="disabledDates"
                   name="start"
                   v-model="body.start"
                   :label="$t('start')"
@@ -73,7 +72,6 @@
                 <custom-text-field
                   color="lime darken-3"
                   type="datetime-local"
-                  :disabled-dates="disabledDates"
                   name="end"
                   v-model="body.end"
                   :label="$t('end')"
@@ -124,35 +122,10 @@
               </v-btn>
               <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
               <div class="flex-grow-1"></div>
-              <v-dialog v-model="dialogDelete" max-width="600px">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn icon v-bind="attrs" v-on="on">
-                    <v-icon>mdi-delete</v-icon>
-                  </v-btn>
-                </template>
-                <v-card>
-                  <v-card-title
-                    >Vous etes sur de vouloir supprimer ce
-                    rendez-vous?</v-card-title
-                  >
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                      color="lime darken-3"
-                      text
-                      @click="dialogDelete = false"
-                      >Annuler</v-btn
-                    >
-                    <v-btn
-                      color="lime darken-3"
-                      text
-                      @click="deleteEvents(selectedEvent.id)"
-                      >Confirmer</v-btn
-                    >
-                    <v-spacer></v-spacer>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
+
+              <v-btn icon @click="deleteEvents(selectedEvent.id)">
+                <v-icon>mdi-delete</v-icon>
+              </v-btn>
             </v-toolbar>
 
             <v-card-actions>
@@ -218,6 +191,39 @@ export default {
   },
 
   methods: {
+    async addEvent() {
+      let event = this.events.map((item) => item.start);
+
+      try {
+        if (this.body.start != event) {
+          console.log(this.body.start + "event :" + event);
+          await this.$http.post(
+            "https://127.0.0.1:8000/api/add-scheduler",
+            this.body,
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          );
+          this.dialogDate = false;
+
+          // Success snackbar
+          this.$store.dispatch("show", {
+            text: "Your event has been added",
+            type: "success",
+          });
+          location.reload();
+        }
+      } catch (error) {
+        // Error snackbar
+        this.$store.dispatch("show", {
+          text: error.message,
+          type: "error",
+        });
+        location.reload();
+      }
+    },
     async getEvents() {
       const response = await this.$http.get(
         "https://127.0.0.1:8000/api/scheduler",
@@ -227,7 +233,6 @@ export default {
           },
         }
       );
-      console.log(response.data);
 
       this.events = response.data;
     },
@@ -247,11 +252,11 @@ export default {
           text: "Your event has been deleted",
           type: "success",
         });
+        location.reload();
       } catch (error) {
         // Error snackbar
         this.$store.dispatch("show", {
-          text: "An error occured ",
-          // text: error.message,
+          text: error.message,
           type: "error",
         });
       }
@@ -279,34 +284,6 @@ export default {
       this.$refs.calendar.next();
     },
 
-    async addEvent() {
-      try {
-        await this.$http.post(
-          "https://127.0.0.1:8000/api/add-scheduler",
-          this.body,
-          {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
-        this.dialogDate = false;
-
-        // Success snackbar
-        this.$store.dispatch("show", {
-          text: "Your event has been added",
-          type: "success",
-        });
-        location.reload();
-      } catch (error) {
-        // Error snackbar
-        this.$store.dispatch("show", {
-          text: error.message,
-          type: "error",
-        });
-        location.reload();
-      }
-    },
     editEvent(ev) {
       this.currentlyEditing = ev.id;
     },

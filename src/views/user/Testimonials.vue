@@ -33,7 +33,7 @@
                               <custom-text-field
                                 color="lime darken-3"
                                 v-model="body.author"
-                                label="Name"
+                                label="Nom"
                                 required
                               />
                             </v-col>
@@ -43,7 +43,7 @@
                                 single-line
                                 color="lime darken-3"
                                 v-model="body.rating"
-                                label="Stars *"
+                                label="Etoiles *"
                                 type="number"
                                 max="5"
                                 min="1"
@@ -54,14 +54,14 @@
                           <custom-text-field
                             color="lime darken-3"
                             v-model="body.title"
-                            label="Subject"
+                            label="Titre"
                             required
                           />
 
                           <custom-textarea
                             color="lime darken-3"
                             v-model="body.content"
-                            label="Message *"
+                            label="Contenu *"
                             required
                           />
 
@@ -140,8 +140,8 @@ export default {
       } catch (error) {
         // Error snackbar
         this.$store.dispatch("show", {
-          text: "An error occured ",
-          // text: error.message,
+          // text: "An error occured ",
+          text: error.message,
           type: "error",
         });
 
