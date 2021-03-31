@@ -3,9 +3,7 @@
     <v-col>
       <v-sheet>
         <v-toolbar flat color="lime darken-3">
-          <v-btn outlined class="mx-3" @click="setToday">
-            Today
-          </v-btn>
+          <v-btn outlined class="mx-3" @click="setToday"> Today </v-btn>
           <v-btn fab text small @click="prev">
             <v-icon small>mdi-chevron-left</v-icon>
           </v-btn>
@@ -57,23 +55,23 @@
             <validation-observer v-slot="{ handleSubmit }" lazy-validation>
               <v-form @submit.prevent="handleSubmit(addEvent)">
                 <custom-text-field
-                  color="lime darken-3"
                   v-model="body.name"
+                  color="lime darken-3"
                   type="text"
                   :label="$t('event')"
                 />
                 <custom-text-field
+                  v-model="body.start"
                   color="lime darken-3"
                   type="datetime-local"
                   name="start"
-                  v-model="body.start"
                   :label="$t('start')"
                 />
                 <custom-text-field
+                  v-model="body.end"
                   color="lime darken-3"
                   type="datetime-local"
                   name="end"
-                  v-model="body.end"
                   :label="$t('end')"
                 />
 
@@ -134,9 +132,7 @@
               <v-btn v-if="currentlyEditing !== selectedEvent.id" text>
                 edit
               </v-btn>
-              <v-btn text v-else type="submit">
-                Save
-              </v-btn>
+              <v-btn v-else text type="submit"> Save </v-btn>
             </v-card-actions>
           </v-card>
         </v-menu>
@@ -155,7 +151,7 @@ export default {
     focus: new Date().toISOString().substr(0, 10),
     type: "month",
     typeToLabel: {
-      month: "Month",
+      month: "month",
       week: "Week",
       day: "Day",
       "4day": "4 Days",
@@ -196,14 +192,14 @@ export default {
           headers: {
             Authorization: "Bearer " + token,
           },
-        }
+        },
       );
 
       this.events = response.data;
     },
     async deleteEvents(id) {
       await this.$http.delete(
-        "https://127.0.0.1:8000/api/remove-scheduler/" + `${id}`
+        "https://127.0.0.1:8000/api/remove-scheduler/" + `${id}`,
       );
       this.selectedOpen = false;
       console.log(this.$refs.calendar);
@@ -239,7 +235,7 @@ export default {
             headers: {
               Authorization: "Bearer " + token,
             },
-          }
+          },
         );
         this.dialogDate = false;
         location.reload();

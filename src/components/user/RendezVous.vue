@@ -43,8 +43,8 @@
                           </v-card-actions>
                           <v-form @submit.prevent="addEvent">
                             <v-text-field
-                              color="lime darken-3"
                               v-model="body.motif"
+                              color="lime darken-3"
                               type="text"
                               label="Titre"
                             ></v-text-field>
@@ -55,8 +55,8 @@
                             >
                               <template v-slot:activator="{ on, attrs }">
                                 <v-text-field
-                                  color="lime darken-3"
                                   v-model="body.date"
+                                  color="lime darken-3"
                                   label="Date"
                                   prepend-icon="mdi-calendar"
                                   readonly
@@ -84,8 +84,8 @@
                             >
                               <template v-slot:activator="{ on, attrs }">
                                 <v-text-field
-                                  color="lime darken-3"
                                   v-model="body.date_rdv"
+                                  color="lime darken-3"
                                   label="Heure"
                                   prepend-icon="mdi-clock-date_rdv-four-outline"
                                   v-bind="attrs"
@@ -183,8 +183,8 @@
               </v-card-actions>
               <v-form @submit.prevent="addEvent">
                 <v-text-field
-                  color="lime darken-3"
                   v-model="body.motif"
+                  color="lime darken-3"
                   type="text"
                   label="Motif"
                 ></v-text-field>
@@ -195,8 +195,8 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                      color="lime darken-3"
                       v-model="body.date"
+                      color="lime darken-3"
                       label="Date"
                       prepend-icon="mdi-calendar"
                       readonly
@@ -224,8 +224,8 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                      color="lime darken-3"
                       v-model="body.date_rdv"
+                      color="lime darken-3"
                       label="Heure"
                       prepend-icon="mdi-clock-time-four-outline"
                       v-bind="attrs"

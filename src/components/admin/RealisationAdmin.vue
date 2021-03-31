@@ -8,8 +8,8 @@
               <validation-observer v-slot="{ handleSubmit }">
                 <v-form
                   ref="form"
-                  @submit.prevent="handleSubmit(addRealisation)"
                   lazy-validation
+                  @submit.prevent="handleSubmit(addRealisation)"
                 >
                   <v-row>
                     <!-- <v-col cols="12">
@@ -19,15 +19,15 @@
                     </v-col> -->
                     <v-col cols="12">
                       <v-text-field
-                        color="lime darken-3"
                         v-model="title"
+                        color="lime darken-3"
                         label="Title"
                       />
                     </v-col>
                     <v-col cols="12">
                       <v-text-field
-                        color="lime darken-3"
                         v-model="description"
+                        color="lime darken-3"
                         label="Description"
                       />
                     </v-col>
@@ -120,7 +120,7 @@ export default {
             headers: {
               Authorization: token,
             },
-          }
+          },
         );
         console.log(this.imageFile);
 

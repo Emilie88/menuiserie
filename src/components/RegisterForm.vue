@@ -4,14 +4,14 @@
       <validation-observer v-slot="{ handleSubmit }">
         <v-form
           ref="form"
-          @submit.prevent="handleSubmit(submitRegister)"
           lazy-validation
+          @submit.prevent="handleSubmit(submitRegister)"
         >
           <v-row>
             <v-col cols="12" sm="6" md="6">
               <custom-text-field
-                color="lime darken-3"
                 v-model="body.firstname"
+                color="lime darken-3"
                 name="firstName"
                 label="Prénom"
                 required
@@ -19,18 +19,18 @@
             </v-col>
             <v-col cols="12" sm="6" md="6">
               <custom-text-field
+                v-model="body.lastname"
                 color="lime darken-3"
                 name="lastName"
-                v-model="body.lastname"
                 label="Nom"
                 required
               />
             </v-col>
             <v-col cols="12">
               <custom-text-field
+                v-model="body.email"
                 color="lime darken-3"
                 name="email"
-                v-model="body.email"
                 label="E-mail"
                 type="email"
                 required
@@ -38,15 +38,15 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
-                color="lime darken-3"
                 v-model="body.password"
+                color="lime darken-3"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 name="password"
                 label="Mot de passe *"
                 counter
-                @click:append="show1 = !show1"
                 required
+                @click:append="show1 = !show1"
               ></v-text-field>
             </v-col>
 
@@ -93,7 +93,7 @@ export default {
       try {
         await this.$http.post(
           "https://localhost:8000/api/register-user",
-          this.body
+          this.body,
         );
         // Success snackbar
         this.$store.dispatch("show", {

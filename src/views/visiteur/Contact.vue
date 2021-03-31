@@ -25,16 +25,12 @@
           {{ $t("join") }}
 
           <div>
-            <v-icon color="white">
-              mdi-email
-            </v-icon>
+            <v-icon color="white"> mdi-email </v-icon>
             <span> mail@gmail.com</span>
           </div>
 
           <div>
-            <v-icon color="white">
-              mdi-phone
-            </v-icon>
+            <v-icon color="white"> mdi-phone </v-icon>
             <span> mail@gmail.com</span>
           </div>
 
@@ -55,38 +51,38 @@
           <validation-observer v-slot="{ handleSubmit }">
             <v-form
               ref="form"
-              @submit.prevent="handleSubmit(submit)"
               lazy-validation
+              @submit.prevent="handleSubmit(submit)"
             >
               <custom-text-field
+                v-model="body.name"
                 flat
                 color="lime darken-3"
-                v-model="body.name"
                 :label="$t('name')"
                 required
               />
 
               <custom-text-field
+                v-model="body.mail"
                 flat
                 color="lime darken-3"
-                v-model="body.mail"
                 :label="$t('mail')"
                 type="email"
                 required
               />
 
               <custom-text-field
+                v-model="body.subject"
                 flat
                 color="lime darken-3"
-                v-model="body.subject"
                 :label="$t('subject')"
                 required
               />
 
               <custom-textarea
+                v-model="body.message"
                 flat
                 color="lime darken-3"
-                v-model="body.message"
                 :label="$t('message')"
                 required
               />
@@ -129,7 +125,7 @@ export default {
       try {
         await this.$http.post(
           "https://127.0.0.1:8000/api/add-contact",
-          this.body
+          this.body,
         );
 
         // Success snackbar

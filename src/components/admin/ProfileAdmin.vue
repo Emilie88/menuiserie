@@ -8,33 +8,33 @@
               <validation-observer v-slot="{ handleSubmit }">
                 <v-form
                   ref="form"
-                  @submit.prevent="handleSubmit(submitRegister)"
                   lazy-validation
+                  @submit.prevent="handleSubmit(submitRegister)"
                 >
                   <v-row>
                     <v-col cols="12">
                       <custom-text-field
+                        v-model="firstName"
                         color="lime darken-3"
                         name="firstName"
-                        v-model="firstName"
                         label="First name"
                         type="text"
                       />
                     </v-col>
                     <v-col cols="12">
                       <custom-text-field
+                        v-model="lastName"
                         color="lime darken-3"
                         name="lastName"
-                        v-model="lastName"
                         label="Last Name"
                         type="text"
                       />
                     </v-col>
                     <v-col cols="12">
                       <custom-text-field
+                        v-model="email"
                         color="lime darken-3"
                         name="email"
-                        v-model="email"
                         label="E-mail"
                         type="email"
                       />
@@ -42,8 +42,8 @@
 
                     <v-col cols="12">
                       <v-text-field
-                        color="lime darken-3"
                         v-model="password"
+                        color="lime darken-3"
                         :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="show1 ? 'text' : 'password'"
                         name="password"

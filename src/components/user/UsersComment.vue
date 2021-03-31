@@ -21,29 +21,29 @@
                   </v-col>
                   <v-col cols="12" md="6" xs="12">
                     <v-text-field
-                      color="lime darken-3"
                       v-model="editedItem.rating"
+                      color="lime darken-3"
                       label="Etoiles*"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" md="6" xs="12">
                     <v-text-field
-                      color="lime darken-3"
                       v-model="editedItem.author"
+                      color="lime darken-3"
                       label="Nom"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
-                      color="lime darken-3"
                       v-model="editedItem.title"
+                      color="lime darken-3"
                       label="Titre"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
-                      color="lime darken-3"
                       v-model="editedItem.content"
+                      color="lime darken-3"
                       label="Contenu"
                     ></v-text-field>
                   </v-col>
@@ -53,12 +53,8 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="lime darken-3" text @click="close">
-                Annuler
-              </v-btn>
-              <v-btn color="lime darken-3" text @click="save">
-                Editer
-              </v-btn>
+              <v-btn color="lime darken-3" text @click="close"> Annuler </v-btn>
+              <v-btn color="lime darken-3" text @click="save"> Editer </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -81,12 +77,8 @@
         </v-dialog>
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-icon small class="mr-2" @click="editItem(item)">
-          mdi-pencil
-        </v-icon>
-        <v-icon small @click="deleteItem(item)">
-          mdi-delete
-        </v-icon>
+        <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+        <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
       </template>
       <!-- <template v-slot:no-data>
         <v-btn color="primary" @click="initialize">
@@ -152,7 +144,7 @@ export default {
           headers: {
             Authorization: "Bearer" + " " + token,
           },
-        }
+        },
       );
       this.comments = response.data;
       console.log(response);

@@ -5,9 +5,7 @@
         <div class="py-12"></div>
 
         <v-container>
-          <h2 class="mb-3 text-uppercase text-center">
-            Avis
-          </h2>
+          <h2 class="mb-3 text-uppercase text-center">Avis</h2>
 
           <v-responsive class="mx-auto mb-12" width="56">
             <v-divider class="mb-1"></v-divider>
@@ -25,24 +23,24 @@
                       <validation-observer v-slot="{ handleSubmit }">
                         <v-form
                           ref="form"
-                          @submit.prevent="handleSubmit(addComment)"
                           lazy-validation
+                          @submit.prevent="handleSubmit(addComment)"
                         >
                           <v-row>
                             <v-col cols="12" md="6" xs="12">
                               <custom-text-field
-                                color="lime darken-3"
                                 v-model="body.author"
+                                color="lime darken-3"
                                 label="Nom"
                                 required
                               />
                             </v-col>
                             <v-col cols="12" md="6" xs="12">
                               <custom-text-field
+                                v-model="body.rating"
                                 hide-details
                                 single-line
                                 color="lime darken-3"
-                                v-model="body.rating"
                                 label="Etoiles *"
                                 type="number"
                                 max="5"
@@ -52,15 +50,15 @@
                           </v-row>
 
                           <custom-text-field
-                            color="lime darken-3"
                             v-model="body.title"
+                            color="lime darken-3"
                             label="Titre"
                             required
                           />
 
                           <custom-textarea
-                            color="lime darken-3"
                             v-model="body.content"
+                            color="lime darken-3"
                             label="Contenu *"
                             required
                           />
@@ -130,7 +128,7 @@ export default {
             headers: {
               Authorization: "Bearer" + " " + token,
             },
-          }
+          },
         );
         // Success snackbar
         this.$store.dispatch("show", {

@@ -22,9 +22,9 @@
           <v-sheet class="mx-auto">
             <v-slide-group class="pa-2" show-arrows>
               <v-slide-item
-                max-width="240"
                 v-for="(item, index) in comments"
                 :key="index"
+                max-width="240"
               >
                 <v-card class="ma-2" max-width="235">
                   <v-card-title class="title font-light mb-1">
@@ -69,7 +69,7 @@ export default {
   methods: {
     async getComments() {
       const response = await this.$http.get(
-        "https://127.0.0.1:8000/api/comments/"
+        "https://127.0.0.1:8000/api/comments/",
       );
       this.comments = response.data;
     },

@@ -32,16 +32,16 @@
                 <validation-observer v-slot="{ handleSubmit }">
                   <v-form
                     ref="form"
-                    @submit.prevent="handleSubmit(submitDevis)"
                     lazy-validation
+                    @submit.prevent="handleSubmit(submitDevis)"
                   >
                     <v-row>
                       <v-col md="12">
                         <custom-text-field
+                          v-model="body.name"
                           flat
                           color="lime darken-3"
                           name="name"
-                          v-model="body.name"
                           :label="$t('name')"
                           required
                         />
@@ -50,18 +50,18 @@
                     <v-row>
                       <v-col md="6" xs="12">
                         <custom-text-field
+                          v-model="body.phone"
                           color="lime darken-3"
                           name="phone"
-                          v-model="body.phone"
                           :label="$t('phone')"
                           required
                         />
                       </v-col>
                       <v-col md="6" xs="12">
                         <custom-text-field
+                          v-model="body.mail"
                           color="lime darken-3"
                           name="mail"
-                          v-model="body.mail"
                           :label="$t('mail')"
                           type="email"
                           required
@@ -71,9 +71,9 @@
                     <v-row>
                       <v-col md="12">
                         <custom-text-field
+                          v-model="body.addresse"
                           color="lime darken-3"
                           name="addresse"
-                          v-model="body.addresse"
                           :label="$t('address')"
                           required
                         />
@@ -82,18 +82,18 @@
                     <v-row>
                       <v-col md="6" xs="12">
                         <custom-text-field
+                          v-model="body.city"
                           color="lime darken-3"
                           name="city"
-                          v-model="body.city"
                           :label="$t('city')"
                           required
                         />
                       </v-col>
                       <v-col md="6" xs="12">
                         <custom-text-field
+                          v-model="body.zipcode"
                           color="lime darken-3"
                           name="zipcode"
-                          v-model="body.zipcode"
                           :label="$t('zipCode')"
                           required
                         />
@@ -103,9 +103,9 @@
                     <v-row>
                       <v-col md="12">
                         <custom-text-field
+                          v-model="body.subject"
                           color="lime darken-3"
                           name="subject"
-                          v-model="body.subject"
                           :label="$t('subject')"
                           required
                         />
@@ -114,9 +114,9 @@
                     <v-row>
                       <v-col md="12">
                         <custom-textarea
+                          v-model="body.message"
                           color="lime darken-3"
                           name="message"
-                          v-model="body.message"
                           :label="$t('message')"
                           required
                         />
@@ -168,7 +168,7 @@ export default {
       try {
         await this.$http.post(
           "https://127.0.0.1:8000/api/add-devis",
-          this.body
+          this.body,
         );
 
         // Success snackbar

@@ -4,9 +4,7 @@
       <div class="py-12"></div>
       <v-container>
         <div class="py-12"></div>
-        <h2 class="mb-3 text-uppercase text-center">
-          Gerer mes réalisations
-        </h2>
+        <h2 class="mb-3 text-uppercase text-center">Gerer mes réalisations</h2>
         <v-responsive class="mx-auto mb-12" width="56">
           <v-divider class="mb-1"></v-divider>
 

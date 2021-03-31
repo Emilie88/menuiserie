@@ -4,14 +4,14 @@
       <validation-observer v-slot="{ handleSubmit }">
         <v-form
           ref="form"
-          @submit.prevent="handleSubmit(login)"
           lazy-validation
+          @submit.prevent="handleSubmit(login)"
         >
           <v-row>
             <v-col cols="12">
               <custom-text-field
-                color="lime darken-3"
                 v-model="username"
+                color="lime darken-3"
                 label="E-mail"
                 type="email"
                 required
@@ -19,13 +19,13 @@
             </v-col>
             <v-col cols="12">
               <custom-text-field
-                color="lime darken-3"
                 v-model="password"
+                color="lime darken-3"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 label="Password"
                 :type="show1 ? 'text' : 'password'"
-                @click:append="show1 = !show1"
                 required
+                @click:append="show1 = !show1"
               />
             </v-col>
             <v-col class="d-flex" cols="12" sm="6" xsm="12"> </v-col>
@@ -68,7 +68,7 @@ export default {
           {
             username: this.username,
             password: this.password,
-          }
+          },
         );
         const token = response.data.token;
         const id = response.data.data.id;

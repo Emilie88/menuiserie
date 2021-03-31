@@ -1,0 +1,23 @@
+{
+  "editor.detectIndentation": false,
+  "editor.dragAndDrop": false,
+  "editor.emptySelectionClipboard": false,
+  "editor.formatOnSave": true,
+  "editor.rulers": [80],
+  "editor.showFoldingControls": "always",
+  "editor.wordWrap": "wordWrapColumn",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "html.format.endWithNewline": true,
+  "jest.pathToJest": "pnpm run test:unit --",
+  "local-history.path": "${workspaceFolder}/.vscode",
+  "prettier.configPath": ".prettierrc",
+  "search.exclude": {
+    "**/.vscode": true
+  },
+  "search.showLineNumbers": true,
+  "stylint.run": "onSave",
+  "vetur.format.defaultFormatter.html": "prettier",
+  "workbench.editor.highlightModifiedTabs": true
+}

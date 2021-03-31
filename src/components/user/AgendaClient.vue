@@ -3,9 +3,7 @@
     <v-col>
       <v-sheet>
         <v-toolbar flat color="lime darken-3">
-          <v-btn outlined class="mx-3" @click="setToday">
-            Today
-          </v-btn>
+          <v-btn outlined class="mx-3" @click="setToday"> Today </v-btn>
           <v-btn fab text small @click="prev">
             <v-icon small>mdi-chevron-left</v-icon>
           </v-btn>
@@ -56,25 +54,29 @@
             </v-card-actions>
             <validation-observer v-slot="{ handleSubmit }" lazy-validation>
               <v-form @submit.prevent="handleSubmit(addEvent)">
+                <span v-if="eventDouble != null">{{ eventDouble }}</span>
                 <custom-text-field
-                  color="lime darken-3"
                   v-model="body.name"
+                  color="lime darken-3"
                   type="text"
                   :label="$t('event')"
+                  required
                 />
                 <custom-text-field
+                  v-model="body.start"
                   color="lime darken-3"
                   type="datetime-local"
                   name="start"
-                  v-model="body.start"
                   :label="$t('start')"
+                  required
                 />
                 <custom-text-field
+                  v-model="body.end"
                   color="lime darken-3"
                   type="datetime-local"
                   name="end"
-                  v-model="body.end"
                   :label="$t('end')"
+                  required
                 />
 
                 <v-autocomplete
@@ -83,6 +85,7 @@
                   color="lime darken-3"
                   dense
                   :label="$t('color')"
+                  required
                 ></v-autocomplete>
 
                 <v-btn type="submit" color="lime darken-3" class="mr-4">
@@ -135,9 +138,7 @@
               <v-btn v-if="currentlyEditing !== selectedEvent.id" text>
                 edit
               </v-btn>
-              <v-btn text v-else type="submit">
-                Save
-              </v-btn>
+              <v-btn v-else text type="submit"> Save </v-btn>
             </v-card-actions>
           </v-card>
         </v-menu>
@@ -162,12 +163,6 @@ export default {
       day: "Day",
       "4day": "4 Days",
     },
-    body: {
-      name: null,
-      start: null,
-      end: null,
-      color: null,
-    },
 
     colors: [
       "blue",
@@ -185,6 +180,13 @@ export default {
     events: [],
     dialog: false,
     dialogDate: false,
+    eventDouble: null,
+    body: {
+      name: null,
+      start: null,
+      end: null,
+      color: null,
+    },
   }),
   created() {
     this.getEvents();
@@ -192,11 +194,16 @@ export default {
 
   methods: {
     async addEvent() {
-      let event = this.events.map((item) => item.start);
+      let eventStart = this.events.map((item) => item.start);
+      let eventEnd = this.events.map((item) => item.end);
 
-      try {
-        if (this.body.start != event) {
-          console.log(this.body.start + "event :" + event);
+      if (
+        eventStart.includes(this.body.start) ||
+        eventEnd.includes(this.body.end)
+      ) {
+        this.eventDouble = "Ce creneau horaire est deja pris";
+      } else {
+        try {
           await this.$http.post(
             "https://127.0.0.1:8000/api/add-scheduler",
             this.body,
@@ -204,7 +211,7 @@ export default {
               headers: {
                 Authorization: "Bearer " + token,
               },
-            }
+            },
           );
           this.dialogDate = false;
 
@@ -214,14 +221,14 @@ export default {
             type: "success",
           });
           location.reload();
+        } catch (error) {
+          // Error snackbar
+          this.$store.dispatch("show", {
+            text: error.message,
+            type: "error",
+          });
+          // location.reload();
         }
-      } catch (error) {
-        // Error snackbar
-        this.$store.dispatch("show", {
-          text: error.message,
-          type: "error",
-        });
-        location.reload();
       }
     },
     async getEvents() {
@@ -231,7 +238,7 @@ export default {
           headers: {
             Authorization: "Bearer" + " " + token,
           },
-        }
+        },
       );
 
       this.events = response.data;
@@ -244,7 +251,7 @@ export default {
             headers: {
               Authorization: "Bearer" + " " + token,
             },
-          }
+          },
         );
 
         // Success snackbar
