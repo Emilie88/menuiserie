@@ -65,6 +65,11 @@ export default [
             path: "testimonials",
             component: lazyLoading("user/Testimonials"),
           },
+          {
+            name: "ProfileUser",
+            path: "profileSettings",
+            component: lazyLoading("user/ProfileSettings"),
+          },
         ],
       },
       {
@@ -80,6 +85,11 @@ export default [
             name: "Realisation",
             path: "realisation",
             component: lazyLoading("admin/Realisation"),
+          },
+          {
+            name: "ProfileSettingsAdmin",
+            path: "profileAdmin",
+            component: lazyLoading("admin/ProfileSettingsAdmin"),
           },
         ],
       },

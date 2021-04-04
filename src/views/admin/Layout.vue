@@ -1,17 +1,9 @@
 <template>
   <v-app>
     <v-main>
-      <ToolbarAdmin />
+      <admin-toolbar-admin />
       <router-view :key="`${$route.name}+${$route.params.id}`" />
-      <Footer />
+      <item-footer />
     </v-main>
   </v-app>
 </template>
-<script>
-import ToolbarAdmin from "../../components/admin/ToolbarAdmin.vue";
-export default {
-  components: {
-    ToolbarAdmin,
-  },
-};
-</script>

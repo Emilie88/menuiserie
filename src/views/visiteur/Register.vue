@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <RegisterForm />
+    <form-register-form />
   </v-app>
 </template>
 <script>

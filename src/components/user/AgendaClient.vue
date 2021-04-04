@@ -1,22 +1,40 @@
 <template>
-  <v-row>
-    <v-col>
-      <v-sheet>
+  <v-container fluid fill-height>
+    <v-layout align-center justify-center>
+      <v-flex xs12 sm8 md9>
+        <div class="subtitle">
+          Votre agenda sert a prendre un rendez-vous avec l'entrepener. Il est
+          disponible du Lundi au Vendredi de 8h00 a 17h00 !
+        </div>
+        <br />
+
         <v-toolbar flat color="lime darken-3">
+          <v-btn
+            v-show="$vuetify.breakpoint.smAndUp"
+            outlined
+            class="mx-3"
+            @click="setDialogDate"
+          >
+            New Event
+          </v-btn>
+
           <v-btn outlined class="mx-3" @click="setToday"> Today </v-btn>
+
           <v-btn fab text small @click="prev">
             <v-icon small>mdi-chevron-left</v-icon>
           </v-btn>
+
           <v-btn fab text small @click="next">
             <v-icon small>mdi-chevron-right</v-icon>
           </v-btn>
+
           <v-toolbar-title v-if="$refs.calendar">
             {{ $refs.calendar.title }}
           </v-toolbar-title>
           <v-spacer></v-spacer>
           <v-menu bottom>
             <template v-slot:activator="{ on }">
-              <v-btn outlined v-on="on">
+              <v-btn v-show="$vuetify.breakpoint.smAndUp" outlined v-on="on">
                 <span>{{ typeToLabel[type] }}</span>
                 <v-icon right>mdi-menu-down</v-icon>
               </v-btn>
@@ -37,114 +55,114 @@
             </v-list>
           </v-menu>
         </v-toolbar>
-      </v-sheet>
 
-      <v-dialog v-model="dialogDate" persistent max-width="500">
-        <v-card>
-          <v-container>
-            <v-card-actions class="ma-0 pa-0">
-              <v-spacer></v-spacer>
-              <v-btn
-                color="lime darken-3"
-                icon
-                @click.stop="dialogDate = false"
-              >
-                <v-icon>mdi-close</v-icon>
-              </v-btn>
-            </v-card-actions>
-            <validation-observer v-slot="{ handleSubmit }" lazy-validation>
-              <v-form @submit.prevent="handleSubmit(addEvent)">
-                <span v-if="eventDouble != null">{{ eventDouble }}</span>
-                <custom-text-field
-                  v-model="body.name"
+        <v-dialog v-model="dialogDate" persistent max-width="500">
+          <v-card>
+            <v-container>
+              <v-card-actions class="ma-0 pa-0">
+                <v-spacer></v-spacer>
+                <v-btn
                   color="lime darken-3"
-                  type="text"
-                  :label="$t('event')"
-                  required
-                />
-                <custom-text-field
-                  v-model="body.start"
-                  color="lime darken-3"
-                  type="datetime-local"
-                  name="start"
-                  :label="$t('start')"
-                  required
-                />
-                <custom-text-field
-                  v-model="body.end"
-                  color="lime darken-3"
-                  type="datetime-local"
-                  name="end"
-                  :label="$t('end')"
-                  required
-                />
-
-                <v-autocomplete
-                  v-model="body.color"
-                  :items="colors"
-                  color="lime darken-3"
-                  dense
-                  :label="$t('color')"
-                  required
-                ></v-autocomplete>
-
-                <v-btn type="submit" color="lime darken-3" class="mr-4">
-                  {{ $t("createEvent") }}
+                  icon
+                  @click.stop="dialogDate = false"
+                >
+                  <v-icon>mdi-close</v-icon>
                 </v-btn>
-              </v-form>
-            </validation-observer>
-          </v-container>
-        </v-card>
-      </v-dialog>
+              </v-card-actions>
+              <validation-observer v-slot="{ handleSubmit }" lazy-validation>
+                <v-form @submit.prevent="handleSubmit(addEvent)">
+                  <span v-if="eventDouble != null">{{ eventDouble }}</span>
+                  <custom-text-field
+                    v-model="body.name"
+                    color="lime darken-3"
+                    type="text"
+                    :label="$t('event')"
+                    required
+                  />
 
-      <v-sheet height="500">
-        <v-calendar
-          ref="calendar"
-          v-model="focus"
-          color="lime darken-3"
-          :events="events"
-          :event-color="getEventColor"
-          :event-margin-bottom="3"
-          :now="today"
-          :type="type"
-          @click:event="showEvent"
-          @click:more="viewDay"
-          @click:date="setDialogDate"
-          @change="updateRange"
-        ></v-calendar>
-        <v-menu
-          v-model="selectedOpen"
-          :close-on-content-click="false"
-          :activator="selectedElement"
-          offset-x
-        >
-          <v-card color="grey lighten-4" :width="350" flat>
-            <v-toolbar :color="selectedEvent.color" dark>
-              <v-btn icon>
-                <v-icon>mdi-pencil</v-icon>
-              </v-btn>
-              <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
-              <div class="flex-grow-1"></div>
+                  <custom-text-field
+                    v-model="body.start"
+                    color="lime darken-3"
+                    type="datetime-local"
+                    name="start"
+                    :label="$t('start')"
+                    required
+                  />
+                  <custom-text-field
+                    v-model="body.end"
+                    color="lime darken-3"
+                    type="datetime-local"
+                    name="end"
+                    :label="$t('end')"
+                    required
+                  />
 
-              <v-btn icon @click="deleteEvents(selectedEvent.id)">
-                <v-icon>mdi-delete</v-icon>
-              </v-btn>
-            </v-toolbar>
+                  <v-autocomplete
+                    v-model="body.color"
+                    :items="colors"
+                    color="lime darken-3"
+                    dense
+                    :label="$t('color')"
+                    required
+                  ></v-autocomplete>
 
-            <v-card-actions>
-              <v-btn text color="secondary" @click="selectedOpen = false">
-                close
-              </v-btn>
-              <v-btn v-if="currentlyEditing !== selectedEvent.id" text>
-                edit
-              </v-btn>
-              <v-btn v-else text type="submit"> Save </v-btn>
-            </v-card-actions>
+                  <v-btn type="submit" color="lime darken-3" class="mr-4">
+                    {{ $t("createEvent") }}
+                  </v-btn>
+                </v-form>
+              </validation-observer>
+            </v-container>
           </v-card>
-        </v-menu>
-      </v-sheet>
-    </v-col>
-  </v-row>
+        </v-dialog>
+
+        <v-sheet height="500">
+          <v-calendar
+            ref="calendar"
+            v-model="focus"
+            color="lime darken-3"
+            :events="events"
+            :event-color="getEventColor"
+            :event-margin-bottom="3"
+            :now="today"
+            :type="type"
+            @click:event="showEvent"
+            @click:more="viewDay"
+            @change="updateRange"
+          ></v-calendar>
+          <v-menu
+            v-model="selectedOpen"
+            :close-on-content-click="false"
+            :activator="selectedElement"
+            offset-x
+          >
+            <v-card color="grey lighten-4" :width="350" flat>
+              <v-toolbar :color="selectedEvent.color" dark>
+                <v-btn icon>
+                  <v-icon>mdi-pencil</v-icon>
+                </v-btn>
+                <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
+                <div class="flex-grow-1"></div>
+
+                <v-btn icon @click="deleteEvents(selectedEvent.id)">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+              </v-toolbar>
+
+              <v-card-actions>
+                <v-btn text color="secondary" @click="selectedOpen = false">
+                  close
+                </v-btn>
+                <v-btn v-if="currentlyEditing !== selectedEvent.id" text>
+                  edit
+                </v-btn>
+                <v-btn v-else text type="submit"> Save </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-menu>
+        </v-sheet>
+      </v-flex>
+    </v-layout></v-container
+  >
 </template>
 
 <script>
@@ -316,3 +334,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+@media screen and (max-width: 767px) {
+  .notDisplayXs {
+    display: none;
+  }
+}
+</style>

@@ -32,20 +32,15 @@
         </v-list-item>
       </v-list-item-group>
     </v-list>
-    <UserAction />
+    <item-user-action />
 
-    <LanguageSwitcher />
+    <item-language-switcher />
   </v-app-bar>
 </template>
 <script>
-import LanguageSwitcher from "../LanguageSwitcher.vue";
-import UserAction from "../UserAction.vue";
 export default {
-  name: "ToolbarUser",
-  components: {
-    LanguageSwitcher,
-    UserAction,
-  },
+  name: "ToolbarAdmin",
+
   data() {
     return {
       links: [

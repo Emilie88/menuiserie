@@ -10,12 +10,47 @@
         <v-row wrap>
           <v-col>
             <span class="text-none" v-text="email" />
-            <!-- <span class="text-none" v-text="roles" /> -->
           </v-col>
         </v-row>
       </v-btn>
     </template>
     <v-list class="pa-0">
+      <!-- Profile settings -->
+      <v-list-item
+        v-if="roles === 'ROLE_USER'"
+        :to="{ name: 'ProfileUser' }"
+        exact
+        ripple
+        title="ProfileSettings"
+        @click="menu = false"
+      >
+        <v-list-item-action>
+          <v-icon>mdi-account-circle</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>
+            <span>Profile Settings</span>
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item
+        v-if="roles === 'ROLE_ADMIN'"
+        :to="{ name: 'ProfileSettingsAdmin' }"
+        exact
+        ripple
+        title="ProfileSettings"
+        @click="menu = false"
+      >
+        <v-list-item-action>
+          <v-icon>mdi-account-circle</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>
+            <span>Profile Settings</span>
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
       <v-list-item @click="signOut">
         <v-list-item-icon><v-icon>mdi-power</v-icon></v-list-item-icon>
         <v-list-item-content class="text-body-2">

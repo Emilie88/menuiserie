@@ -2,7 +2,7 @@
   <div id="realisations">
     <v-app>
       <v-main>
-        <v-sheet id="contact" color="#333333" dark tag="section" tile>
+        <v-sheet id="contact" dark tag="section" tile>
           <div class="py-12"></div>
 
           <v-container>

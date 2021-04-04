@@ -12,11 +12,6 @@
                   @submit.prevent="handleSubmit(addRealisation)"
                 >
                   <v-row>
-                    <!-- <v-col cols="12">
-                      <div v-for="(item, index) in realisation" :key="index">
-                        Image <v-img :src="item.imageName"></v-img>
-                      </div>
-                    </v-col> -->
                     <v-col cols="12">
                       <v-text-field
                         v-model="title"
@@ -32,17 +27,17 @@
                       />
                     </v-col>
                     <v-col cols="12">
-                      <input
+                      <!-- <input
                         type="file"
                         name="imageFile"
                         @change="onFileSelected"
-                      />
-                      <!-- <v-file-input
-                        @change="onFileSelected"
+                      /> -->
+                      <v-file-input
                         prepend-icon="mdi-camera"
                         color="lime darken-3"
                         label="Image"
-                      ></v-file-input> -->
+                        @change="onFileSelected"
+                      ></v-file-input>
                     </v-col>
 
                     <v-spacer></v-spacer>

@@ -7,7 +7,7 @@
 
     <v-toolbar-title>
       <router-link class="nav-item" to="/">
-        <img src="../assets/logos.jpg" style="width: 55; height: 55px"
+        <img src="../../assets/logos.jpg" style="width: 55; height: 55px"
       /></router-link>
     </v-toolbar-title>
     <v-spacer></v-spacer>
@@ -48,7 +48,7 @@
       <template v-slot:activator="{ on, attrs }">
         <v-icon
           class="ma-2"
-         
+
           v-bind="attrs"
           v-on="on"
           >mdi-login-variant</v-icon

@@ -1,10 +1,10 @@
 <template>
   <v-app>
     <v-main>
-      <Toolbar />
-      <Snackbar />
+      <item-toolbar />
+      <item-snackbar />
       <router-view :key="`${$route.name}+${$route.params.id}`" />
-      <Footer />
+      <item-footer />
     </v-main>
   </v-app>
 </template>

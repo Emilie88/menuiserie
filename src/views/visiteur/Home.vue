@@ -71,7 +71,7 @@
             <v-divider></v-divider>
           </v-responsive>
 
-          <Cards />
+          <card-cards />
 
           <v-btn
             class="ma-2 text-center"
@@ -86,7 +86,7 @@
 
       <section id="avis">
         <div class="py-12"></div>
-        <Avis />
+        <item-avis />
       </section>
 
       <section id="contact">
@@ -111,16 +111,12 @@
 <script>
 import Contact from "./Contact.vue";
 import About from "./About.vue";
-import Cards from "../../components/card/Cards.vue";
-import Avis from "../../components/Avis.vue";
 
 export default {
   name: "Home",
   components: {
     Contact,
     About,
-    Cards,
-    Avis,
   },
   data() {
     return {

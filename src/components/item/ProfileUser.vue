@@ -110,6 +110,7 @@
 </template>
 <script>
 export default {
+  name: "ProfileUser",
   data() {
     return {
       email: localStorage.getItem("email"),
