@@ -130,19 +130,19 @@ export default {
             },
           },
         );
+        location.reload();
         // Success snackbar
         this.$store.dispatch("show", {
           text: "Your comment has been added",
           type: "success",
         });
+        this.$refs.form.reset();
       } catch (error) {
         // Error snackbar
         this.$store.dispatch("show", {
-          // text: "An error occured ",
           text: error.message,
           type: "error",
         });
-
         this.$refs.form.reset();
       }
     },

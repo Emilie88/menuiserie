@@ -26,12 +26,12 @@
 
           <div>
             <v-icon color="white"> mdi-email </v-icon>
-            <span> mail@gmail.com</span>
+            <span> boghiu.adrien@gmail.com</span>
           </div>
 
           <div>
             <v-icon color="white"> mdi-phone </v-icon>
-            <span> mail@gmail.com</span>
+            <span> 06 63 55 37 34</span>
           </div>
 
           <div class="googlemap">
@@ -133,6 +133,7 @@ export default {
           text: "Your message has been send",
           type: "success",
         });
+        this.$refs.form.reset();
       } catch (error) {
         // Error snackbar
         this.$store.dispatch("show", {

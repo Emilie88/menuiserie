@@ -176,14 +176,14 @@ export default {
           text: "Your devis has been send",
           type: "success",
         });
-        // this.$refs.form.reset();
+        this.$refs.form.reset();
       } catch (error) {
         // Error snackbar
         this.$store.dispatch("show", {
           text: error.message,
           type: "error",
         });
-        // this.$refs.form.reset();
+        this.$refs.form.reset();
       }
     },
   },

@@ -137,25 +137,121 @@
           >
             <v-card color="grey lighten-4" :width="350" flat>
               <v-toolbar :color="selectedEvent.color" dark>
-                <v-btn icon>
+                <v-btn icon @click="editItem(selectedEvent)">
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
-                <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
+                <v-toolbar-title v-text="selectedEvent.name"></v-toolbar-title>
                 <div class="flex-grow-1"></div>
 
-                <v-btn icon @click="deleteEvents(selectedEvent.id)">
+                <v-btn icon @click="deleteItem(selectedEvent)">
                   <v-icon>mdi-delete</v-icon>
                 </v-btn>
               </v-toolbar>
+              <v-dialog v-model="dialogDelete" max-width="600px">
+                <v-card>
+                  <v-card-title>
+                    Vous etez sur que vous voulez supprimmer votre
+                    rendez-vous?</v-card-title
+                  >
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="lime darken-3"
+                      text
+                      @click.stop="dialogDelete = false"
+                      >Annuler</v-btn
+                    >
+                    <v-btn
+                      color="lime darken-3"
+                      text
+                      @click="deleteEvents(event.id)"
+                      >Confirmer</v-btn
+                    >
+                    <v-spacer></v-spacer>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+
+              <v-dialog v-model="dialogEdit" max-width="500px">
+                <v-card>
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12">
+                        <v-card-actions class="ma-0 pa-0">
+                          <v-card-title class="pa-0">
+                            <v-icon small class="mr-2" color="lime darken-3">
+                              mdi-pencil </v-icon
+                            >Editer</v-card-title
+                          >
+
+                          <v-spacer></v-spacer>
+                          <v-btn
+                            color="lime darken-3"
+                            icon
+                            @click.stop="dialogEdit = false"
+                          >
+                            <v-icon>mdi-close</v-icon>
+                          </v-btn>
+                        </v-card-actions>
+                      </v-col>
+                      <v-col cols="12" md="6" xs="12">
+                        <v-text-field
+                          v-model="event.name"
+                          color="lime darken-3"
+                          :label="$t('event')"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" md="6" xs="12">
+                        <v-text-field
+                          v-model="event.start"
+                          type="datetime-local"
+                          color="lime darken-3"
+                          :label="$t('start')"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="event.end"
+                          type="datetime-local"
+                          color="lime darken-3"
+                          :label="$t('end')"
+                        ></v-text-field>
+                      </v-col>
+
+                      <v-autocomplete
+                        v-model="event.color"
+                        :items="colors"
+                        color="lime darken-3"
+                        dense
+                        :label="$t('color')"
+                      ></v-autocomplete>
+                    </v-row>
+                  </v-container>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="lime darken-3"
+                      text
+                      @click.stop="dialogEdit = false"
+                    >
+                      Annuler
+                    </v-btn>
+                    <v-btn
+                      color="lime darken-3"
+                      text
+                      @click="editConfirm(event.id)"
+                    >
+                      Editer
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
 
               <v-card-actions>
                 <v-btn text color="secondary" @click="selectedOpen = false">
                   close
                 </v-btn>
-                <v-btn v-if="currentlyEditing !== selectedEvent.id" text>
-                  edit
-                </v-btn>
-                <v-btn v-else text type="submit"> Save </v-btn>
               </v-card-actions>
             </v-card>
           </v-menu>
@@ -167,11 +263,12 @@
 
 <script>
 const token = localStorage.getItem("token");
-// const idUser = localStorage.getItem("id");
+
 export default {
   name: "AgendaClient",
   data: () => ({
     dialogDelete: false,
+    dialogEdit: false,
     today: new Date().toISOString().substr(0, 10),
     focus: new Date().toISOString().substr(0, 10),
     type: "month",
@@ -191,11 +288,13 @@ export default {
       "orange",
       "grey darken-1",
     ],
-    currentlyEditing: null,
+    editedIndex: -1,
+    // currentlyEditing: null,
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
     events: [],
+    event: {},
     dialog: false,
     dialogDate: false,
     eventDouble: null,
@@ -261,6 +360,44 @@ export default {
 
       this.events = response.data;
     },
+    editItem(item) {
+      console.log(item);
+      this.editedIndex = this.events.indexOf(item);
+      this.event = Object.assign({}, item);
+      this.dialogEdit = true;
+    },
+    async editConfirm(id) {
+      try {
+        await this.$http.put(
+          "https://127.0.0.1:8000/api/update-scheduler/" + `${id}`,
+          this.event,
+          {
+            headers: {
+              Authorization: "Bearer" + " " + token,
+            },
+          },
+        );
+
+        // Success snackbar
+        this.$store.dispatch("show", {
+          text: "Your appointment has been deleted",
+          type: "success",
+        });
+        location.reload();
+      } catch (error) {
+        // Error snackbar
+        this.$store.dispatch("show", {
+          text: error.message,
+          type: "error",
+        });
+      }
+      this.dialogEdit = false;
+    },
+    deleteItem(item) {
+      this.editedIndex = this.events.indexOf(item);
+      this.event = Object.assign({}, item);
+      this.dialogDelete = true;
+    },
     async deleteEvents(id) {
       try {
         await this.$http.delete(
@@ -309,9 +446,9 @@ export default {
       this.$refs.calendar.next();
     },
 
-    editEvent(ev) {
-      this.currentlyEditing = ev.id;
-    },
+    // editEvent(ev) {
+    //   this.currentlyEditing = ev.id;
+    // },
 
     showEvent({ nativeEvent, event }) {
       const open = () => {

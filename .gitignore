@@ -19,3 +19,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+.vscode/.history
+.vscode
+.vscode.history
+.vscode/.history

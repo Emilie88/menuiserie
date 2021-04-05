@@ -9,52 +9,69 @@
       <template v-slot:top>
         <v-dialog v-model="dialog" max-width="500px">
           <v-card>
-            <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col cols="12">
+            <v-container>
+              <v-row>
+                <v-col cols="12">
+                  <v-card-actions class="ma-0 pa-0">
                     <v-card-title class="pa-0">
                       <v-icon small class="mr-2" color="lime darken-3">
                         mdi-pencil </v-icon
                       >Editer</v-card-title
                     >
-                  </v-col>
-                  <v-col cols="12" md="6" xs="12">
-                    <v-text-field
-                      v-model="editedItem.rating"
+
+                    <v-spacer></v-spacer>
+                    <v-btn
                       color="lime darken-3"
-                      label="Etoiles*"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" md="6" xs="12">
-                    <v-text-field
-                      v-model="editedItem.author"
-                      color="lime darken-3"
-                      label="Nom"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="editedItem.title"
-                      color="lime darken-3"
-                      label="Titre"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field
-                      v-model="editedItem.content"
-                      color="lime darken-3"
-                      label="Contenu"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card-text>
+                      icon
+                      @click.stop="dialog = false"
+                    >
+                      <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                  </v-card-actions>
+                </v-col>
+                <v-col cols="12" md="6" xs="12">
+                  <v-text-field
+                    v-model="comment.rating"
+                    color="lime darken-3"
+                    label="Etoiles*"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12" md="6" xs="12">
+                  <v-text-field
+                    v-model="comment.author"
+                    color="lime darken-3"
+                    label="Nom"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="comment.title"
+                    color="lime darken-3"
+                    label="Titre"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="comment.content"
+                    color="lime darken-3"
+                    label="Contenu"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-container>
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="lime darken-3" text @click="close"> Annuler </v-btn>
-              <v-btn color="lime darken-3" text @click="save"> Editer </v-btn>
+              <v-btn color="lime darken-3" text @click.stop="dialog = false">
+                Annuler
+              </v-btn>
+              <v-btn
+                color="lime darken-3"
+                text
+                @click="editItemConfirm(comment.id)"
+              >
+                Editer
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -65,10 +82,16 @@
             >
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="lime darken-3" text @click="closeDelete"
+              <v-btn
+                color="lime darken-3"
+                text
+                @click.stop="dialogDelete = false"
                 >Annuler</v-btn
               >
-              <v-btn color="lime darken-3" text @click="deleteItemConfirm"
+              <v-btn
+                color="lime darken-3"
+                text
+                @click="deleteItemConfirm(comment.id)"
                 >Confirmer</v-btn
               >
               <v-spacer></v-spacer>
@@ -80,11 +103,6 @@
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
       </template>
-      <!-- <template v-slot:no-data>
-        <v-btn color="primary" @click="initialize">
-          Reset
-        </v-btn>
-      </template> -->
     </v-data-table>
   </v-card>
 </template>
@@ -111,12 +129,7 @@ export default {
         { text: "Actions", value: "actions" },
       ],
       editedIndex: -1,
-      editedItem: {
-        rating: "",
-        author: "",
-        title: "",
-        content: "",
-      },
+      comment: {},
       defaultItem: {
         rating: "",
         author: "",
@@ -125,14 +138,7 @@ export default {
       },
     };
   },
-  watch: {
-    dialog(val) {
-      val || this.close();
-    },
-    dialogDelete(val) {
-      val || this.closeDelete();
-    },
-  },
+
   created() {
     this.getComments();
   },
@@ -147,47 +153,73 @@ export default {
         },
       );
       this.comments = response.data;
-      console.log(response);
     },
 
     editItem(item) {
       this.editedIndex = this.comments.indexOf(item);
-      this.editedItem = Object.assign({}, item);
+      this.comment = Object.assign({}, item);
       this.dialog = true;
+    },
+    async editItemConfirm(id) {
+      try {
+        await this.$http.put(
+          "https://127.0.0.1:8000/api/update-comment/" + `${id}`,
+          this.comment,
+          {
+            headers: {
+              Authorization: "Bearer" + " " + token,
+            },
+          },
+        );
+
+        // Success snackbar
+        this.$store.dispatch("show", {
+          text: "Your comment has been deleted",
+          type: "success",
+        });
+        location.reload();
+      } catch (error) {
+        // Error snackbar
+        this.$store.dispatch("show", {
+          text: error.message,
+          type: "error",
+        });
+      }
+      this.dialog = false;
+    },
+    async deleteItemConfirm(id) {
+      try {
+        await this.$http.delete(
+          "https://127.0.0.1:8000/api/remove-comment/" + `${id}`,
+          {
+            headers: {
+              Authorization: "Bearer" + " " + token,
+            },
+          },
+        );
+
+        // Success snackbar
+        this.$store.dispatch("show", {
+          text: "Your comment has been deleted",
+          type: "success",
+        });
+        location.reload();
+      } catch (error) {
+        // Error snackbar
+        this.$store.dispatch("show", {
+          text: error.message,
+          type: "error",
+        });
+      }
+      this.dialogDelete = false;
+      // location.reload();
     },
 
     deleteItem(item) {
+      console.log(item);
       this.editedIndex = this.comments.indexOf(item);
-      this.editedItem = Object.assign({}, item);
+      this.comment = Object.assign({}, item);
       this.dialogDelete = true;
-    },
-
-    deleteItemConfirm() {
-      this.comments.splice(this.editedIndex, 1);
-      this.closeDelete();
-    },
-    close() {
-      this.dialog = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
-    },
-
-    closeDelete() {
-      this.dialogDelete = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
-    },
-    save() {
-      if (this.editedIndex > -1) {
-        Object.assign(this.comments[this.editedIndex], this.editedItem);
-      } else {
-        this.comments.push(this.editedItem);
-      }
-      this.close();
     },
   },
 };

@@ -1,20 +1,16 @@
 <template>
   <v-app>
     <v-row class="fill-height">
-      <v-col>
+      <v-col cols="12" md="6" xs="12">
         <v-sheet>
           <v-card class="px-4">
             <v-card-text>
               <validation-observer v-slot="{ handleSubmit }">
-                <v-form
-                  ref="form"
-                  lazy-validation
-                  @submit.prevent="handleSubmit(submitRegister)"
-                >
+                <v-form ref="form" lazy-validation>
                   <v-row>
                     <v-col cols="12">
                       <custom-text-field
-                        v-model="firstName"
+                        v-model="user.firstName"
                         color="lime darken-3"
                         name="firstName"
                         label="Prénom"
@@ -23,7 +19,7 @@
                     </v-col>
                     <v-col cols="12">
                       <custom-text-field
-                        v-model="lastName"
+                        v-model="user.lastName"
                         color="lime darken-3"
                         name="lastName"
                         label="Nom"
@@ -32,7 +28,7 @@
                     </v-col>
                     <v-col cols="12">
                       <custom-text-field
-                        v-model="email"
+                        v-model="user.email"
                         color="lime darken-3"
                         name="email"
                         label="E-mail"
@@ -40,9 +36,9 @@
                       />
                     </v-col>
 
-                    <v-col cols="12">
+                    <!-- <v-col cols="12">
                       <v-text-field
-                        v-model="password"
+                        v-model="user.password"
                         color="lime darken-3"
                         :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="show1 ? 'text' : 'password'"
@@ -51,7 +47,7 @@
                         counter
                         @click:append="show1 = !show1"
                       ></v-text-field>
-                    </v-col>
+                    </v-col> -->
                     <v-spacer></v-spacer>
                     <v-col
                       class="d-flex ml-auto mr-auto"
@@ -74,7 +70,8 @@
             </v-card-text>
           </v-card>
         </v-sheet>
-        <div class="py-5"></div>
+      </v-col>
+      <v-col cols="12" md="6" xs="12">
         <v-dialog v-model="dialog" max-width="550">
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="lime darken-3" dark v-bind="attrs" v-on="on">
@@ -109,17 +106,31 @@
   </v-app>
 </template>
 <script>
+const token = localStorage.getItem("token");
 export default {
   name: "ProfileUser",
   data() {
     return {
-      email: localStorage.getItem("email"),
-      firstName: localStorage.getItem("firstName"),
-      lastName: localStorage.getItem("lastName"),
-      password: "",
       show1: false,
       dialog: false,
+      user: {},
     };
+  },
+  created() {
+    this.getUser();
+  },
+  methods: {
+    async getUser() {
+      const response = await this.$http.get(
+        "https://127.0.0.1:8000/api/user/",
+        {
+          headers: {
+            Authorization: "Bearer" + " " + token,
+          },
+        },
+      );
+      this.user = response.data;
+    },
   },
 };
 </script>
