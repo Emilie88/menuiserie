@@ -81,7 +81,8 @@ export default {
           text: "You are logged out",
           type: "success",
         });
-        this.$router.push("/login");
+
+        this.$router.push({ name: "Login" });
       } catch (error) {
         // Error snackbar
         this.$store.dispatch("show", {

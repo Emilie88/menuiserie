@@ -4,6 +4,7 @@
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
           <v-flex xs12 sm8 md6>
+            <div class="py-12"></div>
             <v-card color="#333333">
               <v-tabs show-arrows color="lime darken-3" icons-and-text grow>
                 <v-tab>
@@ -74,7 +75,6 @@
                             >
                               <v-btn
                                 x-large
-                                block
                                 outlined
                                 color="lime darken-3"
                                 type="submit"
@@ -131,7 +131,7 @@ export default {
         // Success snackbar
         this.$store.dispatch("show", {
           text: "Votre compte a bien été crée!",
-          type: "succes",
+          type: "success",
         });
         this.$router.push({ name: "Login" });
       } catch (error) {

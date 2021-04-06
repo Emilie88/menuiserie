@@ -4,6 +4,8 @@
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
           <v-flex xs12 sm8 md6>
+            <div class="py-12"></div>
+
             <v-card color="#333333">
               <v-tabs show-arrows color="lime darken-3" icons-and-text grow>
                 <v-tab>
@@ -19,7 +21,7 @@
                           lazy-validation
                           @submit.prevent="handleSubmit(login)"
                         >
-                          <v-row>
+                          <v-row class="d-flex justify-center">
                             <v-col cols="12">
                               <custom-text-field
                                 v-model="username"
@@ -40,19 +42,13 @@
                                 @click:append="show1 = !show1"
                               />
                             </v-col>
-                            <v-col class="d-flex" cols="12" sm="6" xs="12">
+                            <v-col cols="12" class="d-flex justify-center">
+                              <sign-in-forgot-password-button />
                             </v-col>
-                            <v-spacer></v-spacer>
-                            <v-col
-                              class="d-flex"
-                              cols="12"
-                              sm="3"
-                              xs="12"
-                              align-end
-                            >
+
+                            <v-col cols="12" class="d-flex justify-center">
                               <v-btn
-                                x-large
-                                block
+                                large
                                 outlined
                                 color="lime darken-3"
                                 type="submit"
@@ -63,18 +59,16 @@
                           </v-row>
                         </v-form>
                       </validation-observer>
-
-                      <span color="lime darken-3">Don't have an account?</span>
-                      <v-btn icon to="/register">
-                        <v-icon color="lime darken-3" large
-                          >mdi-account-outline</v-icon
-                        >
-                      </v-btn>
                     </v-card-text>
                   </v-card>
                 </v-tab-item>
               </v-tabs>
             </v-card>
+            <br />
+            <span color="lime darken-3">Don't have an account?</span>
+            <v-btn icon to="/register">
+              <v-icon color="lime darken-3" large>mdi-account-outline</v-icon>
+            </v-btn>
           </v-flex>
         </v-layout>
       </v-container>
@@ -83,6 +77,7 @@
 </template>
 <script>
 export default {
+  name: "Login",
   data() {
     return {
       valid: true,

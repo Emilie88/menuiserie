@@ -3,7 +3,7 @@
     <v-main>
       <ToolbarUser />
       <router-view :key="`${$route.name}+${$route.params.id}`" />
-      <Footer />
+      <item-footer />
     </v-main>
   </v-app>
 </template>

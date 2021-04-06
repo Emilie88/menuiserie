@@ -1,7 +1,7 @@
 <template>
-  <v-app>
-    <v-row class="fill-height">
-      <v-col>
+  <v-container fluid fill-height>
+    <v-layout align-center justify-center>
+      <v-flex xs12 sm8 md8>
         <v-sheet>
           <v-card class="px-4">
             <v-card-text>
@@ -41,15 +41,9 @@
                     </v-col>
 
                     <v-spacer></v-spacer>
-                    <v-col
-                      class="d-flex ml-auto mr-auto"
-                      cols="12"
-                      sm="3"
-                      xs="12"
-                    >
+                    <v-col cols="12" class="d-flex justify-center">
                       <v-btn
                         x-large
-                        block
                         outlined
                         color="lime darken-3"
                         type="submit"
@@ -62,9 +56,9 @@
             </v-card-text>
           </v-card>
         </v-sheet>
-      </v-col>
-    </v-row>
-  </v-app>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 <script>
 // const token = localStorage.getItem("token");

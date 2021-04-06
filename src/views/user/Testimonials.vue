@@ -1,24 +1,23 @@
 <template>
   <v-app>
     <v-main>
-      <v-sheet id="contact" tag="section" color="#333333">
-        <div class="py-12"></div>
+      <div class="py-8"></div>
+      <v-container>
+        <h2 class="mb-3 text-uppercase text-center">Avis</h2>
 
-        <v-container>
-          <h2 class="mb-3 text-uppercase text-center">Avis</h2>
+        <v-responsive class="mx-auto mb-3" width="56">
+          <v-divider class="mb-1"></v-divider>
 
-          <v-responsive class="mx-auto mb-12" width="56">
-            <v-divider class="mb-1"></v-divider>
-
-            <v-divider></v-divider>
-          </v-responsive>
-          <v-row>
-            <v-col cols="12" md="6" xs="12">
-              <v-theme-provider>
-                <v-row>
-                  <v-col md="12">
-                    <div>Ajouter un avis</div>
-                    <div class="py-2"></div>
+          <v-divider></v-divider>
+        </v-responsive>
+        <v-row>
+          <v-col cols="12" md="6" xs="12">
+            <v-theme-provider>
+              <v-row>
+                <v-col md="12">
+                  <div>Ajouter un avis</div>
+                  <div class="py-2"></div>
+                  <v-sheet>
                     <v-card class="pa-5">
                       <validation-observer v-slot="{ handleSubmit }">
                         <v-form
@@ -77,24 +76,24 @@
                         </v-form>
                       </validation-observer>
                     </v-card>
-                  </v-col>
-                </v-row>
-              </v-theme-provider>
-            </v-col>
-            <v-col cols="12" md="6" xs="12">
-              <v-row>
-                <v-col md="12">
-                  <div>Gerer mes avis</div>
-                  <div class="py-2"></div>
-                  <UsersComment />
+                  </v-sheet>
                 </v-col>
               </v-row>
-            </v-col>
-          </v-row>
-        </v-container>
+            </v-theme-provider>
+          </v-col>
+          <v-col cols="12" md="6" xs="12">
+            <v-row>
+              <v-col md="12">
+                <div>Gerer mes avis</div>
+                <div class="py-2"></div>
+                <UsersComment />
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-container>
 
-        <div class="py-12"></div>
-      </v-sheet>
+      <div class="py-12"></div>
     </v-main>
   </v-app>
 </template>
