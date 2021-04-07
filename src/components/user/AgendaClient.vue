@@ -6,6 +6,10 @@
           Votre agenda sert a prendre un rendez-vous avec l'entrepener. Il est
           disponible du Lundi au Vendredi de 8h00 a 17h00 !
         </div>
+        <div class="subtitle red--text">
+          Attention toutes reservation qui n'est pas de couleur verte n'est pas
+          validé !
+        </div>
         <br />
 
         <v-toolbar flat color="lime darken-3">
@@ -79,6 +83,12 @@
                     :label="$t('event')"
                     required
                   />
+                  <custom-text-field
+                    v-model="body.details"
+                    color="lime darken-3"
+                    type="text"
+                    label="Details"
+                  />
 
                   <custom-text-field
                     v-model="body.start"
@@ -97,14 +107,12 @@
                     required
                   />
 
-                  <v-autocomplete
+                  <custom-text-field
                     v-model="body.color"
-                    :items="colors"
                     color="lime darken-3"
-                    dense
+                    type="text"
                     :label="$t('color')"
-                    required
-                  ></v-autocomplete>
+                  />
 
                   <v-btn type="submit" color="lime darken-3" class="mr-4">
                     {{ $t("createEvent") }}
@@ -142,36 +150,13 @@
                 </v-btn>
                 <v-toolbar-title v-text="selectedEvent.name"></v-toolbar-title>
                 <div class="flex-grow-1"></div>
-
-                <v-btn icon @click="deleteItem(selectedEvent)">
-                  <v-icon>mdi-delete</v-icon>
-                </v-btn>
               </v-toolbar>
-              <v-dialog v-model="dialogDelete" max-width="600px">
-                <v-card>
-                  <v-card-title>
-                    Vous etez sur que vous voulez supprimmer votre
-                    rendez-vous?</v-card-title
-                  >
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn
-                      color="lime darken-3"
-                      text
-                      @click.stop="dialogDelete = false"
-                      >Annuler</v-btn
-                    >
-                    <v-btn
-                      color="lime darken-3"
-                      text
-                      @click="deleteEvents(event.id)"
-                      >Confirmer</v-btn
-                    >
-                    <v-spacer></v-spacer>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-
+              <v-card-text>
+                <span
+                  class="secondary--text"
+                  v-text="selectedEvent.details"
+                ></span>
+              </v-card-text>
               <v-dialog v-model="dialogEdit" max-width="500px">
                 <v-card>
                   <v-container>
@@ -203,6 +188,13 @@
                       </v-col>
                       <v-col cols="12" md="6" xs="12">
                         <v-text-field
+                          v-model="event.details"
+                          color="lime darken-3"
+                          label="Detailes"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
                           v-model="event.start"
                           type="datetime-local"
                           color="lime darken-3"
@@ -217,14 +209,6 @@
                           :label="$t('end')"
                         ></v-text-field>
                       </v-col>
-
-                      <v-autocomplete
-                        v-model="event.color"
-                        :items="colors"
-                        color="lime darken-3"
-                        dense
-                        :label="$t('color')"
-                      ></v-autocomplete>
                     </v-row>
                   </v-container>
 
@@ -279,15 +263,7 @@ export default {
       "4day": "4 Days",
     },
 
-    colors: [
-      "blue",
-      "indigo",
-      "deep-purple",
-      "cyan",
-      "green",
-      "orange",
-      "grey darken-1",
-    ],
+    color: "primary",
     editedIndex: -1,
     // currentlyEditing: null,
     selectedEvent: {},
@@ -302,7 +278,8 @@ export default {
       name: null,
       start: null,
       end: null,
-      color: null,
+      color: "primary",
+      details: null,
     },
   }),
   created() {
@@ -361,7 +338,6 @@ export default {
       this.events = response.data;
     },
     editItem(item) {
-      console.log(item);
       this.editedIndex = this.events.indexOf(item);
       this.event = Object.assign({}, item);
       this.dialogEdit = true;
