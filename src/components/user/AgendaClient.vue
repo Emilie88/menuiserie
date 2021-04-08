@@ -84,6 +84,12 @@
                     required
                   />
                   <custom-text-field
+                    v-model="body.email"
+                    color="lime darken-3"
+                    type="text"
+                    label="Email"
+                  />
+                  <custom-text-field
                     v-model="body.details"
                     color="lime darken-3"
                     type="text"
@@ -145,10 +151,20 @@
           >
             <v-card color="grey lighten-4" :width="350" flat>
               <v-toolbar :color="selectedEvent.color" dark>
-                <v-btn icon @click="editItem(selectedEvent)">
+                <v-btn
+                  v-if="selectedEvent.author === null"
+                  icon
+                  @click="editItem(selectedEvent)"
+                >
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
-                <v-toolbar-title v-text="selectedEvent.name"></v-toolbar-title>
+                <v-toolbar-title>
+                  <span v-text="selectedEvent.name" />
+                  <span
+                    v-if="selectedEvent.author != null"
+                    v-text="selectedEvent.author"
+                  />
+                </v-toolbar-title>
                 <div class="flex-grow-1"></div>
               </v-toolbar>
               <v-card-text>
@@ -188,9 +204,17 @@
                       </v-col>
                       <v-col cols="12" md="6" xs="12">
                         <v-text-field
-                          v-model="event.details"
+                          v-model="event.email"
                           color="lime darken-3"
-                          label="Detailes"
+                          label="Email"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="event.details"
+                          type="text"
+                          color="lime darken-3"
+                          label="Details"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
@@ -270,12 +294,14 @@ export default {
     selectedElement: null,
     selectedOpen: false,
     events: [],
+    eventAdmin: [],
     event: {},
     dialog: false,
     dialogDate: false,
     eventDouble: null,
     body: {
       name: null,
+      email: null,
       start: null,
       end: null,
       color: "primary",
@@ -283,6 +309,9 @@ export default {
     },
   }),
   created() {
+    this.getEventsAdmin();
+  },
+  mounted() {
     this.getEvents();
   },
 
@@ -325,6 +354,18 @@ export default {
         }
       }
     },
+    async getEventsAdmin() {
+      const response = await this.$http.get(
+        "https://127.0.0.1:8000/api/schedulers",
+        {
+          headers: {
+            Authorization: "Bearer" + " " + token,
+          },
+        },
+      );
+      let author = response.data.filter((item) => item.author != null);
+      this.eventAdmin = author;
+    },
     async getEvents() {
       const response = await this.$http.get(
         "https://127.0.0.1:8000/api/scheduler",
@@ -334,8 +375,10 @@ export default {
           },
         },
       );
-
       this.events = response.data;
+      this.events.push(...this.eventAdmin);
+
+      console.log(this.events);
     },
     editItem(item) {
       this.editedIndex = this.events.indexOf(item);

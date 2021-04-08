@@ -67,10 +67,31 @@
                 <v-form @submit.prevent="handleSubmit(addEvent)">
                   <span v-if="eventDouble != null">{{ eventDouble }}</span>
                   <custom-text-field
+                    v-model="body.author"
+                    color="lime darken-3"
+                    type="text"
+                    label="Name"
+                    required
+                  />
+                  <custom-text-field
                     v-model="body.name"
                     color="lime darken-3"
                     type="text"
                     :label="$t('event')"
+                    required
+                  />
+                  <custom-text-field
+                    v-model="body.details"
+                    color="lime darken-3"
+                    type="text"
+                    label="Details"
+                    required
+                  />
+                  <custom-text-field
+                    v-model="body.email"
+                    color="lime darken-3"
+                    type="email"
+                    label="Email"
                     required
                   />
 
@@ -134,7 +155,10 @@
                 <v-btn icon @click="editItem(selectedEvent)">
                   <v-icon>mdi-pencil</v-icon>
                 </v-btn>
-                <v-toolbar-title v-text="selectedEvent.name"></v-toolbar-title>
+                <v-toolbar-title>
+                  <span v-text="selectedEvent.name" />
+                  <span v-text="selectedEvent.author" />
+                </v-toolbar-title>
                 <div class="flex-grow-1"></div>
 
                 <v-btn icon @click="deleteItem(selectedEvent)">
@@ -166,7 +190,7 @@
                 </v-card>
               </v-dialog>
 
-              <v-dialog v-model="dialogEdit" max-width="500px">
+              <v-dialog v-model="dialogEdit" persistent max-width="500px">
                 <v-card>
                   <v-container>
                     <v-row>
@@ -196,6 +220,27 @@
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" md="6" xs="12">
+                        <v-text-field
+                          v-model="event.author"
+                          color="lime darken-3"
+                          label="Author"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" md="6" xs="12">
+                        <v-text-field
+                          v-model="event.email"
+                          color="lime darken-3"
+                          label="Email"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" md="6" xs="12">
+                        <v-text-field
+                          v-model="event.details"
+                          color="lime darken-3"
+                          label="Details"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
                         <v-text-field
                           v-model="event.start"
                           type="datetime-local"
@@ -293,6 +338,8 @@ export default {
     dialogDate: false,
     eventDouble: null,
     body: {
+      author: null,
+      email: null,
       name: null,
       start: null,
       end: null,
@@ -356,10 +403,10 @@ export default {
       this.events = response.data;
     },
     editItem(item) {
-      console.log(item);
       this.editedIndex = this.events.indexOf(item);
       this.event = Object.assign({}, item);
       this.dialogEdit = true;
+      console.log(this.event);
     },
     async editConfirm(id) {
       try {

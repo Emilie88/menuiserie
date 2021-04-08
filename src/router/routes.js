@@ -1,6 +1,13 @@
 function lazyLoading(view) {
   return async () => await import(`@/views/${view}.vue`);
 }
+const ifAuthenticated = (to, from, next) => {
+  if (localStorage.getItem("token")) {
+    next();
+  } else {
+    next("/login");
+  }
+};
 
 export default [
   {
@@ -42,16 +49,17 @@ export default [
             path: "register",
             component: lazyLoading("visiteur/Register"),
           },
-          {
-            path: "",
-            redirect: {
-              name: "DashboardClient",
-            },
-          },
+          //   {
+          //     path: "",
+          //     redirect: {
+          //       name: "DashboardClient",
+          //     },
+          //   },
         ],
       },
       {
         path: "",
+        beforeEnter: ifAuthenticated,
         component: lazyLoading("user/Layout"),
         children: [
           {
@@ -74,6 +82,7 @@ export default [
       },
       {
         path: "",
+        beforeEnter: ifAuthenticated,
         component: lazyLoading("admin/Layout"),
         children: [
           {
