@@ -17,6 +17,27 @@ Vue.use(LightGallery);
 
 Vue.config.productionTip = false;
 
+Vue.prototype.$http.interceptors.request.use((config) => {
+  store.commit("setLoading", true);
+
+  config.baseURL += `/${router.currentRoute.params}`;
+
+  if (process.env.NODE_ENV === "development") {
+    console.trace("[Axios request]", config);
+  }
+
+  return config;
+});
+// Intercept the response
+Vue.prototype.$http.interceptors.response.use((response) => {
+  if (process.env.NODE_ENV === "development") {
+    console.trace("[Axios response]", response);
+  }
+
+  store.commit("setLoading", false);
+  return response;
+});
+
 new Vue({
   router,
   store,

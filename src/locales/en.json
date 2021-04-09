@@ -1,5 +1,5 @@
 {
-    
+
     "home" : "Home",
     "about": "About me",
     "achievement": "Achievements",
@@ -23,8 +23,11 @@
     "join":"Join me",
     "liveMessage":"Leave me a message",
     "send":"Send",
-    "name":"Name",
+    "name":"Last Name",
+    "firstName":"First Name",
     "mail":"E-mail",
+    "mdp":"Password",
+    "registerQuestion":"Don't have an account",
     "subject":"Subject",
     "message":"Message *",
     "phone":"Phone number",
@@ -45,6 +48,13 @@
     "createEvent":"Create event",
     "close":"close",
     "edit":"edit",
-    "save":"save"
-    
+    "save":"save",
+    "rulesPassword":{
+      "required":"Password is required",
+      "uppercase":"Must have one uppercase character",
+      "number":"Must have one number",
+      "charat":"Must have one special character [&!@#$%]",
+      "length":"Password must have min 8 characters"
+    }
+
 }

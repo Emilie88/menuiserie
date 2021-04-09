@@ -5,7 +5,9 @@
   "achievement": "Réalisations",
   "devis": "Demander un devis",
   "contact": "Contact",
-  "login":"Connexion",
+  "login":"Se conneter",
+  "mdp":"Mot de passe",
+  "registerQuestion":"Pas encore de compte",
   "logout":"Deconnexion",
   "register":"Inscription",
   "titleHome": "Art menuiserie",
@@ -24,6 +26,7 @@
   "liveMessage":"Laissez moi un message",
   "send":"Envoyer",
   "name":"Nom",
+  "firstName":"Prénom",
   "mail":"E-mail",
   "subject":"Sujet",
   "message":"Message *",
@@ -45,6 +48,13 @@
   "createEvent":"Creer l'evenement",
   "close":"annuler",
   "edit":"editer",
-  "save":"sauvegarder"
-  
+  "save":"sauvegarder",
+  "rulesPassword":{
+    "required":"Mot de passe obligatoire",
+    "uppercase":"Doit contenir une majuscule",
+    "number":"Doit contenir un nombre",
+    "charat":"Doit contenir un caractère speciaux [&!@#$%]",
+    "length":"Doit contenir minimum 8 caractères"
+  }
+
 }

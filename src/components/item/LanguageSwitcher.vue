@@ -42,6 +42,7 @@
 
 <script>
 import LangFlag from "vue-lang-code-flags";
+import constants from "@/constants";
 
 export default {
   components: {
@@ -55,7 +56,7 @@ export default {
   },
   data() {
     return {
-      languages: ["en", "fr", "ro"],
+      languages: constants.languages,
     };
   },
   computed: {
@@ -65,7 +66,9 @@ export default {
   },
   methods: {
     setLang(locale) {
-      this.$i18n.locale = locale;
+      // Save the current locale in the local storage
+      localStorage.setItem("userLocale", locale);
+      location.reload();
     },
   },
 };

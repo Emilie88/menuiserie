@@ -9,7 +9,7 @@
               <v-tabs show-arrows color="lime darken-3" icons-and-text grow>
                 <v-tab>
                   <v-icon large>mdi-account-outline</v-icon>
-                  <div class="caption py-1">Créer compte</div>
+                  <div class="caption py-1">{{ $t("register") }}</div>
                 </v-tab>
                 <v-tab-item>
                   <v-card class="px-4">
@@ -26,7 +26,7 @@
                                 v-model="body.firstname"
                                 color="lime darken-3"
                                 name="firstName"
-                                label="Prénom"
+                                :label="$t('firstName')"
                                 required
                               />
                             </v-col>
@@ -35,7 +35,7 @@
                                 v-model="body.lastname"
                                 color="lime darken-3"
                                 name="lastName"
-                                label="Nom"
+                                :label="$t('name')"
                                 required
                               />
                             </v-col>
@@ -44,7 +44,7 @@
                                 v-model="body.email"
                                 color="lime darken-3"
                                 name="email"
-                                label="E-mail"
+                                :label="$t('mail')"
                                 type="email"
                                 required
                               />
@@ -56,9 +56,9 @@
                                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                                 :type="show1 ? 'text' : 'password'"
                                 name="password"
-                                label="Mot de passe *"
+                                :label="$t('mdp')"
                                 counter
-                                required
+                                :rules="passwordRules"
                                 @click:append="show1 = !show1"
                               ></v-text-field>
                             </v-col>
@@ -78,7 +78,7 @@
                                 outlined
                                 color="lime darken-3"
                                 type="submit"
-                                >Créer compte</v-btn
+                                >{{ $t("register") }}</v-btn
                               >
                             </v-col>
                           </v-row>
@@ -109,13 +109,13 @@ export default {
         lastname: "",
       },
       verify: "",
-      // passwordRules: [
-      //   (v) => !!v || "Password is required",
-      //   (v) => (v && v.length >= 8) || "Password must have min 8 characters",
-      //   (v) => /(?=.*[A-Z])/.test(v) || "Must have one uppercase character",
-      //   (v) => /(?=.*\d)/.test(v) || "Must have one number",
-      //   (v) => /([!@$%])/.test(v) || "Must have one special character [&!@#$%]",
-      // ],
+      passwordRules: [
+        (v) => !!v || this.$t("rulesPassword.required"),
+        (v) => /(?=.*[A-Z])/.test(v) || this.$t("rulesPassword.uppercase"),
+        (v) => /(?=.*\d)/.test(v) || this.$t("rulesPassword.number"),
+        (v) => /([!@$%])/.test(v) || this.$t("rulesPassword.charat"),
+        (v) => (v && v.length >= 8) || this.$t("rulesPassword.length"),
+      ],
 
       show1: false,
     };

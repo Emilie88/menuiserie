@@ -70,12 +70,24 @@ export default {
       roles: localStorage.getItem("roles"),
     };
   },
-  created() {},
 
   methods: {
     async signOut() {
       try {
         localStorage.removeItem("token");
+
+        // Clear localStorage
+        let toBeRemovedKeys = []; // Array to hold the keys
+        // Iterate over localStorage and insert the keys that meet the condition into toBeRemovedKeys
+        for (let i = 0; i < localStorage.length; i++) {
+          // Save only language and devextreme state-storage
+          if (localStorage.key(i) !== "userLocale") {
+            toBeRemovedKeys.push(localStorage.key(i));
+          }
+        }
+        // Iterate over toBeRemovedKeys and remove the items by key
+        toBeRemovedKeys.forEach((key) => localStorage.removeItem(key));
+        document.location.reload();
         // Success snackbar
         this.$store.dispatch("show", {
           text: "You are logged out",

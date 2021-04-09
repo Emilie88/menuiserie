@@ -10,7 +10,7 @@
               <v-tabs show-arrows color="lime darken-3" icons-and-text grow>
                 <v-tab>
                   <v-icon large>mdi-account</v-icon>
-                  <div class="caption py-1">Login</div>
+                  <div class="caption py-1">{{ $t("login") }}</div>
                 </v-tab>
                 <v-tab-item>
                   <v-card class="px-4">
@@ -26,7 +26,7 @@
                               <custom-text-field
                                 v-model="username"
                                 color="lime darken-3"
-                                label="E-mail"
+                                :label="$t('mail')"
                                 type="email"
                                 required
                               />
@@ -36,15 +36,15 @@
                                 v-model="password"
                                 color="lime darken-3"
                                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                                label="Password"
+                                :label="$t('mdp')"
                                 :type="show1 ? 'text' : 'password'"
                                 required
                                 @click:append="show1 = !show1"
                               />
                             </v-col>
-                            <v-col cols="12" class="d-flex justify-center">
+                            <!-- <v-col cols="12" class="d-flex justify-center">
                               <sign-in-forgot-password-button />
-                            </v-col>
+                            </v-col> -->
 
                             <v-col cols="12" class="d-flex justify-center">
                               <v-btn
@@ -53,7 +53,7 @@
                                 color="lime darken-3"
                                 type="submit"
                               >
-                                Login
+                                {{ $t("login") }}
                               </v-btn>
                             </v-col>
                           </v-row>
@@ -65,7 +65,7 @@
               </v-tabs>
             </v-card>
             <br />
-            <span color="lime darken-3">Don't have an account?</span>
+            <span color="lime darken-3">{{ $t("registerQuestion") }} ?</span>
             <v-btn icon to="/register">
               <v-icon color="lime darken-3" large>mdi-account-outline</v-icon>
             </v-btn>
@@ -120,7 +120,7 @@ export default {
           type: "success",
           details: "",
         });
-        console.log("Conexxion reussi", response.data);
+
         if (roles[0] === "ROLE_USER") {
           this.$router.push({ name: "DashboardClient" });
         } else if (roles[0] === "ROLE_ADMIN") {

@@ -1,11 +1,13 @@
 {
-    
+
     "home" : "Acasa",
     "about": "Despre mine",
     "achievement": "Realizari",
     "devis": "Deviz",
     "contact": "Contact",
     "login":"Conexion",
+    "mdp":"Parola",
+    "registerQuestion":"Nu ai inca cont",
     "logout":"Deconnexion",
     "register":"inscriere",
     "titleHome": "Arta tâmplăriei",
@@ -24,6 +26,7 @@
     "liveMessage": "Lasati-mi un mesaj",
     "send":"Trimite",
     "name":"Nume",
+    "firstName":"Prenume",
     "mail":"E-mail",
     "subject":"Subiect",
     "message":"Mesaj *",
@@ -45,6 +48,13 @@
     "createEvent":"Creaza evenimentul",
     "close":"inchide",
     "edit":"editeaza",
-    "save":"salveaza"
-  
+    "save":"salveaza",
+    "rulesPassword":{
+      "required":"Parola obligatorie",
+      "uppercase":"Trebuie sa contina o majuscula",
+      "number":"Trebuie sa contina un numar",
+      "charat":"Trebuie sa contina un caracter special [&!@#$%]",
+      "length":"Trebuie sa contina minim 8 caractere"
+    }
+
 }

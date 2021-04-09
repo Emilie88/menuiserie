@@ -3,6 +3,13 @@ import VueI18n from "vue-i18n";
 
 Vue.use(VueI18n);
 
+// Get the locale from the local storage
+let userLocale = localStorage.getItem("userLocale");
+if (!userLocale) {
+  userLocale =
+    navigator.language.slice(0, 2) || navigator.browserLanguage.slice(0, 2);
+}
+
 function loadLocaleMessages() {
   const locales = require.context(
     "./locales",
@@ -21,7 +28,7 @@ function loadLocaleMessages() {
 }
 
 const i18n = new VueI18n({
-  locale: process.env.VUE_APP_I18N_LOCALE || "en",
+  locale: userLocale,
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || "en",
   messages: loadLocaleMessages(),
 });
