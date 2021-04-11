@@ -19,7 +19,7 @@
     "allProjects":"All projects",
     "showMore":"Show More",
     "showLess":"Show Less",
-    "avis":"opinion",
+    "avis":"Testimonials",
     "join":"Join me",
     "liveMessage":"Leave me a message",
     "send":"Send",
@@ -47,7 +47,7 @@
     "color":"Color",
     "createEvent":"Create event",
     "close":"close",
-    "edit":"edit",
+    "edit":"Edit",
     "save":"save",
     "rulesPassword":{
       "required":"Password is required",
@@ -55,6 +55,23 @@
       "number":"Must have one number",
       "charat":"Must have one special character [&!@#$%]",
       "length":"Password must have min 8 characters"
-    }
+    },
+    "profile":"Profile",
+    "updateProfile":"Update profile",
+    "changePassword":"Change password",
+    "deleteCompte":"Delete account",
+    "confirmDelete":"Confirm deletion",
+    "confirm":"Confirm",
+    "profileSettings":"Profile Settings",
+    "myOpinions":"Manage my reviews",
+    "rating":"Stars",
+    "author":"Author",
+    "title":"Title",
+    "content":"Content *",
+    "actions":"Actions",
+    "titleAgendaUser":"Your agenda is used to make an appointment with the entrepreneur . He is available Monday to Friday from 8:00 am to 5:00 pm!",
+    "titleAgendaRed":"Please note that any reservation that is not green is not validated!",
+    "addOpinion":"Add a review",
+    "messages":"Messages"
 
 }

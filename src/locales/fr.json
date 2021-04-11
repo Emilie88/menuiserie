@@ -21,7 +21,7 @@
   "allProjects":"Tous les projets",
   "showMore":"Voir plus",
   "showLess":"Voir moins",
-  "avis":"avis",
+  "avis":"Témoignages",
   "join":"Me joindre",
   "liveMessage":"Laissez moi un message",
   "send":"Envoyer",
@@ -47,7 +47,7 @@
   "color":"Couleur",
   "createEvent":"Creer l'evenement",
   "close":"annuler",
-  "edit":"editer",
+  "edit":"Editer",
   "save":"sauvegarder",
   "rulesPassword":{
     "required":"Mot de passe obligatoire",
@@ -55,6 +55,24 @@
     "number":"Doit contenir un nombre",
     "charat":"Doit contenir un caractère speciaux [&!@#$%]",
     "length":"Doit contenir minimum 8 caractères"
-  }
+  },
+  "profile":"Profil",
+  "updateProfile":"Mettre a jour le profil",
+  "changePassword":"Changer de mot de passe",
+  "deleteCompte":"Supprimer compte",
+  "confirmDelete":" Confirmez la suppression",
+  "confirm":"Confirmez",
+  "profileSettings":"Paramètres du profil",
+  "myOpinions":"Gerer mes avis",
+  "rating": "Etoiles",
+  "author":"Auteur",
+  "title":"Titre",
+  "content":"Contenu *",
+  "actions":"Actions",
+  "titleAgendaUser":"Votre agenda sert a prendre un rendez-vous avec l'entrepener. Il est disponible du Lundi au Vendredi de 8h00 a 17h00 !",
+  "titleAgendaRed":" Attention toutes reservation qui n'est pas de couleur verte n'est pas validé !",
+  "addOpinion":"Ajouter un avis",
+  "messages":"Messages"
+
 
 }

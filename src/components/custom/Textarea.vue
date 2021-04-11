@@ -9,6 +9,7 @@
     <v-textarea
       v-model="innerValue"
       :label="`${$attrs.label}`"
+      :rules="merge({}, basicRules, rules)"
       :error-messages="errors.length ? errors : customErrorMessage"
       v-bind="$attrs"
       v-on="$listeners"

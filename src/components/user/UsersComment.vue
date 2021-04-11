@@ -4,6 +4,7 @@
       <v-data-table
         :headers="headers"
         :items="comments"
+        :items-per-page="5"
         disable-sort
         color="#333333"
       >
@@ -17,7 +18,7 @@
                       <v-card-title class="pa-0">
                         <v-icon small class="mr-2" color="lime darken-3">
                           mdi-pencil </v-icon
-                        >Editer</v-card-title
+                        >{{ $t("edit") }}</v-card-title
                       >
 
                       <v-spacer></v-spacer>
@@ -34,28 +35,28 @@
                     <v-text-field
                       v-model="comment.rating"
                       color="lime darken-3"
-                      label="Etoiles*"
+                      :label="$t('rating')"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" md="6" xs="12">
                     <v-text-field
                       v-model="comment.author"
                       color="lime darken-3"
-                      label="Nom"
+                      :label="$t('name')"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
                       v-model="comment.title"
                       color="lime darken-3"
-                      label="Titre"
+                      :label="$t('title')"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
                       v-model="comment.content"
                       color="lime darken-3"
-                      label="Contenu"
+                      :label="$t('content')"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -64,37 +65,34 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="lime darken-3" text @click.stop="dialog = false">
-                  Annuler
+                  {{ $t("close") }}
                 </v-btn>
                 <v-btn
                   color="lime darken-3"
                   text
                   @click="editItemConfirm(comment.id)"
                 >
-                  Editer
+                  {{ $t("edit") }}
                 </v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
           <v-dialog v-model="dialogDelete" max-width="600px">
             <v-card>
-              <v-card-title>
-                Vous etez sur que vous voulez supprimmer votre
-                avis?</v-card-title
-              >
+              <v-card-title> {{ $t("confirmDelete") }}</v-card-title>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn
                   color="lime darken-3"
                   text
                   @click.stop="dialogDelete = false"
-                  >Annuler</v-btn
+                  >{{ $t("close") }}</v-btn
                 >
                 <v-btn
                   color="lime darken-3"
                   text
                   @click="deleteItemConfirm(comment.id)"
-                  >Confirmer</v-btn
+                  >{{ $t("confirm") }}</v-btn
                 >
                 <v-spacer></v-spacer>
               </v-card-actions>
@@ -127,11 +125,11 @@ export default {
           align: "start",
           value: "userId",
         },
-        { text: "Rating", value: "rating" },
-        { text: "Author", value: "author" },
-        { text: "Title", value: "title" },
-        { text: "Content", value: "content" },
-        { text: "Actions", value: "actions" },
+        { text: this.$t("rating"), value: "rating" },
+        { text: this.$t("author"), value: "author" },
+        { text: this.$t("title"), value: "title" },
+        { text: this.$t("content"), value: "content" },
+        { text: this.$t("actions"), value: "actions" },
       ],
       editedIndex: -1,
       comment: {},

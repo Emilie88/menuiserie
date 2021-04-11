@@ -45,7 +45,7 @@ export default {
     return {
       links: [
         { text: "Agenda", route: "/dashboardClient" },
-        { text: "Testimonials", route: "/testimonials" },
+        { text: this.$t("avis"), route: "/testimonials" },
       ],
       drawer: null,
     };

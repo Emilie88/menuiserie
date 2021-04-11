@@ -29,7 +29,7 @@
         </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title>
-            <span>Profile Settings</span>
+            <span>{{ $t("profileSettings") }}</span>
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -46,7 +46,7 @@
         </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title>
-            <span>Profile Settings</span>
+            <span>{{ $t("profileSettings") }}</span>
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -54,7 +54,7 @@
       <v-list-item @click="signOut">
         <v-list-item-icon><v-icon>mdi-power</v-icon></v-list-item-icon>
         <v-list-item-content class="text-body-2">
-          Sign Out
+          {{ $t("logout") }}
         </v-list-item-content>
       </v-list-item>
     </v-list>

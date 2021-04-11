@@ -3,12 +3,10 @@
     <v-layout align-center justify-center>
       <v-flex xs12 sm8 md9>
         <div class="subtitle">
-          Votre agenda sert a prendre un rendez-vous avec l'entrepener. Il est
-          disponible du Lundi au Vendredi de 8h00 a 17h00 !
+          {{ $t("titleAgendaUser") }}
         </div>
         <div class="subtitle red--text">
-          Attention toutes reservation qui n'est pas de couleur verte n'est pas
-          validé !
+          {{ $t("titleAgendaRed") }}
         </div>
         <br />
 

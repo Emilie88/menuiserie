@@ -2,7 +2,7 @@
   <v-app>
     <v-row class="fill-height">
       <v-col cols="12" md="6" xs="12">
-        <div>Profile</div>
+        <div>{{ $t("profile") }}</div>
         <br />
 
         <v-sheet>
@@ -19,7 +19,7 @@
                         v-model="user.firstName"
                         color="lime darken-3"
                         name="firstName"
-                        label="Prénom"
+                        :label="$t('firstName')"
                         type="text"
                       />
                     </v-col>
@@ -28,7 +28,7 @@
                         v-model="user.lastName"
                         color="lime darken-3"
                         name="lastName"
-                        label="Nom"
+                        :label="$t('name')"
                         type="text"
                       />
                     </v-col>
@@ -37,15 +37,15 @@
                         v-model="user.email"
                         color="lime darken-3"
                         name="email"
-                        label="E-mail"
+                        :label="$t('mail')"
                         type="email"
                       />
                     </v-col>
                     <div class="text-center mx-auto">
                       <v-col cols="12" sm="3" xs="12">
-                        <v-btn outlined color="lime darken-3" type="submit"
-                          >Mettre a jour le profil</v-btn
-                        >
+                        <v-btn outlined color="lime darken-3" type="submit">{{
+                          $t("updateProfile")
+                        }}</v-btn>
                       </v-col>
                     </div>
                   </v-row>
@@ -56,7 +56,9 @@
         </v-sheet>
       </v-col>
       <v-col cols="12" md="6" xs="12">
-        <div>Password</div>
+        <div>
+          <div>{{ $t("mdp") }}</div>
+        </div>
         <br />
 
         <v-sheet>
@@ -75,16 +77,16 @@
                         :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="show1 ? 'text' : 'password'"
                         name="password"
-                        label="Mot de passe *"
+                        :label="$t('mdp')"
                         counter
                         @click:append="show1 = !show1"
                       />
                     </v-col>
                     <div class="text-center mx-auto">
                       <v-col cols="12" sm="3" xs="12">
-                        <v-btn outlined color="lime darken-3" type="submit"
-                          >Changer de mot de passe</v-btn
-                        >
+                        <v-btn outlined color="lime darken-3" type="submit">{{
+                          $t("changePassword")
+                        }}</v-btn>
                       </v-col>
                     </div>
                   </v-row>
@@ -98,7 +100,7 @@
         <v-dialog v-model="dialog" max-width="550">
           <template v-slot:activator="{ on, attrs }">
             <v-btn outlined color="lime darken-3" v-bind="attrs" v-on="on">
-              Supprimer compte
+              {{ $t("deleteCompte") }}
             </v-btn>
           </template>
           <v-card>
@@ -109,17 +111,17 @@
               </v-btn>
             </v-card-actions>
             <v-card-title>
-              Vous etes sur de vouloir supprimer votre compte?
+              {{ $t("confirmDelete") }}
             </v-card-title>
 
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="lime darken-3" text @click="dialog = false">
-                Annuler
+                {{ $t("close") }}
               </v-btn>
 
               <v-btn color="lime darken-3" text @click="deleteUser(user.id)">
-                Confirmer
+                {{ $t("confirm") }}
               </v-btn>
             </v-card-actions>
           </v-card>

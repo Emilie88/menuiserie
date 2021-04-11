@@ -96,6 +96,11 @@ export default [
             component: lazyLoading("admin/Realisation"),
           },
           {
+            name: "Messages",
+            path: "messages",
+            component: lazyLoading("admin/Messages"),
+          },
+          {
             name: "ProfileSettingsAdmin",
             path: "profileAdmin",
             component: lazyLoading("admin/ProfileSettingsAdmin"),

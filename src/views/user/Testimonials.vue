@@ -3,7 +3,7 @@
     <v-main>
       <div class="py-8"></div>
       <v-container>
-        <h2 class="mb-3 text-uppercase text-center">Avis</h2>
+        <h2 class="mb-3 text-uppercase text-center">{{ $t("avis") }}</h2>
 
         <v-responsive class="mx-auto mb-3" width="56">
           <v-divider class="mb-1"></v-divider>
@@ -15,7 +15,7 @@
             <v-theme-provider>
               <v-row>
                 <v-col md="12">
-                  <div>Ajouter un avis</div>
+                  <div>{{ $t("addOpinion") }}</div>
                   <div class="py-2"></div>
                   <v-sheet>
                     <v-card class="pa-5">
@@ -30,7 +30,7 @@
                               <custom-text-field
                                 v-model="body.author"
                                 color="lime darken-3"
-                                label="Nom"
+                                :label="$t('name')"
                                 required
                               />
                             </v-col>
@@ -40,7 +40,7 @@
                                 hide-details
                                 single-line
                                 color="lime darken-3"
-                                label="Etoiles *"
+                                :label="$t('rating')"
                                 type="number"
                                 max="5"
                                 min="1"
@@ -51,14 +51,14 @@
                           <custom-text-field
                             v-model="body.title"
                             color="lime darken-3"
-                            label="Titre"
+                            :label="$t('title')"
                             required
                           />
 
                           <custom-textarea
                             v-model="body.content"
                             color="lime darken-3"
-                            label="Contenu *"
+                            :label="$t('content')"
                             required
                           />
 
@@ -70,7 +70,7 @@
                               color="lime darken-3"
                               x-large
                             >
-                              Send
+                              {{ $t("send") }}
                             </v-btn>
                           </v-row>
                         </v-form>
@@ -84,7 +84,7 @@
           <v-col cols="12" md="6" xs="12">
             <v-row>
               <v-col md="12">
-                <div>Gerer mes avis</div>
+                <div>{{ $t("myOpinions") }}</div>
                 <div class="py-2"></div>
                 <UsersComment />
               </v-col>

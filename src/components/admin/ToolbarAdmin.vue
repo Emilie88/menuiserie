@@ -44,8 +44,9 @@ export default {
   data() {
     return {
       links: [
-        { text: "Dashboard", route: "/dashboardAdmin" },
-        { text: "Realisation", route: "/realisation" },
+        { text: "Agenda", route: "/dashboardAdmin" },
+        // { text: this.$t("messages"), route: "/messages" },
+        { text: this.$t("achievement"), route: "/realisation" },
       ],
       drawer: null,
     };

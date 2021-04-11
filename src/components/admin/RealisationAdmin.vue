@@ -35,6 +35,7 @@
                       <v-file-input
                         prepend-icon="mdi-camera"
                         color="lime darken-3"
+                        multiple
                         label="Image"
                         @change="onFileSelected"
                       ></v-file-input>
