@@ -5,7 +5,7 @@ import axios from "axios";
 
 Vue.prototype.$http = axios;
 
-// Vue.prototype.$http.defaults.baseURL = appConfig.apiUrl;
+// Vue.prototype.$http.defaults.baseURL = "https://127.0.0.1:8000/api";
 // axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 
 // if (localStorage.getItem("sessionToken")) {

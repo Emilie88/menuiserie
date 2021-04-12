@@ -72,27 +72,11 @@ export default {
     };
   },
 
-  //   computed: {
-  //     actions() {
-  //       return this.sent
-  //         ? { close: true }
-  //         : {
-  //             requiredField: true,
-  //             cancel: true,
-  //             submit: {
-  //               text: this.$t("BackOffice.Common.submit"),
-  //               icon: "send",
-  //             },
-  //           };
-  //     },
-  //   },
-
   methods: {
-    reset() {
-      this.sent = false;
-
-      // Reset validations
-      this.$refs.observer.reset();
+    resetInputs(body) {
+      Object.keys(body).forEach((key) => {
+        body[`${key}`] = null;
+      });
     },
 
     async sendForgotPasswordEmail() {
@@ -101,14 +85,13 @@ export default {
           "https://127.0.0.1:8000/api/reset-password",
           this.body,
         );
+        this.resetInputs(this.body);
         this.dialog = false;
         // Success snackbar
         this.$store.dispatch("show", {
           text: "A mail is send to you",
           type: "success",
         });
-
-        this.sent = true;
       } catch (error) {
         // Error snackbar
         this.$store.dispatch("show", {
@@ -116,6 +99,7 @@ export default {
           type: "error",
         });
       }
+      this.dialog = false;
     },
   },
 };
