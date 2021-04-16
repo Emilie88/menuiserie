@@ -8,7 +8,7 @@
           v-bind="attrs"
           v-on="on"
         >
-          Forgot password ?</a
+          {{ $t("forgotPassword") }} ?</a
         >
       </template>
       <v-card>
@@ -20,7 +20,7 @@
         </v-card-actions>
         <v-card-title>
           <v-icon class="pr-2">mdi-key</v-icon>
-          <span>Forgot password ?</span>
+          <span>{{ $t("forgotPassword") }} ?</span>
         </v-card-title>
         <v-card-text>
           <validation-observer v-slot="{ handleSubmit }">
@@ -35,14 +35,14 @@
                     v-model="body.email"
                     color="lime darken-3"
                     name="email"
-                    label="E-mail"
+                    :label="$t('mail')"
                     type="email"
                   />
                 </v-col>
                 <v-col cols="12" sm="3" xs="12">
-                  <v-btn x-large outlined color="lime darken-3" type="submit"
-                    >Send</v-btn
-                  >
+                  <v-btn large outlined color="lime darken-3" type="submit">{{
+                    $t("send")
+                  }}</v-btn>
                 </v-col>
               </v-row>
             </v-form>

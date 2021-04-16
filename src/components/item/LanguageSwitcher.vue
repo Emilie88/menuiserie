@@ -1,11 +1,4 @@
 <template>
-  <!-- <div class="locale-changer">
-    <select v-model="$i18n.locale">
-      <option v-for="(lang, i) in languages" :key="`Lang${i}`" :value="lang">
-        {{ lang }}
-      </option>
-    </select>
-  </div> -->
   <v-menu left offset-y transition="slide-y-transition" v-bind="$attrs">
     <template #activator="{ on }">
       <v-btn
@@ -28,11 +21,15 @@
         @click="setLang(language)"
       >
         <v-list-item-action>
-          <lang-flag :iso="language" :squared="false" :title="language" />
+          <lang-flag
+            :iso="language"
+            :squared="false"
+            :title="$t('Languages', language)[language]"
+          />
         </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title>
-            <span v-text="language" />
+            <span v-text="$t('Languages', language)[language]" />
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>

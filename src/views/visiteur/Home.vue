@@ -3,7 +3,8 @@
     <v-main>
       <section id="hero">
         <v-row no-gutters>
-          <v-img src="../../assets/img/cuisine/cuisineAlexPD.jpg">
+          <v-img src="../../assets/img/parquet/etagers.jpeg" max-height="600">
+            <div class="py-12"></div>
             <v-theme-provider dark>
               <v-container fill-height>
                 <v-row
@@ -13,11 +14,10 @@
                 >
                   <v-col class="white--text text-center" cols="12" tag="h1">
                     <span
-                      class="font-weight-light text-uppercase"
                       :class="[
                         $vuetify.breakpoint.smAndDown
-                          ? 'display-1'
-                          : 'display-2',
+                          ? 'display-1 font-weight-light text-uppercase'
+                          : 'display-2 font-weight-light text-uppercase',
                       ]"
                     >
                       {{ $t("titleHome") }}
@@ -28,10 +28,9 @@
                     <span
                       :class="[
                         $vuetify.breakpoint.smAndDown
-                          ? 'display-2'
-                          : 'display-3',
+                          ? 'display-2 font-weight-black'
+                          : 'display-3 font-weight-black',
                       ]"
-                      class="font-weight-black"
                     >
                       Adrian BOGHIU
                     </span>
@@ -72,15 +71,17 @@
           </v-responsive>
 
           <card-cards />
-
-          <v-btn
-            class="ma-2 text-center"
-            outlined
-            color="#9e9d24"
-            to="/realisations"
-          >
-            {{ $t("allProjects") }}
-          </v-btn>
+          <div class="text-right">
+            <v-btn
+              class="ma-2 text-center"
+              outlined
+              right
+              color="#9e9d24"
+              to="/realisations"
+            >
+              {{ $t("allProjects") }}
+            </v-btn>
+          </div>
         </v-container>
       </section>
 

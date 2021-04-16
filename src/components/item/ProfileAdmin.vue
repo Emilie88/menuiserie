@@ -97,7 +97,7 @@
         <br />
         <v-dialog v-model="dialog" max-width="550">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn outlined color="lime darken-3" v-bind="attrs" v-on="on">
+            <v-btn outlined color="red lighten-1" v-bind="attrs" v-on="on">
               {{ $t("deleteCompte") }}
             </v-btn>
           </template>
@@ -129,11 +129,11 @@
   </v-app>
 </template>
 <script>
-const token = localStorage.getItem("token");
 export default {
   name: "ProfileUser",
   data() {
     return {
+      token: localStorage.getItem("token"),
       show1: false,
       dialog: false,
       user: {},
@@ -151,7 +151,7 @@ export default {
         "https://127.0.0.1:8000/api/user/",
         {
           headers: {
-            Authorization: "Bearer" + " " + token,
+            Authorization: "Bearer" + " " + this.token,
           },
         },
       );
@@ -165,7 +165,7 @@ export default {
           this.user,
           {
             headers: {
-              Authorization: "Bearer" + " " + token,
+              Authorization: "Bearer" + " " + this.token,
             },
           },
         );
@@ -191,7 +191,7 @@ export default {
           this.body,
           {
             headers: {
-              Authorization: "Bearer" + " " + token,
+              Authorization: "Bearer" + " " + this.token,
             },
           },
         );
@@ -217,7 +217,7 @@ export default {
           "https://127.0.0.1:8000/api/remove-user/" + `${id}`,
           {
             headers: {
-              Authorization: "Bearer" + " " + token,
+              Authorization: "Bearer" + " " + this.token,
             },
           },
         );

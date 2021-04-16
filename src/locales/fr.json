@@ -5,13 +5,13 @@
   "achievement": "Réalisations",
   "devis": "Demander un devis",
   "contact": "Contact",
-  "login":"Se conneter",
+  "login":"Se connecter",
   "mdp":"Mot de passe",
   "registerQuestion":"Pas encore de compte",
   "logout":"Deconnexion",
   "register":"Inscription",
   "titleHome": "Art menuiserie",
-  "description":"Passionné par le bois depuis l'age de 16 je me suis décidé de me concentrer sur la menuiserie et j'ai ouvert mon entreprise en février 2014.Je vous propose mes services pour la création et/ou pose des éléments en boiset sur mesure : placards, escaliers, dressing, portes, bibliothèques, meubles, étagères, mezzanines,   parquet, cuisines, salles de bain, etc. Imaginer et réaliser sur-mesure votre mobilier, votre terrasse, votre parquet,c’est ma passion . Tout le plaisir d’un meuble ou d’un agencement élégant, raffiné,fonctionnel, parfaitement adapté à vos goûts et vos besoins.",
+  "description":"Passionné par le bois depuis l'age de 16 ans je me suis décidé de me concentrer sur la menuiserie et j'ai ouvert mon entreprise en février 2014. Je vous propose mes services pour la création et/ou pose des éléments en bois et sur mesure : placards, escaliers, dressing, portes, bibliothèques, meubles, étagères, mezzanines,   parquet, cuisines, salles de bain, etc. Imaginer et réaliser sur-mesure votre mobilier, votre terrasse, votre parquet,c’est ma passion . Tout le plaisir d’un meuble ou d’un agencement élégant, raffiné,fonctionnel, parfaitement adapté à vos goûts et vos besoins.",
   "cuisine":"cuisine",
   "sdb":"salle de bain",
   "biblio":"bibliotèque",
@@ -63,7 +63,7 @@
   "confirmDelete":" Confirmez la suppression",
   "confirm":"Confirmez",
   "profileSettings":"Paramètres du profil",
-  "myOpinions":"Gerer mes avis",
+  "myOpinions":"Gerer mes temoignages",
   "rating": "Etoiles",
   "author":"Auteur",
   "title":"Titre",
@@ -71,8 +71,14 @@
   "actions":"Actions",
   "titleAgendaUser":"Votre agenda sert a prendre un rendez-vous avec l'entrepener. Il est disponible du Lundi au Vendredi de 8h00 a 17h00 !",
   "titleAgendaRed":" Attention toutes reservation qui n'est pas de couleur verte n'est pas validé !",
-  "addOpinion":"Ajouter un avis",
-  "messages":"Messages"
+  "addOpinion":"Ajouter un temoignage",
+  "messages":"Messages",
+  "Languages":{
+    "en":"Anglais",
+    "fr":"Français",
+    "ro":"Roumain"
+  },
+  "forgotPassword":"Mot de passe oublié"
 
 
 }

@@ -2,66 +2,62 @@
   <div id="realisations">
     <v-app>
       <v-main>
-        <v-sheet id="contact" dark tag="section" tile>
-          <div class="py-12"></div>
+        <div class="py-12"></div>
 
-          <v-container>
-            <h2
-              :class="[
-                $vuetify.breakpoint.smAndDown
-                  ? 'display-1 font-weight-bold mb-3 text-uppercase text-center'
-                  : 'display-2 font-weight-bold mb-3 text-uppercase text-center',
-              ]"
-            >
-              {{ $t("achievement") }}
-            </h2>
+        <v-container>
+          <h2
+            :class="[
+              $vuetify.breakpoint.smAndDown
+                ? 'display-1 font-weight-bold mb-3 text-uppercase text-center'
+                : 'display-2 font-weight-bold mb-3 text-uppercase text-center',
+            ]"
+          >
+            {{ $t("achievement") }}
+          </h2>
 
-            <v-responsive class="mx-auto mb-12" width="56">
-              <v-divider class="mb-1"></v-divider>
+          <v-responsive class="mx-auto mb-12" width="56">
+            <v-divider class="mb-1"></v-divider>
 
-              <v-divider></v-divider>
-            </v-responsive>
+            <v-divider></v-divider>
+          </v-responsive>
 
-            <br />
-            <v-theme-provider light>
-              <div>
-                <LightGallery
-                  :images="toBeShownImg"
-                  :index="index"
-                  :disable-scroll="true"
-                  @close="index = null"
-                />
+          <br />
+          <v-theme-provider light>
+            <div>
+              <LightGallery
+                :images="toBeShownImg"
+                :index="index"
+                :disable-scroll="true"
+                @close="index = null"
+              />
 
-                <v-row>
-                  <v-col
-                    v-for="(thumb, thumbIndex) in toBeShown"
-                    :key="thumbIndex"
-                    class="d-flex child-flex"
-                    md="4"
-                    sm="12"
-                    @click="index = thumbIndex"
-                  >
-                    <v-img :src="thumb" />
-                  </v-col>
-                </v-row>
-              </div>
-            </v-theme-provider>
-            <v-row>
-              <div>
-                <v-btn :disabled="currentPage == 1" @click="prevPage">{{
-                  $t("showLess")
-                }}</v-btn>
-                <v-btn
-                  :disabled="currentPage == totalPages"
-                  @click="nextPage"
-                  >{{ $t("showMore") }}</v-btn
+              <v-row>
+                <v-col
+                  v-for="(thumb, thumbIndex) in toBeShown"
+                  :key="thumbIndex"
+                  class="d-flex child-flex"
+                  md="4"
+                  sm="12"
+                  @click="index = thumbIndex"
                 >
-              </div>
-            </v-row>
-          </v-container>
+                  <v-img :src="thumb" />
+                </v-col>
+              </v-row>
+            </div>
+          </v-theme-provider>
+          <v-row>
+            <div>
+              <v-btn :disabled="currentPage == 1" @click="prevPage">{{
+                $t("showLess")
+              }}</v-btn>
+              <v-btn :disabled="currentPage == totalPages" @click="nextPage">{{
+                $t("showMore")
+              }}</v-btn>
+            </div>
+          </v-row>
+        </v-container>
 
-          <div class="py-12"></div>
-        </v-sheet>
+        <div class="py-12"></div>
       </v-main>
     </v-app>
   </div>

@@ -62,10 +62,10 @@
   </v-container>
 </template>
 <script>
-// const token = localStorage.getItem("token");
 export default {
   data() {
     return {
+      token: localStorage.getItem("token"),
       realisation: [],
       imageFile: null,
       title: null,
@@ -99,8 +99,6 @@ export default {
     // },
     async addRealisation() {
       try {
-        const token = localStorage.getItem("token");
-
         await this.$http.post(
           "https://127.0.0.1:8000/api/add-realisation",
           this.imageFile,
@@ -108,7 +106,7 @@ export default {
           this.description,
           {
             headers: {
-              Authorization: token,
+              Authorization: this.token,
             },
           },
         );

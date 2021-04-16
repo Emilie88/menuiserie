@@ -9,7 +9,7 @@
     "logout":"SignOut",
     "register":"SignUp",
     "titleHome": "Carpentry art",
-    "description":"Passionate about wood since the age of 16 I decided to focus on carpentry and I opened my business in February 2014.I offer my services for the creation and / or installation of wooden elements and tailor-made: cupboards, stairs, dressing room, doors, bookcases, furniture,shelves, mezzanines,parquet, kitchens, bathrooms, etc. Imagine and tailor your furniture, your terrace, your parquet,this is my passion . All the pleasure of a piece of furniture or an elegant, refined arrangement,functional, perfectly suited to your tastes and needs.",
+    "description":"Passionate about wood since the age of 16 I decided to focus on carpentry and I opened my business in February 2014. I offer my services for the creation and / or installation of wooden elements and tailor-made: cupboards, stairs, dressing room, doors, bookcases, furniture,shelves, mezzanines,parquet, kitchens, bathrooms, etc. Imagine and tailor your furniture, your terrace, your parquet,this is my passion . All the pleasure of a piece of furniture or an elegant, refined arrangement,functional, perfectly suited to your tastes and needs.",
     "cuisine":"kitchen",
     "sdb":"bathroom",
     "biblio":"library",
@@ -72,6 +72,12 @@
     "titleAgendaUser":"Your agenda is used to make an appointment with the entrepreneur . He is available Monday to Friday from 8:00 am to 5:00 pm!",
     "titleAgendaRed":"Please note that any reservation that is not green is not validated!",
     "addOpinion":"Add a review",
-    "messages":"Messages"
+    "messages":"Messages",
+    "Languages":{
+      "en":"English",
+      "fr":"French",
+      "ro":"Roumanian"
+    },
+    "forgotPassword":"Forgot password"
 
 }

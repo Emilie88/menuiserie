@@ -1,3 +1,4 @@
+/* eslint-disable vue/attributes-order */
 <template>
   <v-container fluid fill-height>
     <v-layout align-center justify-center>
@@ -301,11 +302,10 @@
 </template>
 
 <script>
-const token = localStorage.getItem("token");
-
 export default {
   name: "AgendaClient",
   data: () => ({
+    token: localStorage.getItem("token"),
     dialogDelete: false,
     dialogEdit: false,
     today: new Date().toISOString().substr(0, 10),
@@ -347,7 +347,8 @@ export default {
       details: null,
     },
   }),
-  created() {
+
+  mounted() {
     this.getEvents();
   },
 
@@ -368,7 +369,7 @@ export default {
             this.body,
             {
               headers: {
-                Authorization: "Bearer " + token,
+                Authorization: "Bearer " + this.token,
               },
             },
           );
@@ -395,7 +396,7 @@ export default {
         "https://127.0.0.1:8000/api/schedulers",
         {
           headers: {
-            Authorization: "Bearer" + " " + token,
+            Authorization: "Bearer" + " " + this.token,
           },
         },
       );
@@ -415,7 +416,7 @@ export default {
           this.event,
           {
             headers: {
-              Authorization: "Bearer" + " " + token,
+              Authorization: "Bearer" + " " + this.token,
             },
           },
         );
@@ -446,7 +447,7 @@ export default {
           "https://127.0.0.1:8000/api/remove-scheduler/" + `${id}`,
           {
             headers: {
-              Authorization: "Bearer" + " " + token,
+              Authorization: "Bearer" + " " + this.token,
             },
           },
         );

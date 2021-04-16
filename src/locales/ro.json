@@ -72,7 +72,13 @@
      "titleAgendaUser":"Agenda dvs. va este utila pentru a program o intalnire cu antrepenorul.Este disponibil de luni până vineri de la 8:00 la 17:00!",
      "titleAgendaRed":"Vă rugăm să rețineți că orice rezervare care nu este de culoare verde nu este validată!",
      "addOpinion":"Adauga o parere",
-     "messages":"Mesaje"
+     "messages":"Mesaje",
+     "Languages":{
+      "en":"Engleza",
+      "fr":"Franceza",
+      "ro":"Romana"
+    },
+    "forgotPassword":"Parola pierduta"
 
 
 }

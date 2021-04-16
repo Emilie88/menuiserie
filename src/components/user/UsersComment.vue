@@ -110,12 +110,11 @@
   </v-sheet>
 </template>
 <script>
-const token = localStorage.getItem("token");
-
 export default {
   name: "UsersComment",
   data() {
     return {
+      token: localStorage.getItem("token"),
       dialog: false,
       dialogDelete: false,
       comments: [],
@@ -151,7 +150,7 @@ export default {
         "https://127.0.0.1:8000/api/comment/",
         {
           headers: {
-            Authorization: "Bearer" + " " + token,
+            Authorization: "Bearer" + " " + this.token,
           },
         },
       );
@@ -170,7 +169,7 @@ export default {
           this.comment,
           {
             headers: {
-              Authorization: "Bearer" + " " + token,
+              Authorization: "Bearer" + " " + this.token,
             },
           },
         );
@@ -196,7 +195,7 @@ export default {
           "https://127.0.0.1:8000/api/remove-comment/" + `${id}`,
           {
             headers: {
-              Authorization: "Bearer" + " " + token,
+              Authorization: "Bearer" + " " + this.token,
             },
           },
         );

@@ -268,8 +268,6 @@
 </template>
 
 <script>
-const token = localStorage.getItem("token");
-
 export default {
   name: "AgendaClient",
   data: () => ({
@@ -305,11 +303,9 @@ export default {
       color: "primary",
       details: null,
     },
+    token: localStorage.getItem("token"),
   }),
   created() {
-    this.getEventsAdmin();
-  },
-  mounted() {
     this.getEvents();
   },
 
@@ -330,7 +326,7 @@ export default {
             this.body,
             {
               headers: {
-                Authorization: "Bearer " + token,
+                Authorization: "Bearer " + this.token,
               },
             },
           );
@@ -357,7 +353,7 @@ export default {
         "https://127.0.0.1:8000/api/schedulers",
         {
           headers: {
-            Authorization: "Bearer" + " " + token,
+            Authorization: "Bearer" + " " + this.token,
           },
         },
       );
@@ -365,11 +361,12 @@ export default {
       this.eventAdmin = author;
     },
     async getEvents() {
+      this.getEventsAdmin();
       const response = await this.$http.get(
         "https://127.0.0.1:8000/api/scheduler",
         {
           headers: {
-            Authorization: "Bearer" + " " + token,
+            Authorization: "Bearer" + " " + this.token,
           },
         },
       );
@@ -390,7 +387,7 @@ export default {
           this.event,
           {
             headers: {
-              Authorization: "Bearer" + " " + token,
+              Authorization: "Bearer" + " " + this.token,
             },
           },
         );
@@ -421,7 +418,7 @@ export default {
           "https://127.0.0.1:8000/api/remove-scheduler/" + `${id}`,
           {
             headers: {
-              Authorization: "Bearer" + " " + token,
+              Authorization: "Bearer" + " " + this.token,
             },
           },
         );

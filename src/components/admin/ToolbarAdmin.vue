@@ -45,7 +45,7 @@ export default {
     return {
       links: [
         { text: "Agenda", route: "/dashboardAdmin" },
-        // { text: this.$t("messages"), route: "/messages" },
+        { text: this.$t("messages"), route: "/messages" },
         { text: this.$t("achievement"), route: "/realisation" },
       ],
       drawer: null,

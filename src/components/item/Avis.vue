@@ -19,38 +19,36 @@
 
       <v-row>
         <v-col md-12>
-          <v-sheet class="mx-auto">
-            <v-slide-group class="pa-2" show-arrows>
-              <v-slide-item
-                v-for="(item, index) in comments"
-                :key="index"
-                max-width="240"
-              >
-                <v-card class="ma-2" max-width="235">
-                  <v-card-title class="title font-light mb-1">
-                    {{ item.title }}
-                  </v-card-title>
-                  <v-card-text>
-                    <v-rating
-                      v-model="item.rating"
-                      readonly
-                      color="lime darken-3"
-                      background-color="lime darken-3"
-                      small
-                    ></v-rating>
+          <v-slide-group class="pa-2" show-arrows>
+            <v-slide-item
+              v-for="(item, index) in comments"
+              :key="index"
+              max-width="240"
+            >
+              <v-card class="ma-2" max-width="235">
+                <v-card-title class="title font-light mb-1">
+                  {{ item.title }}
+                </v-card-title>
+                <v-card-text>
+                  <v-rating
+                    v-model="item.rating"
+                    readonly
+                    color="lime darken-3"
+                    background-color="lime darken-3"
+                    small
+                  ></v-rating>
 
-                    <span>{{ item.content }}</span>
-                  </v-card-text>
+                  <span>{{ item.content }}</span>
+                </v-card-text>
 
-                  <v-card-subtitle>
-                    <span>{{ item.author }}</span>
+                <v-card-subtitle>
+                  <span><v-icon>mdi-account</v-icon>{{ item.author }}</span>
 
-                    <!-- <span>{{ item.createdAt }}</span> -->
-                  </v-card-subtitle>
-                </v-card>
-              </v-slide-item>
-            </v-slide-group>
-          </v-sheet>
+                  <!-- <span>{{ item.createdAt }}</span> -->
+                </v-card-subtitle>
+              </v-card>
+            </v-slide-item>
+          </v-slide-group>
         </v-col>
       </v-row>
     </v-container>

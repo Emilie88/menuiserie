@@ -86,7 +86,7 @@
               <v-col md="12">
                 <div>{{ $t("myOpinions") }}</div>
                 <div class="py-2"></div>
-                <UsersComment />
+                <user-users-comment />
               </v-col>
             </v-row>
           </v-col>
@@ -98,14 +98,9 @@
   </v-app>
 </template>
 <script>
-import UsersComment from "../../components/user/UsersComment.vue";
-const token = localStorage.getItem("token");
-
 export default {
   name: "Testimonials",
-  components: {
-    UsersComment,
-  },
+
   data() {
     return {
       body: {
@@ -114,6 +109,7 @@ export default {
         title: null,
         content: null,
       },
+      token: localStorage.getItem("token"),
     };
   },
   methods: {
@@ -125,7 +121,7 @@ export default {
 
           {
             headers: {
-              Authorization: "Bearer" + " " + token,
+              Authorization: "Bearer" + " " + this.token,
             },
           },
         );
@@ -135,7 +131,7 @@ export default {
           text: "Your comment has been added",
           type: "success",
         });
-        this.$refs.form.reset();
+        // this.$refs.form.reset();
       } catch (error) {
         // Error snackbar
         this.$store.dispatch("show", {

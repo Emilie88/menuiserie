@@ -87,7 +87,7 @@ export default {
         }
         // Iterate over toBeRemovedKeys and remove the items by key
         toBeRemovedKeys.forEach((key) => localStorage.removeItem(key));
-        document.location.reload();
+        // document.location.reload();
         // Success snackbar
         this.$store.dispatch("show", {
           text: "You are logged out",
