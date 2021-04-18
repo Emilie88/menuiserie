@@ -68,7 +68,7 @@
                               type="submit"
                               outlined
                               color="lime darken-3"
-                              x-large
+                              large
                             >
                               {{ $t("send") }}
                             </v-btn>

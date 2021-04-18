@@ -179,8 +179,9 @@
                         <v-card-actions class="ma-0 pa-0">
                           <v-card-title class="pa-0">
                             <v-icon small class="mr-2" color="lime darken-3">
-                              mdi-pencil </v-icon
-                            >Editer</v-card-title
+                              mdi-pencil
+                            </v-icon>
+                            {{ $t("edit") }}</v-card-title
                           >
 
                           <v-spacer></v-spacer>
@@ -241,14 +242,14 @@
                       text
                       @click.stop="dialogEdit = false"
                     >
-                      Annuler
+                      {{ $t("close") }}
                     </v-btn>
                     <v-btn
                       color="lime darken-3"
                       text
                       @click="editConfirm(event.id)"
                     >
-                      Editer
+                      {{ $t("send") }}
                     </v-btn>
                   </v-card-actions>
                 </v-card>
@@ -256,7 +257,7 @@
 
               <v-card-actions>
                 <v-btn text color="secondary" @click="selectedOpen = false">
-                  close
+                  {{ $t("close") }}
                 </v-btn>
               </v-card-actions>
             </v-card>

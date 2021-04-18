@@ -166,25 +166,26 @@
                   <v-icon>mdi-delete</v-icon>
                 </v-btn>
               </v-toolbar>
-              <v-dialog v-model="dialogDelete" max-width="600px">
-                <v-card>
-                  <v-card-title>
-                    Vous etez sur que vous voulez supprimmer votre
-                    rendez-vous?</v-card-title
-                  >
+              <v-dialog v-model="dialogDelete" max-width="500px">
+                <v-card class="pa-4">
+                  <v-card-title color="grey lighten-4">
+                    <v-icon class="pr-2">mdi-delete</v-icon>
+                    {{ $t("deleteEvent") }} - {{ selectedEvent.name }} ?
+                  </v-card-title>
+
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn
                       color="lime darken-3"
                       text
                       @click.stop="dialogDelete = false"
-                      >Annuler</v-btn
+                      >{{ $t("close") }}</v-btn
                     >
                     <v-btn
                       color="lime darken-3"
                       text
                       @click="deleteEvents(event.id)"
-                      >Confirmer</v-btn
+                      >{{ $t("confirm") }}</v-btn
                     >
                     <v-spacer></v-spacer>
                   </v-card-actions>
@@ -199,8 +200,9 @@
                         <v-card-actions class="ma-0 pa-0">
                           <v-card-title class="pa-0">
                             <v-icon small class="mr-2" color="lime darken-3">
-                              mdi-pencil </v-icon
-                            >Editer</v-card-title
+                              mdi-pencil
+                            </v-icon>
+                            {{ $t("edit") }}</v-card-title
                           >
 
                           <v-spacer></v-spacer>
@@ -275,14 +277,14 @@
                       text
                       @click.stop="dialogEdit = false"
                     >
-                      Annuler
+                      {{ $t("close") }}
                     </v-btn>
                     <v-btn
                       color="lime darken-3"
                       text
                       @click="editConfirm(event.id)"
                     >
-                      Editer
+                      {{ $t("send") }}
                     </v-btn>
                   </v-card-actions>
                 </v-card>
@@ -290,7 +292,7 @@
 
               <v-card-actions>
                 <v-btn text color="secondary" @click="selectedOpen = false">
-                  close
+                  {{ $t("close") }}
                 </v-btn>
               </v-card-actions>
             </v-card>

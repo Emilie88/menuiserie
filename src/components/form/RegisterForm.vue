@@ -63,18 +63,9 @@
                               ></v-text-field>
                             </v-col>
 
-                            <v-col class="d-flex" cols="12" sm="6" xs="12">
-                            </v-col>
-                            <v-spacer></v-spacer>
-                            <v-col
-                              class="d-flex"
-                              cols="12"
-                              sm="5"
-                              xs="12"
-                              align-end
-                            >
+                            <v-col cols="12" class="d-flex justify-center">
                               <v-btn
-                                x-large
+                                large
                                 outlined
                                 color="lime darken-3"
                                 type="submit"

@@ -78,6 +78,10 @@
       "fr":"French",
       "ro":"Roumanian"
     },
-    "forgotPassword":"Forgot password"
+    "forgotPassword":"Forgot password",
+    "star": "* Required fields !",
+    "mailRule":"Email must be valid",
+    "requiredField":"This field is required",
+    "deleteEvent": "Confirm the deletion of"
 
 }

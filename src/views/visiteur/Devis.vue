@@ -134,6 +134,7 @@
                   </v-row>
                 </v-form>
               </validation-observer>
+              <span v-text="$t('star')" />
             </v-card>
           </v-theme-provider>
         </v-container>

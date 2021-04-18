@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <!-- :<v-sheet id="contact" color="#333333" dark tag="section" tile> -->
     <div class="py-12"></div>
 
     <h2
@@ -46,7 +45,6 @@
         <v-col cols="12" md="6" xs="12">
           <div>{{ $t("liveMessage") }}</div>
           <br />
-          <br />
 
           <validation-observer v-slot="{ handleSubmit }">
             <v-form
@@ -87,15 +85,19 @@
                 required
               />
 
-              <v-btn
-                class="mr-4"
-                type="submit"
-                outlined
-                color="lime darken-3"
-                x-large
-              >
-                {{ $t("send") }}
-              </v-btn>
+              <v-row>
+                <span v-text="$t('star')" />
+                <v-spacer></v-spacer>
+                <v-btn
+                  class="mr-4"
+                  type="submit"
+                  outlined
+                  color="lime darken-3"
+                  x-large
+                >
+                  {{ $t("send") }}
+                </v-btn>
+              </v-row>
             </v-form>
           </validation-observer>
         </v-col>
@@ -103,7 +105,6 @@
     </v-theme-provider>
 
     <div class="py-12"></div>
-    <!-- </v-sheet> -->
   </v-container>
 </template>
 <script>

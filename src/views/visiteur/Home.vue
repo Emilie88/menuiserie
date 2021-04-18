@@ -3,7 +3,10 @@
     <v-main>
       <section id="hero">
         <v-row no-gutters>
-          <v-img src="../../assets/img/parquet/etagers.jpeg" max-height="600">
+          <v-img
+            src="../../assets/img/cuisine/cuisineAlexPD.jpg"
+            max-height="600"
+          >
             <div class="py-12"></div>
             <v-theme-provider dark>
               <v-container fill-height>

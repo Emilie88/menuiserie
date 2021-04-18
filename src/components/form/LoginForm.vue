@@ -44,6 +44,17 @@
                             </v-col>
                             <v-col cols="12" class="d-flex justify-center">
                               <sign-in-forgot-password-button />
+                              <v-spacer></v-spacer>
+                              <div>
+                                <span color="lime darken-3"
+                                  >{{ $t("registerQuestion") }} ?</span
+                                >
+                                <v-btn icon to="/register">
+                                  <v-icon color="lime darken-3" large
+                                    >mdi-account-outline</v-icon
+                                  >
+                                </v-btn>
+                              </div>
                             </v-col>
 
                             <v-col cols="12" class="d-flex justify-center">
@@ -65,10 +76,7 @@
               </v-tabs>
             </v-card>
             <br />
-            <span color="lime darken-3">{{ $t("registerQuestion") }} ?</span>
-            <v-btn icon to="/register">
-              <v-icon color="lime darken-3" large>mdi-account-outline</v-icon>
-            </v-btn>
+            <span v-text="$t('star')" />
           </v-flex>
         </v-layout>
       </v-container>

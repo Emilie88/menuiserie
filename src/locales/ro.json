@@ -78,7 +78,11 @@
       "fr":"Franceza",
       "ro":"Romana"
     },
-    "forgotPassword":"Parola pierduta"
+    "forgotPassword":"Parola pierduta",
+    "star":"* Campuri obligatorii !",
+    "mailRule":"Email-ul trebuie sa fie valid !",
+    "requiredField":"Acest camp este obligatoriu !",
+    "deleteEvent" :"Confirmati stergerea "
 
 
 }

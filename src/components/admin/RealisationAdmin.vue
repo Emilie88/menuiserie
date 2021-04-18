@@ -43,11 +43,7 @@
 
                     <v-spacer></v-spacer>
                     <v-col cols="12" class="d-flex justify-center">
-                      <v-btn
-                        x-large
-                        outlined
-                        color="lime darken-3"
-                        type="submit"
+                      <v-btn large outlined color="lime darken-3" type="submit"
                         >Add</v-btn
                       >
                     </v-col>

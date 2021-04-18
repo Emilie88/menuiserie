@@ -15,17 +15,19 @@ import {
   regex,
 } from "vee-validate/dist/rules";
 
+import i18n from "@/i18n";
+
 // Install rules and messages
 extend("confirmed", confirmed);
 extend("digits", digits);
 extend("email", {
   ...email,
-  message: "Email must be valid",
+  message: i18n.t("mailRule"),
 });
 extend("regex", regex);
 extend("required", {
   ...required,
-  message: "This field is required",
+  message: i18n.t("requiredField"),
 });
 
 setInteractionMode("eager");

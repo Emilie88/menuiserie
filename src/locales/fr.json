@@ -78,7 +78,11 @@
     "fr":"Français",
     "ro":"Roumain"
   },
-  "forgotPassword":"Mot de passe oublié"
+  "forgotPassword":"Mot de passe oublié",
+  "star":"* Champs obligatoires !",
+  "mailRule":"L'email doit être valide !",
+  "requiredField":"Ce champ est obligatoire !",
+  "deleteEvent": "Confirmez la suppression de "
 
 
 }
