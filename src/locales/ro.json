@@ -67,7 +67,8 @@
      "rating":"Stele",
      "author":"Autor",
      "title":"Titlu",
-     "content":"Continut *",
+     "content":"Continut ",
+     "contentForm":"Continut *",
      "actions":"Actiuni",
      "titleAgendaUser":"Agenda dvs. va este utila pentru a program o intalnire cu antrepenorul.Este disponibil de luni până vineri de la 8:00 la 17:00!",
      "titleAgendaRed":"Vă rugăm să rețineți că orice rezervare care nu este de culoare verde nu este validată!",
@@ -82,7 +83,9 @@
     "star":"* Campuri obligatorii !",
     "mailRule":"Email-ul trebuie sa fie valid !",
     "requiredField":"Acest camp este obligatoriu !",
-    "deleteEvent" :"Confirmati stergerea "
+    "deleteEvent" :"Confirmati stergerea ",
+    "newEvent":"Programare noua",
+    "newEventAdmin":"Eveniment nou"
 
 
 }

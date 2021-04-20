@@ -56,7 +56,7 @@
                     <v-text-field
                       v-model="comment.content"
                       color="lime darken-3"
-                      :label="$t('content')"
+                      :label="$t('contentForm')"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -77,9 +77,13 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <v-dialog v-model="dialogDelete" max-width="600px">
+          <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
-              <v-card-title> {{ $t("confirmDelete") }}</v-card-title>
+              <v-card-title color="grey lighten-4">
+                <v-icon class="pr-2">mdi-delete</v-icon>
+                {{ $t("deleteEvent") }} - {{ comment.title }}?
+              </v-card-title>
+
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn

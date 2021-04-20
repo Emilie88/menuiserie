@@ -1,4 +1,4 @@
-import { set } from "./methods";
+import { set, toggle } from "./methods";
 
 export default {
   setSnackbar: set("snackbar"),
@@ -7,4 +7,6 @@ export default {
   setIcon: set("icon"),
   setDetails: set("details"),
   setLoading: set("loading"),
+  setDrawer: set("drawer"),
+  toggleDrawer: toggle("drawer"),
 };

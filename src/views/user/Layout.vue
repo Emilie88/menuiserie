@@ -1,17 +1,27 @@
 <template>
   <v-app>
     <v-main>
-      <ToolbarUser />
+      <user-toolbar-user />
+      <div v-if="drawer == true">
+        <user-drawer />
+      </div>
       <router-view :key="`${$route.name}+${$route.params.id}`" />
       <item-footer />
     </v-main>
   </v-app>
 </template>
 <script>
-import ToolbarUser from "../../components/user/ToolbarUser.vue";
 export default {
-  components: {
-    ToolbarUser,
+  computed: {
+    drawer: {
+      get() {
+        return this.$store.getters["drawer"];
+      },
+
+      set(value) {
+        this.$store.commit("setDrawer", value);
+      },
+    },
   },
 };
 </script>

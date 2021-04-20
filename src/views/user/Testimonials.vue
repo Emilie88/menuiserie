@@ -58,7 +58,7 @@
                           <custom-textarea
                             v-model="body.content"
                             color="lime darken-3"
-                            :label="$t('content')"
+                            :label="$t('contentForm')"
                             required
                           />
 

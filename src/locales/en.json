@@ -67,7 +67,8 @@
     "rating":"Stars",
     "author":"Author",
     "title":"Title",
-    "content":"Content *",
+    "content":"Content ",
+    "contentForm":"Content *",
     "actions":"Actions",
     "titleAgendaUser":"Your agenda is used to make an appointment with the entrepreneur . He is available Monday to Friday from 8:00 am to 5:00 pm!",
     "titleAgendaRed":"Please note that any reservation that is not green is not validated!",
@@ -82,6 +83,8 @@
     "star": "* Required fields !",
     "mailRule":"Email must be valid",
     "requiredField":"This field is required",
-    "deleteEvent": "Confirm the deletion of"
+    "deleteEvent": "Confirm the deletion of",
+    "newEvent":"New appointment",
+    "newEventAdmin":"New event"
 
 }

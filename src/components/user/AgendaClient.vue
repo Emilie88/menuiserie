@@ -9,17 +9,18 @@
           {{ $t("titleAgendaRed") }}
         </div>
         <br />
+        <v-btn
+          outlined
+          class="mx-3"
+          color="lime darken-3"
+          @click="setDialogDate"
+        >
+          {{ $t("newEvent") }}
+        </v-btn>
+        <br />
+        <br />
 
         <v-toolbar flat color="lime darken-3">
-          <v-btn
-            v-show="$vuetify.breakpoint.smAndUp"
-            outlined
-            class="mx-3"
-            @click="setDialogDate"
-          >
-            New Event
-          </v-btn>
-
           <v-btn outlined class="mx-3" @click="setToday"> Today </v-btn>
 
           <v-btn fab text small @click="prev">
@@ -74,53 +75,74 @@
               <validation-observer v-slot="{ handleSubmit }" lazy-validation>
                 <v-form @submit.prevent="handleSubmit(addEvent)">
                   <span v-if="eventDouble != null">{{ eventDouble }}</span>
-                  <custom-text-field
-                    v-model="body.name"
-                    color="lime darken-3"
-                    type="text"
-                    :label="$t('event')"
-                    required
-                  />
-                  <custom-text-field
-                    v-model="body.email"
-                    color="lime darken-3"
-                    type="text"
-                    label="Email"
-                  />
-                  <custom-text-field
-                    v-model="body.details"
-                    color="lime darken-3"
-                    type="text"
-                    label="Details"
-                  />
+                  <v-row>
+                    <v-col cols="12" md="6" sm="6">
+                      <custom-text-field
+                        v-model="body.name"
+                        color="lime darken-3"
+                        type="text"
+                        :label="$t('event')"
+                        required
+                      />
+                    </v-col>
+                    <v-col cols="12" md="6" sm="6">
+                      <custom-text-field
+                        v-model="body.email"
+                        color="lime darken-3"
+                        type="text"
+                        label="Email"
+                        required
+                      />
+                    </v-col>
+                    <v-col cols="12">
+                      <custom-text-field
+                        v-model="body.details"
+                        color="lime darken-3"
+                        type="text"
+                        label="Details"
+                      />
+                    </v-col>
+                    <v-col cols="12" md="6" sm="6">
+                      <custom-text-field
+                        v-model="body.start"
+                        color="lime darken-3"
+                        type="datetime-local"
+                        name="start"
+                        :label="$t('start')"
+                        required
+                      />
+                    </v-col>
+                    <v-col cols="12" md="6" sm="6">
+                      <custom-text-field
+                        v-model="body.end"
+                        color="lime darken-3"
+                        type="datetime-local"
+                        name="end"
+                        :label="$t('end')"
+                        required
+                      />
+                    </v-col>
+                    <v-col cols="12">
+                      <custom-text-field
+                        v-model="body.color"
+                        color="lime darken-3"
+                        type="text"
+                        readonly
+                        :label="$t('color')"
+                      />
+                    </v-col>
 
-                  <custom-text-field
-                    v-model="body.start"
-                    color="lime darken-3"
-                    type="datetime-local"
-                    name="start"
-                    :label="$t('start')"
-                    required
-                  />
-                  <custom-text-field
-                    v-model="body.end"
-                    color="lime darken-3"
-                    type="datetime-local"
-                    name="end"
-                    :label="$t('end')"
-                    required
-                  />
-
-                  <custom-text-field
-                    v-model="body.color"
-                    color="lime darken-3"
-                    type="text"
-                    :label="$t('color')"
-                  />
-
-                  <v-btn type="submit" color="lime darken-3" class="mr-4">
-                    {{ $t("createEvent") }}
-                  </v-btn>
+                    <v-col cols="12" class="d-flex justify-end">
+                      <v-btn
+                        type="submit"
+                        text
+                        color="lime darken-3"
+                        class="mr-4"
+                      >
+                        {{ $t("createEvent") }}
+                      </v-btn>
+                    </v-col>
+                  </v-row>
                 </v-form>
               </validation-observer>
             </v-container>
@@ -137,6 +159,7 @@
             :event-margin-bottom="3"
             :now="today"
             :type="type"
+            :weekdays="weekdays"
             @click:event="showEvent"
             @click:more="viewDay"
             @change="updateRange"
@@ -164,7 +187,39 @@
                   />
                 </v-toolbar-title>
                 <div class="flex-grow-1"></div>
+                <v-btn
+                  v-if="selectedEvent.author === null"
+                  icon
+                  @click="deleteItem(selectedEvent)"
+                >
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
               </v-toolbar>
+              <v-dialog v-model="dialogDelete" max-width="500px">
+                <v-card class="pa-4">
+                  <v-card-title color="grey lighten-4">
+                    <v-icon class="pr-2">mdi-delete</v-icon>
+                    {{ $t("deleteEvent") }} - {{ selectedEvent.name }} ?
+                  </v-card-title>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="lime darken-3"
+                      text
+                      @click.stop="dialogDelete = false"
+                      >{{ $t("close") }}</v-btn
+                    >
+                    <v-btn
+                      color="lime darken-3"
+                      text
+                      @click="deleteEvents(event.id)"
+                      >{{ $t("confirm") }}</v-btn
+                    >
+                    <v-spacer></v-spacer>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
               <v-card-text>
                 <span
                   class="secondary--text"
@@ -283,7 +338,7 @@ export default {
       day: "Day",
       "4day": "4 Days",
     },
-
+    weekdays: [1, 2, 3, 4, 5],
     color: "primary",
     editedIndex: -1,
     // currentlyEditing: null,
@@ -320,6 +375,8 @@ export default {
         eventEnd.includes(this.body.end)
       ) {
         this.eventDouble = "Ce creneau horaire est deja pris";
+      } else if (eventStart > this.today) {
+        this.eventDouble = "La date est deja passé";
       } else {
         try {
           await this.$http.post(
@@ -373,8 +430,6 @@ export default {
       );
       this.events = response.data;
       this.events.push(...this.eventAdmin);
-
-      console.log(this.events);
     },
     editItem(item) {
       this.editedIndex = this.events.indexOf(item);

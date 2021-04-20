@@ -5,4 +5,5 @@ export default {
   icon: "",
   details: null,
   loading: false,
+  drawer: null,
 };

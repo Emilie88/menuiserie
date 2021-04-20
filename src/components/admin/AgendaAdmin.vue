@@ -3,16 +3,17 @@
   <v-container fluid fill-height>
     <v-layout align-center justify-center>
       <v-flex xs12 sm8 md9>
+        <v-btn
+          outlined
+          class="mx-3"
+          color="lime darken-3"
+          @click="setDialogDate"
+        >
+          {{ $t("newEventAdmin") }}
+        </v-btn>
+        <br />
+        <br />
         <v-toolbar flat color="lime darken-3">
-          <v-btn
-            v-show="$vuetify.breakpoint.smAndUp"
-            outlined
-            class="mx-3"
-            @click="setDialogDate"
-          >
-            New Event
-          </v-btn>
-
           <v-btn outlined class="mx-3" @click="setToday"> Today </v-btn>
 
           <v-btn fab text small @click="prev">
@@ -67,60 +68,62 @@
               <validation-observer v-slot="{ handleSubmit }" lazy-validation>
                 <v-form @submit.prevent="handleSubmit(addEvent)">
                   <span v-if="eventDouble != null">{{ eventDouble }}</span>
-                  <custom-text-field
-                    v-model="body.author"
-                    color="lime darken-3"
-                    type="text"
-                    label="Name"
-                    required
-                  />
-                  <custom-text-field
-                    v-model="body.name"
-                    color="lime darken-3"
-                    type="text"
-                    :label="$t('event')"
-                    required
-                  />
-                  <custom-text-field
-                    v-model="body.details"
-                    color="lime darken-3"
-                    type="text"
-                    label="Details"
-                    required
-                  />
-                  <custom-text-field
-                    v-model="body.email"
-                    color="lime darken-3"
-                    type="email"
-                    label="Email"
-                    required
-                  />
+                  <v-row>
+                    <custom-text-field
+                      v-model="body.author"
+                      color="lime darken-3"
+                      type="text"
+                      label="Name"
+                      required
+                    />
+                    <custom-text-field
+                      v-model="body.name"
+                      color="lime darken-3"
+                      type="text"
+                      :label="$t('event')"
+                      required
+                    />
+                    <custom-text-field
+                      v-model="body.details"
+                      color="lime darken-3"
+                      type="text"
+                      label="Details"
+                      required
+                    />
+                    <custom-text-field
+                      v-model="body.email"
+                      color="lime darken-3"
+                      type="email"
+                      label="Email"
+                      required
+                    />
 
-                  <custom-text-field
-                    v-model="body.start"
-                    color="lime darken-3"
-                    type="datetime-local"
-                    name="start"
-                    :label="$t('start')"
-                    required
-                  />
-                  <custom-text-field
-                    v-model="body.end"
-                    color="lime darken-3"
-                    type="datetime-local"
-                    name="end"
-                    :label="$t('end')"
-                    required
-                  />
+                    <custom-text-field
+                      v-model="body.start"
+                      color="lime darken-3"
+                      type="datetime-local"
+                      name="start"
+                      :label="$t('start')"
+                      required
+                    />
+                    <custom-text-field
+                      v-model="body.end"
+                      color="lime darken-3"
+                      type="datetime-local"
+                      name="end"
+                      :label="$t('end')"
+                      required
+                    />
 
-                  <v-autocomplete
-                    v-model="body.color"
-                    :items="colors"
-                    color="lime darken-3"
-                    dense
-                    :label="$t('color')"
-                    required
-                  ></v-autocomplete>
+                    <v-autocomplete
+                      v-model="body.color"
+                      :items="colors"
+                      color="lime darken-3"
+                      dense
+                      :label="$t('color')"
+                      required
+                    ></v-autocomplete>
+                  </v-row>
 
                   <v-btn type="submit" color="lime darken-3" class="mr-4">
                     {{ $t("createEvent") }}
@@ -222,13 +225,13 @@
                           :label="$t('event')"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="12" md="6" xs="12">
+                      <!-- <v-col cols="12" md="6" xs="12">
                         <v-text-field
                           v-model="event.author"
                           color="lime darken-3"
                           label="Author"
                         ></v-text-field>
-                      </v-col>
+                      </v-col> -->
                       <v-col cols="12" md="6" xs="12">
                         <v-text-field
                           v-model="event.email"
@@ -236,14 +239,14 @@
                           label="Email"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="12" md="6" xs="12">
+                      <v-col cols="12">
                         <v-text-field
                           v-model="event.details"
                           color="lime darken-3"
                           label="Details"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="12">
+                      <v-col cols="12" md="6">
                         <v-text-field
                           v-model="event.start"
                           type="datetime-local"
@@ -251,7 +254,7 @@
                           :label="$t('start')"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="12">
+                      <v-col cols="12" md="6">
                         <v-text-field
                           v-model="event.end"
                           type="datetime-local"
@@ -364,6 +367,8 @@ export default {
         eventEnd.includes(this.body.end)
       ) {
         this.eventDouble = "Ce creneau horaire est deja pris";
+      } else if (eventStart > this.today) {
+        this.eventDouble = "La date est deja passé";
       } else {
         try {
           await this.$http.post(

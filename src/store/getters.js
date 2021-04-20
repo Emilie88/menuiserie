@@ -5,4 +5,5 @@ export default {
   icon: (state) => state.icon,
   details: (state) => state.details,
   loading: (state) => state.loading,
+  drawer: (state) => state.drawer,
 };

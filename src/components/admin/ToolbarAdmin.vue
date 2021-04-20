@@ -2,7 +2,7 @@
   <v-app-bar fixed>
     <v-app-bar-nav-icon
       class="hidden-sm-and-up hidden-md-and-up"
-      @click.stop="drawer = !drawer"
+      @click.stop="toggleDrawer"
     ></v-app-bar-nav-icon>
 
     <v-toolbar-title>
@@ -23,15 +23,6 @@
       </v-list-item>
     </v-toolbar-items>
 
-    <v-list v-if="drawer" dense>
-      <v-list-item-group v-for="(item, i) in links" :key="i">
-        <v-list-item router :to="item.route" @click.stop="drawer = !drawer">
-          <v-list-item-content>
-            <v-list-item-title v-text="item.text"></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
     <item-user-action />
 
     <item-language-switcher />
@@ -45,11 +36,15 @@ export default {
     return {
       links: [
         { text: "Agenda", route: "/dashboardAdmin" },
-        { text: this.$t("messages"), route: "/messages" },
+        // { text: this.$t("messages"), route: "/messages" },
         { text: this.$t("achievement"), route: "/realisation" },
       ],
-      drawer: null,
     };
+  },
+  methods: {
+    toggleDrawer() {
+      this.$store.commit("toggleDrawer");
+    },
   },
 };
 </script>
