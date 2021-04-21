@@ -5,6 +5,13 @@
         <v-layout align-center justify-center>
           <v-flex xs12 sm8 md6>
             <div class="py-12"></div>
+            <div>
+              <span style="color: #9e9d24">{{ $t("registerQuestion") }} ?</span>
+              <v-btn icon to="/register">
+                <v-icon color="lime darken-3" large>mdi-account-outline</v-icon>
+              </v-btn>
+            </div>
+            <br />
 
             <v-card color="#333333">
               <v-tabs show-arrows color="lime darken-3" icons-and-text grow>
@@ -44,17 +51,6 @@
                             </v-col>
                             <v-col cols="12" class="d-flex justify-center">
                               <sign-in-forgot-password-button />
-                              <v-spacer></v-spacer>
-                              <div>
-                                <span color="lime darken-3"
-                                  >{{ $t("registerQuestion") }} ?</span
-                                >
-                                <v-btn icon to="/register">
-                                  <v-icon color="lime darken-3" large
-                                    >mdi-account-outline</v-icon
-                                  >
-                                </v-btn>
-                              </div>
                             </v-col>
 
                             <v-col cols="12" class="d-flex justify-center">
@@ -76,7 +72,7 @@
               </v-tabs>
             </v-card>
             <br />
-            <span v-text="$t('star')" />
+            <span style="color: #9e9d24" v-text="$t('star')" />
           </v-flex>
         </v-layout>
       </v-container>
