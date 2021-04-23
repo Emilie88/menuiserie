@@ -25,11 +25,12 @@
               :key="index"
               max-width="240"
             >
-              <v-card class="ma-2" max-width="235">
+              <v-card class="ma-2" max-width="235" max-height="350">
                 <v-card-title class="title font-light mb-1">
                   {{ item.title }}
                 </v-card-title>
-                <v-card-text>
+
+                <v-card-text max-height="250">
                   <v-rating
                     v-model="item.rating"
                     readonly
@@ -37,15 +38,15 @@
                     background-color="lime darken-3"
                     small
                   ></v-rating>
+                  <v-card-subtitle class="pl-0">
+                    <v-icon>mdi-account</v-icon>{{ item.author }}
+                    <!-- <span class="pl-3">{{
+                    moment(item.createdAt).format("YYYY/MM/DD")
+                  }}</span> -->
+                  </v-card-subtitle>
 
                   <span>{{ item.content }}</span>
                 </v-card-text>
-
-                <v-card-subtitle>
-                  <span><v-icon>mdi-account</v-icon>{{ item.author }}</span>
-
-                  <!-- <span>{{ item.createdAt }}</span> -->
-                </v-card-subtitle>
               </v-card>
             </v-slide-item>
           </v-slide-group>
@@ -69,6 +70,7 @@ export default {
       const response = await this.$http.get(
         "https://127.0.0.1:8000/api/comments/",
       );
+
       this.comments = response.data;
     },
   },

@@ -25,7 +25,7 @@
           <v-theme-provider light>
             <div>
               <LightGallery
-                :images="toBeShownImg"
+                :images="images"
                 :index="index"
                 :disable-scroll="true"
                 @close="index = null"
@@ -33,7 +33,7 @@
 
               <v-row>
                 <v-col
-                  v-for="(thumb, thumbIndex) in toBeShown"
+                  v-for="(thumb, thumbIndex) in thumbs"
                   :key="thumbIndex"
                   class="d-flex child-flex"
                   md="4"
@@ -45,7 +45,7 @@
               </v-row>
             </div>
           </v-theme-provider>
-          <v-row>
+          <!-- <v-row>
             <div>
               <v-btn :disabled="currentPage == 1" @click="prevPage">{{
                 $t("showLess")
@@ -54,9 +54,21 @@
                 $t("showMore")
               }}</v-btn>
             </div>
-          </v-row>
+          </v-row> -->
         </v-container>
-
+        <v-btn
+          v-show="fab"
+          v-scroll="onScroll"
+          fab
+          dark
+          fixed
+          bottom
+          right
+          outlined
+          @click="$vuetify.goTo('#realisations')"
+        >
+          <v-icon>mdi-chevron-up</v-icon>
+        </v-btn>
         <div class="py-12"></div>
       </v-main>
     </v-app>
@@ -75,6 +87,7 @@ export default {
       index: null,
       more: false,
       currentPage: 1,
+      fab: false,
     };
   },
   computed: {
@@ -91,6 +104,11 @@ export default {
     },
   },
   methods: {
+    onScroll(e) {
+      if (typeof window === "undefined") return;
+      const top = window.pageYOffset || e.target.scrollTop || 0;
+      this.fab = top > 20;
+    },
     nextPage() {
       if (this.currentPage < this.totalPages) this.currentPage++;
     },

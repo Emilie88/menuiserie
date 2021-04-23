@@ -32,11 +32,12 @@
                     </v-card-actions>
                   </v-col>
                   <v-col cols="12" md="6" xs="12">
-                    <v-text-field
+                    <v-rating
                       v-model="comment.rating"
+                      background-color="lime darken-3"
                       color="lime darken-3"
                       :label="$t('rating')"
-                    ></v-text-field>
+                    ></v-rating>
                   </v-col>
                   <v-col cols="12" md="6" xs="12">
                     <v-text-field
@@ -53,11 +54,11 @@
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field
+                    <v-textarea
                       v-model="comment.content"
                       color="lime darken-3"
                       :label="$t('contentForm')"
-                    ></v-text-field>
+                    ></v-textarea>
                   </v-col>
                 </v-row>
               </v-container>
@@ -136,12 +137,6 @@ export default {
       ],
       editedIndex: -1,
       comment: {},
-      defaultItem: {
-        rating: "",
-        author: "",
-        title: "",
-        content: "",
-      },
     };
   },
 

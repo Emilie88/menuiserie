@@ -29,7 +29,7 @@
     "mdp":"Password",
     "registerQuestion":"Don't have an account",
     "subject":"Subject",
-    "message":"Message *",
+    "message":"Message",
     "phone":"Phone number",
     "address":"Address",
     "city":"City",
@@ -68,7 +68,7 @@
     "author":"Author",
     "title":"Title",
     "content":"Content ",
-    "contentForm":"Content *",
+    "contentForm":"Content",
     "actions":"Actions",
     "titleAgendaUser":"Your agenda is used to make an appointment with the entrepreneur . He is available Monday to Friday from 8:00 am to 5:00 pm!",
     "titleAgendaRed":"Please note that any reservation that is not green is not validated!",
@@ -85,6 +85,7 @@
     "requiredField":"This field is required",
     "deleteEvent": "Confirm the deletion of",
     "newEvent":"New appointment",
-    "newEventAdmin":"New event"
+    "newEventAdmin":"New event",
+    "dateCreation":"Created at"
 
 }

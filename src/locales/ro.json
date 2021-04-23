@@ -29,7 +29,7 @@
     "firstName":"Prenume",
     "mail":"E-mail",
     "subject":"Subiect",
-    "message":"Mesaj *",
+    "message":"Mesaj",
     "phone":"Telefon",
     "address":"Adresa",
     "city":"Oras",
@@ -68,7 +68,7 @@
      "author":"Autor",
      "title":"Titlu",
      "content":"Continut ",
-     "contentForm":"Continut *",
+     "contentForm":"Continut",
      "actions":"Actiuni",
      "titleAgendaUser":"Agenda dvs. va este utila pentru a program o intalnire cu antrepenorul.Este disponibil de luni până vineri de la 8:00 la 17:00!",
      "titleAgendaRed":"Vă rugăm să rețineți că orice rezervare care nu este de culoare verde nu este validată!",
@@ -85,7 +85,8 @@
     "requiredField":"Acest camp este obligatoriu !",
     "deleteEvent" :"Confirmati stergerea ",
     "newEvent":"Programare noua",
-    "newEventAdmin":"Eveniment nou"
+    "newEventAdmin":"Eveniment nou",
+    "dateCreation":"Data postarii"
 
 
 }

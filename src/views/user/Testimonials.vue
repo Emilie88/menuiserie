@@ -35,16 +35,12 @@
                               />
                             </v-col>
                             <v-col cols="12" md="6" xs="12">
-                              <custom-text-field
+                              <v-rating
                                 v-model="body.rating"
-                                hide-details
-                                single-line
+                                background-color="lime darken-3"
                                 color="lime darken-3"
                                 :label="$t('rating')"
-                                type="number"
-                                max="5"
-                                min="1"
-                              />
+                              ></v-rating>
                             </v-col>
                           </v-row>
 

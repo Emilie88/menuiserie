@@ -36,6 +36,7 @@ export default {
     return {
       links: [
         { text: "Agenda", route: "/dashboardAdmin" },
+        { text: this.$t("avis"), route: "/temoignages" },
         // { text: this.$t("messages"), route: "/messages" },
         { text: this.$t("achievement"), route: "/realisation" },
       ],

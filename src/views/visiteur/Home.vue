@@ -5,7 +5,7 @@
         <v-row no-gutters>
           <v-img
             src="../../assets/img/cuisine/cuisineAlexPD.jpg"
-            max-height="600"
+            max-height="700"
           >
             <div class="py-12"></div>
             <v-theme-provider dark>

@@ -2,15 +2,16 @@
   <validation-provider
     #default="{ errors }"
     :name="`&quot;${$attrs.label}&quot;`"
-    :rules="merge({}, basicRules, rules)"
+    :rules="disabled ? null : rules"
     slim
     :debounce="500"
   >
     <v-textarea
       v-model="innerValue"
-      :label="`${$attrs.label}`"
-      :rules="merge({}, basicRules, rules)"
-      :error-messages="errors.length ? errors : customErrorMessage"
+      :label="`${$attrs.label}${required ? ' *' : ''}`"
+      :counter="$attrs.maxlength"
+      :disabled="disabled"
+      :error-messages="errors"
       v-bind="$attrs"
       v-on="$listeners"
     />
@@ -18,17 +19,10 @@
 </template>
 
 <script>
-import merge from "lodash/merge";
-
 export default {
   props: {
-    rules: {
-      type: Object,
-      default: () => {},
-    },
-
     value: {
-      type: [String, Number],
+      type: String,
       default: null,
     },
 
@@ -40,11 +34,6 @@ export default {
     disabled: {
       type: Boolean,
       default: false,
-    },
-
-    customErrorMessage: {
-      type: String,
-      default: null,
     },
   },
 
@@ -59,16 +48,12 @@ export default {
       },
     },
 
-    basicRules() {
+    rules() {
       return {
         required: this.required,
+        max: this.$attrs.maxlength ? this.$attrs.maxlength : false,
       };
     },
-  },
-
-  methods: {
-    // lodash deep merge
-    merge,
   },
 };
 </script>

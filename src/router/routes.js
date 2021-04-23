@@ -1,6 +1,7 @@
 function lazyLoading(view) {
   return async () => await import(`@/views/${view}.vue`);
 }
+
 const ifAuthenticated = (to, from, next) => {
   if (localStorage.getItem("token")) {
     next();
@@ -8,6 +9,13 @@ const ifAuthenticated = (to, from, next) => {
     next("/login");
   }
 };
+// const ifAuthenticatedAdmin = (to, from, next) => {
+//   if (localStorage.getItem("token") && roles != "ROLE_USER") {
+//     next();
+//   } else {
+//     next("/login");
+//   }
+// };
 
 export default [
   {
@@ -94,6 +102,11 @@ export default [
             name: "Realisation",
             path: "realisation",
             component: lazyLoading("admin/Realisation"),
+          },
+          {
+            name: "Temoignages",
+            path: "temoignages",
+            component: lazyLoading("admin/Temoignages"),
           },
           {
             name: "Messages",

@@ -29,7 +29,7 @@
   "firstName":"Prénom",
   "mail":"E-mail",
   "subject":"Sujet",
-  "message":"Message *",
+  "message":"Message",
   "phone":"Téléphone",
   "address":"Adresse",
   "city":"Ville",
@@ -68,7 +68,7 @@
   "author":"Auteur",
   "title":"Titre",
   "content":"Contenu ",
-  "contentForm":"Contenu *",
+  "contentForm":"Contenu",
   "actions":"Actions",
   "titleAgendaUser":"Votre agenda sert a prendre un rendez-vous avec l'entrepener. Il est disponible du Lundi au Vendredi de 8h00 a 17h00 !",
   "titleAgendaRed":" Attention toute reservation qui n'est pas de couleur verte n'est pas validée !",
@@ -85,7 +85,8 @@
   "requiredField":"Ce champ est obligatoire !",
   "deleteEvent": "Confirmez la suppression de ",
   "newEvent":"Nouveau rendez-vous",
-  "newEventAdmin":"Nouveau événement"
+  "newEventAdmin":"Nouveau événement",
+  "dateCreation":"Date de création"
 
 
 }

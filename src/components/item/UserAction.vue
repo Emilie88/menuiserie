@@ -95,6 +95,7 @@ export default {
         });
 
         this.$router.push({ name: "Login" });
+        // location.reload();
       } catch (error) {
         // Error snackbar
         this.$store.dispatch("show", {
